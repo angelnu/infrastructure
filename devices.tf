@@ -88,7 +88,7 @@ resource "unifi_device" "switch_long_corridor" {
     port_override {
         name            = "AP-Kitchen"
         number          = 1
-        port_profile_id = data.unifi_port_profile.lte.id
+        port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
         name            = "Switch Alicia"
@@ -119,7 +119,19 @@ resource "unifi_device" "switch_long_corridor" {
 
 resource "unifi_device" "long_corridor_ap" {
     mac      = "68:d7:9a:3a:85:4b"
-    name     = "Long Corridor AP"
+    name     = "AP Long Corridor"
+    site     = "default"
+}
+
+resource "unifi_device" "ap_guestroom" {
+    mac      = "24:5a:4c:6e:c2:dd"
+    name     = "AP Guestroom"
+    site     = "default"
+}
+
+resource "unifi_device" "ap_kitchen" {
+    mac      = "24:5a:4c:6e:dd:61"
+    name     = "AP Kitchen"
     site     = "default"
 }
 
@@ -262,5 +274,16 @@ resource "unifi_device" "switch_alicia" {
       name            = "Switch Workroom"
       number          = 3
       port_profile_id = data.unifi_port_profile.all.id
+    }
+}
+
+resource "unifi_device" "switch_kitchen" {
+    mac      = "24:5a:4c:10:91:c0"
+    name     = "Switch Kitchen"
+    site     = "default"
+    port_override {
+      name            = "LTE Router"
+      number          = 3
+      port_profile_id = data.unifi_port_profile.lte.id
     }
 }

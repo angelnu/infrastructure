@@ -65,8 +65,23 @@ resource "unifi_device" "switch_guestroom" {
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Switch Guestroom AP"
+        name            = "Switch Guestroom Right"
         number          = 2
+        port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "AP Guestroom"
+        number          = 3
+        port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Chromecast Ultra"
+        number          = 4
+        port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Homematic Gateway"
+        number          = 6
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
@@ -103,10 +118,10 @@ resource "unifi_device" "switch_long_corridor" {
     port_override {
         name            = "AP-Workroom"
         number          = 4
-        port_profile_id = data.unifi_port_profile.all.id
+        port_profile_id = resource.unifi_port_profile.off.id
     }
     port_override {
-        name            = "Homematic GW"
+        name            = "Switch Kitchen"
         number          = 5
         port_profile_id = data.unifi_port_profile.all.id
     }
@@ -132,6 +147,12 @@ resource "unifi_device" "ap_guestroom" {
 resource "unifi_device" "ap_kitchen" {
     mac      = "24:5a:4c:6e:dd:61"
     name     = "AP Kitchen"
+    site     = "default"
+}
+
+resource "unifi_device" "ap_workroom" {
+    mac      = "24:5a:4c:6e:d5:19"
+    name     = "AP Workroom"
     site     = "default"
 }
 
@@ -223,6 +244,11 @@ resource "unifi_device" "switch_workroom_pc_left" {
       number          = 1
       port_profile_id = data.unifi_port_profile.all.id
     }
+    port_override {
+      name            = "Port Replicator"
+      number          = 2
+      port_profile_id = data.unifi_port_profile.all.id
+    }
 }
 
 resource "unifi_device" "switch_living_cluster" {
@@ -281,6 +307,16 @@ resource "unifi_device" "switch_kitchen" {
     mac      = "24:5a:4c:10:91:c0"
     name     = "Switch Kitchen"
     site     = "default"
+    port_override {
+      name            = "Switch Long Corridor"
+      number          = 1
+      port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+      name            = "Homematic AP"
+      number          = 2
+      port_profile_id = data.unifi_port_profile.all.id
+    }
     port_override {
       name            = "LTE Router"
       number          = 3

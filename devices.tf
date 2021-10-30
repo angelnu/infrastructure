@@ -118,7 +118,7 @@ resource "unifi_device" "switch_long_corridor" {
     port_override {
         name            = "AP-Workroom"
         number          = 4
-        port_profile_id = resource.unifi_port_profile.off.id
+        port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
         name            = "Switch Kitchen"

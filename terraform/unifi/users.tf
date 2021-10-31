@@ -1,5 +1,5 @@
 locals {
-  userscsv = csvdecode(file("${path.module}/../clients.csv"))
+  userscsv = csvdecode(file("${path.module}/../../clients.csv"))
   users    = { for user in local.userscsv : user.mac => user if user.mac != ""}
 }
 

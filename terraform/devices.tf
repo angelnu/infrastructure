@@ -106,7 +106,7 @@ resource "unifi_device" "switch_long_corridor" {
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Switch Alicia"
+        name            = "Switch Kitchen"
         number          = 2
         port_profile_id = data.unifi_port_profile.all.id
     }
@@ -121,13 +121,13 @@ resource "unifi_device" "switch_long_corridor" {
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Switch Kitchen"
-        number          = 5
+        name            = "Router"
+        number          = 6
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Router"
-        number          = 6
+        name            = "Switch Alicia"
+        number          = 8
         port_profile_id = data.unifi_port_profile.all.id
     }
 }
@@ -156,18 +156,13 @@ resource "unifi_device" "ap_workroom" {
     site     = "default"
 }
 
-resource "unifi_device" "switch_guestroom_ap" {
+resource "unifi_device" "switch_guestroom_door" {
     mac      = "68:d7:9a:4f:0f:71"
-    name     = "Switch Guestroom AP"
+    name     = "Switch Guestroom Door"
     site     = "default"
     port_override {
       name            = "Switch Guestroom"
       number          = 1
-      port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-      name            = "Guestroom AP"
-      number          = 5
       port_profile_id = data.unifi_port_profile.all.id
     }
 }
@@ -286,13 +281,14 @@ resource "unifi_device" "switch_alicia" {
     mac      = "74:ac:b9:ae:76:a5"
     name     = "Switch Alicia"
     site     = "default"
+    
     port_override {
-      name            = "Switch Corridor"
+      name            = "Switch Livingroom"
       number          = 1
       port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-      name            = "Switch Livingroom"
+      name            = "Switch Corridor"
       number          = 2
       port_profile_id = data.unifi_port_profile.all.id
     }

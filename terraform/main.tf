@@ -7,3 +7,7 @@ module "unifi" {
   unifi_api_password = var.unifi_api_password
   unifi_wlan_password = var.unifi_wlan_password
 }
+
+module "openwrt" {
+  source = "./openwrt"
+}

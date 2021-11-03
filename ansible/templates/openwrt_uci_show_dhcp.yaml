@@ -9,6 +9,7 @@
   result:
     hosts:
         "{{ config }}":
+            type: "host"
             "{{ section }}": "{{ value }}"
   shared: True
 
@@ -21,5 +22,6 @@
   result:
     domains:
         "{{ config }}":
+            type: "domain"
             "{{ section }}": "{{ value }}"
   shared: True

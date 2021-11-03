@@ -1,6 +1,7 @@
-name,mac,ip,isDNS,note
+type,name,mac,ip,isDNS,note
 {% for entry in dhcp.hosts.values()|list+dhcp.domains.values()|list %}
-{{  entry.name }},
+{{  entry.type }},
+{{- entry.name }},
 {{- entry.mac if "mac" in entry else "" }},
 {{- entry.ip if "ip" in entry else "" }},
 {{- entry.dns if "dns" in entry else "0" }},

@@ -1,6 +1,6 @@
 
 locals {
-  network_clients = csvdecode(file("${path.module}/network_clients.csv"))
+  network_clients = csvdecode(file("${path.module}/settings/network_clients.csv"))
 }
 
 module "unifi" {

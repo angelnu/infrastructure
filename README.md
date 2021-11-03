@@ -2,4 +2,7 @@
 
 Homelab infrastructure deployed with terraform
 
-The [Ansible folder](ansible) contains some plabooks used as tools. See their headers for info on what they do.
+## Folders
+
+- [settings](settings): global settings used for the infrastructure.
+- [ansible](ansible): playbooks used as tools. See their headers for info on what they do.

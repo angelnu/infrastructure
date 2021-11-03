@@ -8,13 +8,13 @@ terraform {
 }
 
 provider "linux" {
-   host        = "192.168.2.1"
+   host        = var.router_IP
     port     = 22
     user     = "root"
-    private_key = file("~/.ssh/id_rsa")
+    private_key = var.router_ssh_key
 }
 
-resource "linux_file" "file" {
+resource "linux_file" "config_dhcp" {
     path = "/etc/config/dhcp"
     content = templatefile("${path.module}/dhcp.tpl", {clients = var.network_clients})
     owner = 0
@@ -32,6 +32,6 @@ resource "linux_script" "install_package" {
         delete = "/bin/true"
     }
     sensitive_environment = {
-      CONFIG = sha512(resource.linux_file.file.content)
+      CONFIG = sha512(resource.linux_file.config_dhcp.content)
     }
 }

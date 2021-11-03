@@ -14,13 +14,9 @@ provider "linux" {
     private_key = file("~/.ssh/id_rsa")
 }
 
-locals {
-  userscsv = csvdecode(file("${path.module}/../../clients.csv"))
-}
-
 resource "linux_file" "file" {
     path = "/etc/config/dhcp"
-    content = templatefile("${path.module}/dhcp.tpl", {clients = local.userscsv})
+    content = templatefile("${path.module}/dhcp.tpl", {clients = var.network_clients})
     owner = 0
     group = 0
     mode = "644"

@@ -19,4 +19,4 @@
   - delegate_to: localhost
     ansible.builtin.template:
      src: clients.j2
-     dest: ../clients.csv
+     dest: ../nettwork_clients.csv

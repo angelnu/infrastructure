@@ -1,3 +1,9 @@
+variable "network_clients" {
+    description = "List of network client objets" 
+    type        = list(map(string))
+    default     = []
+}
+
 variable "unifi_api_username" {
     description = "Unifi username" 
     type        = string

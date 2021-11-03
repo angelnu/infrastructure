@@ -1,5 +1,12 @@
+
+locals {
+  network_clients = csvdecode(file("${path.module}/network_clients.csv"))
+}
+
 module "unifi" {
   source = "./unifi"
+
+  network_clients = local.network_clients
 
   unifi_api_url = var.unifi_api_url
   unifi_api_insecure = var.unifi_api_insecure
@@ -10,4 +17,6 @@ module "unifi" {
 
 module "openwrt" {
   source = "./openwrt"
+
+  network_clients = local.network_clients
 }

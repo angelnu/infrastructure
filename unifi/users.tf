@@ -1,6 +1,5 @@
 locals {
-  userscsv = csvdecode(file("${path.module}/../../clients.csv"))
-  users    = { for user in local.userscsv : user.mac => user if user.mac != ""}
+  users    = { for user in var.network_clients : user.mac => user if user.mac != ""}
 }
 
 resource "unifi_user" "user" {

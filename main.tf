@@ -17,7 +17,7 @@ data "sops_file" "settings_secrets" {
 }
 
 module "unifi" {
-  source = "./unifi"
+  source = "./terraform/unifi"
 
   network_clients     = local.network_clients
   unifi_api_url       = data.sops_file.settings_secrets.data["unifi.api.url"]
@@ -28,9 +28,20 @@ module "unifi" {
 }
 
 module "openwrt" {
-  source = "./openwrt"
+  source = "./terraform/openwrt"
 
   network_clients = local.network_clients
   router_IP       = "192.168.2.1"
   router_ssh_key  = file("~/.ssh/id_rsa")
+  dnsmasq_config_extra = nonsensitive(data.sops_file.settings_secrets.data["openwrt.dnsmasq_config_extra"])
+}
+
+module "authentik" {
+  source = "./terraform/authentik"
+  authentik_api_url      = data.sops_file.settings_secrets.data["authentik.api.url"]
+  authentik_api_token    = data.sops_file.settings_secrets.data["authentik.api.token"]
+  main_home_domain       = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  authentik_ldap_base_dn = nonsensitive(data.sops_file.settings_secrets.data["authentik.ldap.base_dn"])
+  authentik_users        = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).authentik.users
+  authentik_groups       = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).authentik.groups
 }

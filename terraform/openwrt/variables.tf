@@ -14,3 +14,8 @@ variable "router_ssh_key" {
     type        = string
     sensitive   = true
 }
+
+variable "dnsmasq_config_extra" {
+    description = "extra settings for dnsmasq" 
+    type        = string
+}

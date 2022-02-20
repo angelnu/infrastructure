@@ -19,15 +19,7 @@ config dnsmasq
         option dnsforwardmax '1500'
         option min_cache_ttl '270'
         option cachesize '5000'
-        list rebind_domain 'angelnu.com'
-        list rebind_domain 'home.angelnu.com'
-        list rebind_domain 'casa96.angelnu.com'
-        list rebind_domain 'plex.direct'
-        list rebind_domain 'nunez-gregoire.eu'
-        list rebind_domain 'home.nunez-gregoire.eu'
-        list rebind_domain 'pub.angelnu.com'
-        list address '/pub.angelnu.com/192.168.1.128'
-        list address '/router/192.168.2.1'
+        ${ indent(8, dnsmasq_config_extra) }
 
 config dhcp 'lan'
         option interface 'lan'

@@ -1,6 +1,6 @@
 resource "linux_file" "config_dhcp" {
     path = "/etc/config/dhcp"
-    content = templatefile("${path.module}/dhcp.tpl", {clients = var.network_clients})
+    content = templatefile("${path.module}/dhcp.tpl", {clients = var.network_clients,dnsmasq_config_extra=var.dnsmasq_config_extra})
     owner = 0
     group = 0
     mode = "644"

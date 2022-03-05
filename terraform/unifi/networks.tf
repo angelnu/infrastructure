@@ -32,7 +32,7 @@ resource "unifi_network" "LAN" {
     igmp_snooping       = false
     ipv6_interface_type = "none"
     ipv6_ra_enable      = false
-    name                = "LAN"
+    name                = "Default"
     network_group       = "LAN"
     purpose             = "corporate"
     site                = "default"

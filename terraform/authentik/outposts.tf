@@ -6,9 +6,7 @@ resource "authentik_service_connection_kubernetes" "local" {
 resource "authentik_outpost" "embedded_outpost" {
   name = "authentik Embedded Outpost"
   protocol_providers = [
-    authentik_provider_proxy.default_ingress.id,
-    authentik_provider_proxy.kubernetes_dashboard.id,    
-    authentik_provider_proxy.ha_editor.id
+    authentik_provider_proxy.default_ingress.id
   ]
   service_connection = authentik_service_connection_kubernetes.local.id
 }

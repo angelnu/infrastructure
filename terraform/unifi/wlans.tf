@@ -8,7 +8,7 @@ resource "unifi_wlan" "casa" {
     mac_filter_enabled        = false
     mac_filter_list           = []
     mac_filter_policy         = "deny"
-    minimum_data_rate_2g_kbps = 6000
+    minimum_data_rate_2g_kbps = 0
     minimum_data_rate_5g_kbps = 0
     multicast_enhance         = false
     name                      = "casa"

@@ -45,3 +45,14 @@ module "authentik" {
   authentik_users        = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).authentik.users
   authentik_groups       = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).authentik.groups
 }
+
+data "sops_file" "dnsmadeeasy" {
+  source_file = "${path.module}/settings/dnsmadeeasy.yaml"
+}
+module "dnsmadeeasy" {
+  source = "./terraform/dnsmadeeasy"
+  api_key    = data.sops_file.dnsmadeeasy.data["credentials.api_key"]
+  secret_key = data.sops_file.dnsmadeeasy.data["credentials.secret_key"]
+  domains    = yamldecode(nonsensitive(data.sops_file.dnsmadeeasy.raw)).domains
+  common     = yamldecode(nonsensitive(data.sops_file.dnsmadeeasy.raw)).common
+}

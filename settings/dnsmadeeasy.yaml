@@ -1,0 +1,256 @@
+credentials:
+    api_key: ENC[AES256_GCM,data:dp/TpTD1vszGHtaOMYGFAfuKEMKCGOmZQI9zBshV6wD7FLUz,iv:z4CPFXLHnTMqqw2F6FVm+umPDb7xhCMhanZq4CEb8hQ=,tag:GHbmEaKh7IgTFOvTAWj+qg==,type:str]
+    secret_key: ENC[AES256_GCM,data:VDJkNiEL51DfPuocnLsStqG94ImHQg1sstwbv4CkpGY38H5w,iv:/duOm8uY01Xoj6quTJN8f+XcSf0bOCOde1A8VaBAF+M=,tag:ABXJuMyymGkehtoiYrGVLQ==,type:str]
+domains:
+    nunez-gregoire.de:
+        records:
+            #- type: TXT
+            #  name: default._domainkey
+            #  value: v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvh5ZLGjfkvaxnOMTC8kOOHvJ/+kgvFy0Vxdp8k8KQpWy0NZMiJ75eOqtRTebtvWzABIUm4LXKWkvDtmp0mmVa1wpiR5o2pCrOMaQ9M4/veTWPldDi+wrLbxsJk5cchar2ddKbK+ZNbt3+3LMl6eAe9hLgqE6y965ZkC92Sy1j13WkBjZTBoA9EZlseX6OqBhx1QWwvJ6SZvffZZCssGjjeKuvNUSZYZ3O+TS2WWjC/pWuMpoAmjwDk1gjfxJhiGFCtRqe2tJSw6MI8v4QT6d60uM3QvnmXbIB2Fsl+21nZ6WhBwc1D2q6KfQhvxuJ3S7N7XTr/vv4XQma0ypYlkaoQIDAQAB
+            - type: CNAME
+              name: em485
+              value: u25256503.wl004.sendgrid.net.
+            - type: CNAME
+              name: url576
+              value: sendgrid.net.
+    mgregoire.eu:
+        records:
+            #- type: TXT
+            #  name: default._domainkey
+            #  value: v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2R8mLLazPDImk/f7eS9bTsV0Iq/YHYhMzkSEDLC8JEPtXqqPLtQb5do5FB96wFQnu6lJ3INMdeiNLDelwif0Tj22Ir2qNnfl3zx3hGrx2xVuWDAlNEdNljLcv7pHen3xHbEzWDJTeN89NA32xD177qjSmjT4dR5R1if345suP/n/I6/06aeZQlsyQ/A8uqha3zSQegKkTTh0BmC+uR/YfQH3ktOKeDpWXSfzt3T/kLAjSHKwOeMGVHdehImf1yASQHyT0s1AwH3iRanOyXXZVe/pmJxrRBJxRPbbClAyjqgNMhVDIKK0QJPV69Knq5IszgyvNPmNRU2AIDJuLmIjcQIDAQAB
+            - type: CNAME
+              name: em7742
+              value: u25256503.wl004.sendgrid.net.
+            - type: CNAME
+              name: url5285
+              value: sendgrid.net.
+    nunez-gregoire.eu:
+        records:
+            #- type: TXT
+            #  name: default._domainkey
+            #  value: v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5LxmxaCgK5fYkLHk/g5Ppntu3SFaU6v0wjppQ4+pbqFND1CjGeiXhSLaYNtQQeX9JTTwR5z0kQQXh1EpurSBjdHs6JaowURPswyibfpAzg0GV5QwM7OPkqU3oI4IiLi/+6CFxK+MCjweMwjcjU88Y3TyB+sMvTh7Ij4eVq3vLXnn3bN++W254uBir84fTZ1n4T+vLqAKCJu6X8rnsvWv+WcrlHpzIKcMf/tY5r4cYm+KV15btkDEPJN0mithzx/I+6zd8xk+xTRzRZRUiF6n+xc+6WgIFNFYaC0/iWkyKnjY9wvqRq+rsX0KlKz3U4w5q72jXWlGYWZ5gZxIvlMlhwIDAQAB
+            - type: CNAME
+              name: em930
+              value: u25256503.wl004.sendgrid.net.
+            - type: CNAME
+              name: url2884
+              value: sendgrid.net.
+            - type: A
+              name: k8s-ingress
+              value: 192.168.11.128
+            - type: ANAME
+              name: '*.pub'
+              value: k8s-ingress
+            - type: ANAME
+              name: '*.home'
+              value: k8s-ingress
+    angelnu.com:
+        records:
+            #- type: TXT
+            #  name: default._domainkey
+            #  value: v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1vANcW0T3Hf4FQJ8VQDRpPFF2TsILn1z+cRCdGCHDmQjSHGYnQxqMGBwGSAB9IYkUDU/XYIJeQ3Ik0Dj+sDQ+P/Txk3B/fwda5jhu8kglpkPLVmwQEZugYp0/+vgaF87fy8T2gLFQ3dTdCKLHYfec5rWRBvhTSLIvNavdIr3TIX1uJgac8aO7iuYo3hy61jKFoHjK+WoZXfY/mxNNvL2rBRS1egb2JMkmh9GNjl3EPT2kNlV+U75ffI2Wn9qwFUf5TCeaSgIKYtXP7k1zzglxSOVsO5aLX8lTX2w+o+xYlhaVEwC0EcNevYf5H4770ScNaVG4sEL2iATIRS2TKdyRQIDAQAB
+            - type: CNAME
+              name: em6569
+              value: u25256503.wl004.sendgrid.net.
+            - type: CNAME
+              name: url2866
+              value: sendgrid.net.
+            - type: CNAME
+              name: sg._domainkey
+              value: sg.domainkey.u25256503.wl004.sendgrid.net.
+            - type: CNAME
+              name: sg2._domainkey
+              value: sg2.domainkey.u25256503.wl004.sendgrid.net.
+            - type: A
+              name: casa96-dyndns
+              value: 89.244.213.41
+              dynamic_dns: true
+              password: ENC[AES256_GCM,data:56M/ehUXtL4=,iv:wWt8UeRLNhVh+U553MB0TDQH0QpK8xDm4teYnTIdLq8=,tag:KhhDZ3O5c0oyYhCbEtDh1g==,type:int]
+            - type: A
+              name: reinsburg128
+              value: 89.245.240.21
+              dynamic_dns: true
+              password: ENC[AES256_GCM,data:56M/ehUXtL4=,iv:wWt8UeRLNhVh+U553MB0TDQH0QpK8xDm4teYnTIdLq8=,tag:KhhDZ3O5c0oyYhCbEtDh1g==,type:int]
+            - type: A
+              name: madrid
+              value: 81.36.244.9
+              dynamic_dns: true
+              password: ENC[AES256_GCM,data:56M/ehUXtL4=,iv:wWt8UeRLNhVh+U553MB0TDQH0QpK8xDm4teYnTIdLq8=,tag:KhhDZ3O5c0oyYhCbEtDh1g==,type:int]
+            - type: A
+              name: pueblo
+              value: 172.18.1.122
+              dynamic_dns: true
+              password: ENC[AES256_GCM,data:56M/ehUXtL4=,iv:wWt8UeRLNhVh+U553MB0TDQH0QpK8xDm4teYnTIdLq8=,tag:KhhDZ3O5c0oyYhCbEtDh1g==,type:int]
+            - type: A
+              name: k8s-ingress
+              value: 192.168.1.128
+            - type: A
+              name: mx.home
+              value: 192.168.1.141
+            - type: A
+              name: nas.home
+              value: 192.168.2.10
+            - type: A
+              name: mxdebug
+              value: 192.168.2.32
+            - type: A
+              name: pve1
+              value: 192.168.4.11
+            - type: A
+              name: pve2
+              value: 192.168.4.12
+            - type: A
+              name: pve3
+              value: 192.168.4.13
+            - type: A
+              name: nas-backup.home
+              value: 192.168.103.10
+            - type: A
+              name: homematic-pueblo.home
+              value: 192.168.105.102
+            - type: A
+              name: localhost
+              value: 127.0.0.1
+            - type: AAAA
+              name: localhost
+              value: ::1
+            - type: CNAME
+              name: casa96
+              value: casa96-dyndns
+            - type: CNAME
+              name: git
+              value: casa96
+            - type: CNAME
+              name: mx
+              value: casa96
+            - type: CNAME
+              name: casa96-ingress
+              value: casa96
+            - type: CNAME
+              name: dashboard
+              value: casa96-ingress
+            - type: CNAME
+              name: ha
+              value: casa96-ingress
+            - type: CNAME
+              name: home
+              value: casa96-ingress
+            - type: CNAME
+              name: homematic
+              value: casa96-ingress
+            - type: CNAME
+              name: nas
+              value: casa96-ingress
+            - type: CNAME
+              name: nextcloud
+              value: casa96-ingress
+            - type: CNAME
+              name: rss
+              value: casa96-ingress
+            - type: CNAME
+              name: prusa
+              value: casa96-ingress
+            - type: CNAME
+              name: nas-backup
+              value: reinsburg128
+            - type: ANAME
+              name: '*.pub'
+              value: casa96-ingress
+            - type: ANAME
+              name: '*.home'
+              value: k8s-ingress
+            - type: SRV
+              name: _caldavs._tcp
+              priority: 0
+              weight: 1
+              port: 443
+              value: nextcloud
+            - type: TXT
+              name: _caldavs._tcp
+              value: path=/remote.php/dav
+            - type: SRV
+              name: _carddavs._tcp
+              priority: 0
+              weight: 1
+              port: 443
+              value: nextcloud
+            - type: TXT
+              name: _carddavs._tcp
+              value: path=/remote.php/dav
+            - type: SRV
+              name: _imaps._tcp
+              priority: 0
+              weight: 1
+              port: 993
+              value: mx
+            - type: SRV
+              name: _imap._tcp
+              priority: 0
+              weight: 1
+              port: 143
+              value: mx
+            - type: SRV
+              name: _smtps._tcp
+              priority: 0
+              weight: 1
+              port: 465
+              value: mx
+            - type: SRV
+              name: _submission._tcp
+              priority: 0
+              weight: 1
+              port: 587
+              value: mx
+common:
+    default_ttl: 600
+    common_records:
+        - type: MX
+          mx_level: 10
+          name: ""
+          value: mx.angelnu.com.
+        - type: TXT
+          name: ""
+          value: v=spf1 mx ~all
+        - type: TXT
+          name: _dmarc
+          value: v=DMARC1; p=reject; pct=100; ri=86400; rua=mailto:dmark-report@angelnu.com
+        - type: CNAME
+          name: s1._domainkey
+          value: s1.domainkey.u25256503.wl004.sendgrid.net.
+        - type: CNAME
+          name: s2._domainkey
+          value: s2.domainkey.u25256503.wl004.sendgrid.net.
+        - type: CNAME
+          name: 25256503
+          value: sendgrid.net.
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-03-13T23:52:12Z"
+    mac: ENC[AES256_GCM,data:yx2rka5D7aIR7zmvwZ+7iAQIm497/VEPTIbGAN50Y/HCbC1nCnqpsTSznzpSPnf66j4AqFF9HrwxVUsuAONsnBcFbp7x3MXda4F0AnhXsWGxupIN/rJIBF0Qi9jVQ+jCegkVVnZQZafDnHyMmgsSF+xLdC8RoXDYMhmnahgOkIg=,iv:mCXtfIOUlxdWWiBNQojTBmGMMfWZM1tUu+6V15Beh5E=,tag:22CZPPPrvNEPLP69NAZ2hg==,type:str]
+    pgp:
+        - created_at: "2021-02-06T22:19:41Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA2CuQNd5ml+/AQ/8C9XUcea9/KWIdpX24KB5y7OpYPA1F0F/zKAoXpPejUS8
+            FNYXUUaDohzBXD/E40iEUMR/WoLWS+brRsp1bJkq7ihPVwXr8o/p1AceDZY211vi
+            odFZ50zDOuFxKWja4HXqEVW8sPW5THNiJprsVIJVe4BRxc1eVD/7cm76S/M+urXO
+            8L7K+N2IbZtLxyR9boWeDZj6aJI06skcZMqC6WBCrV+oGOTbVqLNwUXpa++fefkm
+            d/tv2hLajX784s918tbzGrC6/HVdReAc5BNp5/L3RnCR4rXLPdOfy2cq6MEmSHeh
+            SMI7Scpw/O6a1qFkfVyKPjY5f+05PsoOrt3cvbe4uPHFU4U8QNeKiLfeViQAd+va
+            DmAjcrjxKEs9Xw+Hx34G0rtAqy/VeNRLGhQz3AAbzjqXVO8gNh2fGr5MFkKgQDj+
+            Y6J1d0ksNhwGRu0gol/LT7ti/uyV11rsCmeycJq9CUm0aAed59a+aENPqA5hPRTp
+            fuqDuuNVzCFz+4jTcBm4QK0kCcQBGHaTueAj45+FDnBzN1DRbjK/9o4fA3ncGs06
+            F+dig6UqFF22u8vCKpYwuhdwo7Kb4Fza+pAAcH42Npe0CNaUYna1Oy6+LO2fMrsm
+            iDnSIY85UOhxeiLFNQ9gu2YsFXQ7wHrgZCGECvAypU/nJLqHdYTrEXVD8mpX/KPS
+            XgGS2XUYd7DnNiJbQ1KAULc0mkapvX6M7dv4q2ZPfg5QOBy7jNLPKOa1Wr78o+8R
+            /DAP//v2+I/+9M9inAxbWUyH7FqvgH22AugsmIrsAUhuIr+cmSG8LlYMxSWQzEg=
+            =rVWE
+            -----END PGP MESSAGE-----
+          fp: E61087FD0DC8B3AA734061498564C79FC27F08E2
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData))
+    version: 3.7.1

@@ -1,6 +1,6 @@
-# resource "authentik_token" "ldap_search_maddy" {
-#   identifier = "maddy"
-#   user = authentik_user.users["ldap_search"].id
-#   intent = "app_password"
-#   retrieve_key = true
-# }
+resource "authentik_token" "ldap_search_jellyfin" {
+  identifier = "jellyfin"
+  user = authentik_user.users["ldap"].id
+  intent = "app_password"
+  retrieve_key = true
+}

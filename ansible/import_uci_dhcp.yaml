@@ -1,0 +1,22 @@
+#
+# This playbook imports hosts from openwrt /etc/config/dhcp
+# into ../clients.csv
+#
+# This was used to initially import the info from the the router
+# and make it available to terraform
+#
+
+- hosts: openwrt
+  tasks:  
+  - name: Run command and parse
+    ansible.netcommon.cli_parse:
+      command: uci show dhcp
+      parser:
+        name: ansible.netcommon.native
+      set_fact: dhcp
+  - ansible.builtin.debug:
+      var: dhcp.hosts
+  - delegate_to: localhost
+    ansible.builtin.template:
+     src: clients.j2
+     dest: ../settings/network_clients.csv

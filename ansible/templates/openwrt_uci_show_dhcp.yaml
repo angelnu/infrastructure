@@ -1,0 +1,27 @@
+---
+- example: |
+    dhcp.@host[123]=host
+    dhcp.@host[123].name='dev'
+    dhcp.@host[123].ip='192.168.2.32'
+    dhcp.@host[123].mac='C2:12:BA:FF:AE:05'
+
+  getval: 'dhcp.@host\[(?P<config>\d+)\].(?P<section>\S*)=(?P<value>\S+)'
+  result:
+    hosts:
+        "{{ config }}":
+            type: "host"
+            "{{ section }}": "{{ value }}"
+  shared: True
+
+- example: |
+    dhcp.@domain[6]=domain
+    dhcp.@domain[6].name='ha_macvlan'
+    dhcp.@domain[6].ip='192.168.1.1'
+
+  getval: 'dhcp.@domain\[(?P<config>\d+)\].(?P<section>\S*)=(?P<value>\S+)'
+  result:
+    domains:
+        "{{ config }}":
+            type: "domain"
+            "{{ section }}": "{{ value }}"
+  shared: True

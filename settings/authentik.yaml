@@ -127,14 +127,16 @@ users:
       email: ENC[AES256_GCM,data:wWd+fmdjQ/SlBmFDG/z4,iv:hyi/NEFfkyeLZRuDP3DBfrcHt/M4dGfxLUdX0AZRENc=,tag:+ew5BTEOYcrglo1toqTMZA==,type:str]
       groups:
         - ENC[AES256_GCM,data:dIueuV7CCcFB8qM=,iv:GYgyOM27K9mxcSb4jJg1M/1CxJBrSVGSWc7nKkdSWfk=,tag:8bMXpN6Tl/yX55RGpi/bpQ==,type:str]
+      attributes:
+        goauthentik.io/user/token-expires: ENC[AES256_GCM,data:DsBYUdc=,iv:iSSdMNaXZJ7M1lEviJIrRoF9z+XZqEK/aA4ydKKplTY=,tag:S5KvxY2BQiFsQRp9+wRvPg==,type:bool]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-03-27T17:47:52Z"
-    mac: ENC[AES256_GCM,data:T9CRhVm8Oe7xvTGuzfL2m8OQ76IIMIAxhwp+fV/3fDmhZRJQM3drM0LDux8hc6uXMe86TWtVoo0xSq/ZqrKidAr0tC/PLBGM+QyK1MJ1fTxeHq2K8IcWrNYvFKIgn7dKsTi4xkAx6UWfuzUg2YYTvAH6cnz2CSoHy81J+yh0vR4=,iv:dEVKELwF5v1bYqP3MlruXvNoSQiXGacKxVfw/MYAxvQ=,tag:bRsVsMjHYjTegRReZ8MK4Q==,type:str]
+    lastmodified: "2022-03-27T18:33:47Z"
+    mac: ENC[AES256_GCM,data:KhhuYUCO5QO/Is5HBHwPxbmiPAFZvOfNohyIeFaO28CXGSCllYRZyuhMCGGOcqMB+6eX2jo+PQJrqQ3GnyzGYChqfpNtStK3wwwMG2UmMWgmyhjQNfth3gGr9blsXaqBb6V5v9+ndjTF6aGkOnj2tXlFrXmbKVs5nXQizi+2yfQ=,iv:Jv6hb5k4DDE3iTl9lkE3Bu5js/zt8lLR1kxkgVEa3yI=,tag:qhZ/5+Cyc/L9DnyxxTV8bg==,type:str]
     pgp:
         - created_at: "2022-03-27T15:24:57Z"
           enc: |

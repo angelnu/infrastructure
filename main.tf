@@ -48,6 +48,7 @@ module "authentik" {
   gitea_client_secret    = data.sops_file.authentik.data["apps.gitea.client_secret"]
   authentik_users        = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
   authentik_groups       = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
+  authentik_config       = yamldecode(nonsensitive(data.sops_file.authentik.raw))
 }
 
 data "sops_file" "dnsmadeeasy" {

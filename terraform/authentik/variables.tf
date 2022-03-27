@@ -36,3 +36,8 @@ variable "gitea_client_secret" {
     description = "Gitea client secret" 
     type        = string
 }
+
+variable "authentik_config" {
+    description = "Authentik config" 
+    type        = any
+}

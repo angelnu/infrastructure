@@ -13,17 +13,17 @@ resource "authentik_flow_stage_binding" "login_identification" {
   order  = 10
 }
 
-resource "authentik_flow_stage_binding" "login_captcha" {
-  target = authentik_flow.login.uuid
-  stage  = authentik_stage_captcha.captcha.id
-  order  = 20
-}
+# resource "authentik_flow_stage_binding" "login_captcha" {
+#   target = authentik_flow.login.uuid
+#   stage  = authentik_stage_captcha.captcha.id
+#   order  = 20
+# }
 
-resource "authentik_policy_binding" "logincaptcha-reputation" {
-  target = authentik_flow_stage_binding.login_captcha.id
-  policy = authentik_policy_reputation.reputation.id
-  order  = 0
-}
+# resource "authentik_policy_binding" "logincaptcha-reputation" {
+#   target = authentik_flow_stage_binding.login_captcha.id
+#   policy = authentik_policy_reputation.reputation.id
+#   order  = 0
+# }
 
 resource "authentik_flow_stage_binding" "login_validate" {
   target = authentik_flow.login.uuid

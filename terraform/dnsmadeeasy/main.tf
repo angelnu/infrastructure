@@ -2,7 +2,7 @@ terraform {
   required_providers {
     dme = {
       source = "DNSMadeEasy/dme"
-      version = "1.0.4"
+      version = "1.0.5"
     }
   }
 }

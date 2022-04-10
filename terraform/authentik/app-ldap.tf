@@ -1,7 +1,7 @@
 resource "authentik_provider_ldap" "ldap_app" {
   name      = "ldap-app"
   base_dn   = var.authentik_ldap_base_dn
-  bind_flow = authentik_flow.login.uuid
+  bind_flow = authentik_flow.login_headless.uuid
   search_group = authentik_group.groups["ldap_search"].id
   certificate = data.authentik_certificate_key_pair.cluster_domain_cert.id
 }

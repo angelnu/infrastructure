@@ -8,17 +8,25 @@ terraform {
   }
 }
 
+
+// Virtual 1
 provider "vyos" {
   url = var.config.virtual1.api.url
   key = var.config.virtual1.api.key
   alias = "virtual1"
 }
 
+module "deepmerge_virtual1" {
+  source  = "Invicton-Labs/deepmerge/null"
+  maps = [
+    var.config.common,
+    var.config.virtual1
+  ]
+}
 module "common_virtual1" {
   source = "./common"
 
-  config = var.config.virtual1
-  config_global = var.config
+  config = module.deepmerge_virtual1.merged
   network_clients = var.network_clients
 
   providers = {

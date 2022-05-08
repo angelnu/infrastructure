@@ -3,7 +3,7 @@ resource "vyos_config_block_tree" "dns" {
 
   configs = {
     "cache-size"      = "0",
-    "allow-from" = var.config_global.common.lan.cidr,
+    "allow-from" = var.config.lan.cidr,
     "listen-address" = "0.0.0.0",
     "system" = ""
   }
@@ -14,5 +14,5 @@ resource "vyos_config_block_tree" "dns" {
 
 resource "vyos_config" "system_name_server" {
   key = "system name-server"
-  value = var.config_global.common.system.dns
+  value = var.config.system.dns
 }

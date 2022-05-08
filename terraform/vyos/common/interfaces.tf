@@ -1,7 +1,7 @@
 resource "vyos_config_block_tree" "eth1" {
-  path = "interfaces ethernet ${var.config_global.common.fritzbox.device}"
+  path = "interfaces ethernet ${var.config.fritzbox.device}"
   configs = {
-    "address"           = "dhcp"
-    "description"       = "fritbox"
+    "address"           = var.config.fritzbox.default_router_cidr
+    "description"       = "fritzbox"
   }
 }

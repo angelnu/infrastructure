@@ -1,71 +1,61 @@
-resource "vyos_config" "wan_primary" {
-  key = "load-balancing wan interface-health ${var.config_global.common.fritzbox.device} nexthop"
-  value = "dhcp"
+resource "vyos_config_block_tree" "load_balance_wan" {
+  path = "load-balancing wan"
+  configs = merge(
+    {
+      "interface-health ${var.config.fritzbox.device} nexthop" = var.config.fritzbox.nexthop
+      "interface-health ${var.config.lte.device     } nexthop" = var.config.lte.nexthop
+    },
+    {
+      for id, target in var.config.fritzbox.ping : "interface-health ${var.config.fritzbox.device} test ${id} target" => target
+    },
+    {
+      for id, target in var.config.lte.ping      : "interface-health ${var.config.lte.device     } test ${id} target" => target
+    },
+    {
+      "rule 10 inbound-interface"= var.config.lan.device,
+      "rule 10 failover" = "",
+      "rule 10 interface ${var.config.fritzbox.device} weight"= "10",
+      "rule 10 interface ${var.config.lte.device} weight"= "1",
+    },
+    {
+      "flush-connections" = "",
+      //"enable-local-traffic" = "" It does not seem to do anything -> replace with static default rule bellow
+    }
+
+  )
   depends_on = [
     vyos_config_block_tree.eth0,
     vyos_config_block_tree.eth1
   ]
 }
 
-resource "vyos_config" "wan_primary_0" {
-  key = "load-balancing wan interface-health ${var.config_global.common.fritzbox.device} test 0 target"
-  value = "1.1.1.1"
-  depends_on = [
-    vyos_config.wan_primary
-  ]
+locals {
+  load_balance_wan_test_route_entries = flatten([
+    for entry in [var.config.fritzbox,var.config.lte] : [
+      for id, target in entry.ping: {
+        "target"  = target,
+        "nexthop" = entry.nexthop
+      }
+    ]
+  ])
 }
 
-resource "vyos_config" "wan_primary_1" {
-  key = "load-balancing wan interface-health ${var.config_global.common.fritzbox.device} test 1 target"
-  value = "google.de"
-  depends_on = [
-    vyos_config.wan_primary
-  ]
-}
-
-resource "vyos_config" "wan_secondary" {
-  key = "load-balancing wan interface-health ${var.config_global.common.lte.device} nexthop"
-  value = "dhcp"
-  depends_on = [
-    vyos_config_block_tree.eth0,
-    vyos_config_block_tree.eth1
-  ]
-}
-resource "vyos_config" "wan_secondary_0" {
-  key = "load-balancing wan interface-health ${var.config_global.common.lte.device} test 0 target"
-  value = "1.1.1.1"
-  depends_on = [
-    vyos_config.wan_secondary,
-  ]
-}
-
-resource "vyos_config" "wan_secondary_1" {
-  key = "load-balancing wan interface-health ${var.config_global.common.lte.device} test 1 target"
-  value = "google.de"
-  depends_on = [
-    vyos_config.wan_secondary,
-  ]
-}
-
-resource "vyos_config_block_tree" "wan_rule_1" {
-  path = "load-balancing wan rule 1"
-
-  configs = {
-    "inbound-interface"= var.config_global.common.lan.device,
-    "failover" = "",
-    "interface ${var.config_global.common.fritzbox.device} weight"= "2",
-    "interface ${var.config_global.common.lte.device} weight"= "1",
+// Static rules for ping targets
+resource "vyos_config_block_tree" "load_balance_wan_test_route" {
+  for_each = {
+    for entry in local.load_balance_wan_test_route_entries : entry.target => entry.nexthop
   }
-  depends_on = [
-    vyos_config.wan_primary,
-    vyos_config.wan_secondary,
-  ]
+  path = "protocols static route ${each.key}/32"
+  configs = {
+    "next-hop ${each.value}" = ""
+  }
 }
 
-resource "vyos_config" "wan_flush" {
-  key = "load-balancing wan flush-connections"
-  value = ""
-  depends_on = [
-    vyos_config_block_tree.wan_rule_1
-  ]
+// Default rute for local traffic
+resource "vyos_config_block_tree" "load_balance_default_localhost" {
+  path = "protocols static route 0.0.0.0/0"
+  configs = {
+    "next-hop ${var.config.fritzbox.nexthop} distance" = "1"    
+    "next-hop ${var.config.lte.nexthop} distance" = "10"
+  }
 }

@@ -2,8 +2,8 @@
 #   path = "nat source rule 100"
 
 #   configs = {
-#     "outbound-interface"= "eth0.3",
-#     "source address"= "192.168.200.0/24",
+#     "outbound-interface"= var.config.fritzbox.device,
+#     "source address"= var.config.lan.cidr,
 #     "translation address": "masquerade"
 #   }
 #   depends_on = [
@@ -16,8 +16,8 @@
 #   path = "nat source rule 200"
 
 #   configs = {
-#     "outbound-interface"= "eth0.2",
-#     "source address"= "192.168.200.0/24",
+#     "outbound-interface"= var.config.lte.device,
+#     "source address"= var.config.lan.cidr,
 #     "translation address": "masquerade"
 #   }
 #   depends_on = [

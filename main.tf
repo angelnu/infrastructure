@@ -61,3 +61,11 @@ module "dnsmadeeasy" {
   domains    = yamldecode(nonsensitive(data.sops_file.dnsmadeeasy.raw)).domains
   common     = yamldecode(nonsensitive(data.sops_file.dnsmadeeasy.raw)).common
 }
+
+module "vyos" {
+  source = "./terraform/vyos"
+
+  config    = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).vyos
+  network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
+
+}

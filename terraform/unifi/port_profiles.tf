@@ -12,6 +12,10 @@ data "unifi_port_profile" "lte" {
     name= "lte"
 }
 
+data "unifi_port_profile" "fritzbox" {
+    name= "fritzbox"
+}
+
 resource "unifi_port_profile" "off" {
     name = "Off"
     autoneg = false

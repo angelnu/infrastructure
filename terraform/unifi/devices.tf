@@ -121,6 +121,11 @@ resource "unifi_device" "switch_long_corridor" {
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
+        name            = "Fritzbox"
+        number          = 5
+        port_profile_id = data.unifi_port_profile.fritzbox.id
+    }
+    port_override {
         name            = "Router"
         number          = 6
         port_profile_id = data.unifi_port_profile.all.id

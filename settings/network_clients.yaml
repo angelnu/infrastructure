@@ -744,6 +744,26 @@ hosts:
       ip: ENC[AES256_GCM,data:F4fnapaUXEdUrxHd,iv:z8sMXqgzE/mPtR5IXuC0UbkPJZZlQ2VtCS1AiDnfHxg=,tag:5G1S/4waNz2oDTscBo8g+g==,type:str]
       isDNS: ENC[AES256_GCM,data:RA==,iv:mdfGrArsWhymW6dzRuxcktH7X9VX4thi9G2PRWb0+rM=,tag:eg9mZDULlg7Ny+8dD0Vu6Q==,type:int]
       note: null
+    - name: ENC[AES256_GCM,data:lml3pA==,iv:+UVMxpqdI2VBTHDuDc2RqHXEXPYgvHmKVoASINLR/bg=,tag:g10A1Jx157OHMRxlwwZTrQ==,type:str]
+      mac: ENC[AES256_GCM,data:M0dCHJbp6o1RVniO6lvZZ/0=,iv:5SxKOgfMFjk7EQRAK0g70evzS/eBD5Q07E7gkHtfrmA=,tag:bJBVXqxoqtZ+DAydRvZ/sA==,type:str]
+      ip: ENC[AES256_GCM,data:86hr4rv9Z3RjWF+w,iv:ENsTGibOfMgd9GPKCTF6Gl5+gtlr0mqp659h4LI6igA=,tag:JcQTaG92axOY7lbW4DXzng==,type:str]
+      isDNS: ENC[AES256_GCM,data:RA==,iv:mdfGrArsWhymW6dzRuxcktH7X9VX4thi9G2PRWb0+rM=,tag:eg9mZDULlg7Ny+8dD0Vu6Q==,type:int]
+      note: null
+    - name: ENC[AES256_GCM,data:0h3POA==,iv:Tx5HXwNAl3IfrTp5lNQ5xgtDNcxcFkjmXvAzuGJwOV0=,tag:85VDnw2mPmWruXH7pqvAhA==,type:str]
+      mac: ENC[AES256_GCM,data:2DuFEMcIUCe+DCbRfHmqE2M=,iv:oJAk6NBFpSiPZQyqetoNbJuP3guEuCDBCu98UcCq8IY=,tag:naDvKeinym2yiEIs+laoCg==,type:str]
+      ip: ENC[AES256_GCM,data:UshUIpesEtGl7AlGVQ==,iv:RC9hy4Ffp6GFZ8lTr8b8R+koTI8jsfNCTfTd79Nt1G4=,tag:E0mC3Sc6VdGGjm+7jlwDSQ==,type:str]
+      isDNS: ENC[AES256_GCM,data:RA==,iv:mdfGrArsWhymW6dzRuxcktH7X9VX4thi9G2PRWb0+rM=,tag:eg9mZDULlg7Ny+8dD0Vu6Q==,type:int]
+      note: null
+    - name: ENC[AES256_GCM,data:YhwegA==,iv:1eN3LYvOkRu/6hak5LHjsO83thi1Ukq6BY4krOmrXOU=,tag:Zi9TmJ945gMQQ2oSFw0A1w==,type:str]
+      mac: ENC[AES256_GCM,data:MiXc4ba9cwT3z638/NRh/bA=,iv:v9H+Ds0qX0OdGjwWn00MdVCESkPgCXvorxGdvqhqB5Y=,tag:Dn0jZP34pqKvxgiAseAQEA==,type:str]
+      ip: ENC[AES256_GCM,data:rB3AkuCt4kPXp0OIBw==,iv:FJmFiB6HaHbuiM5FErYKH1f5vgJ0it9oxgyPlGCSXaE=,tag:BMuWmFEQpPQyixAL2sMLQw==,type:str]
+      isDNS: ENC[AES256_GCM,data:RA==,iv:mdfGrArsWhymW6dzRuxcktH7X9VX4thi9G2PRWb0+rM=,tag:eg9mZDULlg7Ny+8dD0Vu6Q==,type:int]
+      note: null
+    - name: ENC[AES256_GCM,data:gU7AaQ==,iv:HEiyFWtx/4Qw8OadQFsA3MXRETR951cbDlPo1CPhWfA=,tag:hzmBXD40A2D6dsHRnLkERQ==,type:str]
+      mac: ENC[AES256_GCM,data:98gR3skGimMEwLlRBRPHCO8=,iv:njVO0+qqhJ1yF2tSbyUtcVeb/USlzeLPRLOC9keVoUI=,tag:2ErcDqv0TlXRWsgG8Up7AQ==,type:str]
+      ip: ENC[AES256_GCM,data:nQupnADskeQEgGBL,iv:dZFVW83YECXRy/VT9tKRsOhqHAkBW7gV63jLkenbtTo=,tag:gSlzl4tTp1fhLJTiUWZdfg==,type:str]
+      isDNS: ENC[AES256_GCM,data:RA==,iv:mdfGrArsWhymW6dzRuxcktH7X9VX4thi9G2PRWb0+rM=,tag:eg9mZDULlg7Ny+8dD0Vu6Q==,type:int]
+      note: null
 domains:
     - name: ENC[AES256_GCM,data:bqFuGJBraQ==,iv:Rf2p5+J5lxYyBU7GwlDFiouj03sb8wFNM+5aUOgXJo4=,tag:HlDPW421eV3OnhF3mzGjBw==,type:str]
       mac: null
@@ -801,8 +821,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-03-27T17:05:57Z"
-    mac: ENC[AES256_GCM,data:RfYBPjRlhf2Z7o7o/rcrkRLb9m8J5zMl4y65RzNpFT+1wTEDId6nOFLYRbvp8QdiczlCN4X6u+hlTrwFahpcFD6xZhfqFC2sH3wptNbrPCdgjQPNeqLyQi2WTnBcPNhbDkoUb33U/+o2wI9ORcQLfZRgMafNhbUFMeZ6vX5uN9Q=,iv:BeBbp8HnJ6+MHwU5HlI0pmtQn09wVEhreQ5fPvxqiKw=,tag:Ije3FdPMC2n28iKLxKrCIQ==,type:str]
+    lastmodified: "2022-04-25T00:28:11Z"
+    mac: ENC[AES256_GCM,data:8LfCiLjsXtVec2BS1VcKcNaVlPC6sCUk7JZ3wCeFFs+Rmy2BzZ0LP+EUX7aGN9TALe4z3vJEeo1Wz2Y4GPSXIi0xPXrtEwTBB63VLGCf3RpRt37pjAgDb9I+keJNjquGKwqF9vX/Brt+sSjTb+yYt4tnD+fYVCMB6MGj8dp/KM0=,iv:I6vzRdWykGEdkhs3NTlrO4XXQ3JcN0eFQESB/nhp6P8=,tag:LHF/GCNRr5OtGmig4iQlIg==,type:str]
     pgp:
         - created_at: "2022-03-27T15:40:32Z"
           enc: |

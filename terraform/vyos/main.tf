@@ -8,29 +8,53 @@ terraform {
   }
 }
 
-
-// Virtual 1
+// primary
 provider "vyos" {
-  url = var.config.virtual1.api.url
-  key = var.config.virtual1.api.key
-  alias = "virtual1"
+  url = var.config.primary.api.url
+  key = var.config.primary.api.key
+  alias = "primary"
 }
 
-module "deepmerge_virtual1" {
+module "deepmerge_primary" {
   source  = "Invicton-Labs/deepmerge/null"
   maps = [
     var.config.common,
-    var.config.virtual1
+    var.config.primary
   ]
 }
-module "common_virtual1" {
+module "common_primary" {
   source = "./common"
 
-  config = module.deepmerge_virtual1.merged
+  config = module.deepmerge_primary.merged
   network_clients = var.network_clients
 
   providers = {
-    vyos = vyos.virtual1
+    vyos = vyos.primary
+  }
+}
+
+// Secondary
+provider "vyos" {
+  url = var.config.secondary.api.url
+  key = var.config.secondary.api.key
+  alias = "secondary"
+}
+
+module "deepmerge_secondary" {
+  source  = "Invicton-Labs/deepmerge/null"
+  maps = [
+    var.config.common,
+    var.config.secondary
+  ]
+}
+module "common_secondary" {
+  source = "./common"
+
+  config = module.deepmerge_secondary.merged
+  network_clients = var.network_clients
+
+  providers = {
+    vyos = vyos.secondary
   }
 }
 

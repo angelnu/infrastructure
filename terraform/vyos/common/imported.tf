@@ -1,7 +1,7 @@
 /* NEEDS IMPORT: Run the following lines after installing vyos
-terraform import module.vyos.vyos_config_block_tree.eth0 "interfaces ethernet eth0"
-terraform import module.vyos.vyos_config.https_key "service https api keys id terraform key"
-terraform import module.vyos.vyos_config.https_virtual_host "service https virtual-host rtr01 listen-address"
+terraform import module.vyos.module.common_appliance.vyos_config_block_tree.eth0 "interfaces ethernet eth0"
+terraform import module.vyos.module.common_appliance.vyos_config.https_key "service https api keys id terraform key"
+terraform import module.vyos.module.common_appliance.vyos_config.https_virtual_host "service https virtual-host rtr01 listen-address"
 */
 
 resource "vyos_config_block_tree" "eth0" {

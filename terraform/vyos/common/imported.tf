@@ -9,12 +9,12 @@ resource "vyos_config_block_tree" "eth0" {
   configs = {
     #"address"           = "dhcp"
     #"description"       = "API"
-    "vif ${var.config.lan.vlan} address"     = var.config.lan.default_router_cidr
+    "vif ${var.config.lan.vlan} address"     = var.config.lan.router_cidr
     "vif ${var.config.lan.vlan} description" = "lan"
     
-    "vif ${var.config.lte.vlan} address"     = var.config.lte.default_router_cidr
+    "vif ${var.config.lte.vlan} address"     = var.config.lte.router_cidr
     "vif ${var.config.lte.vlan} description" = "lte"
-    "vif ${var.config.management.vlan} address"     = var.config.management.default_router_cidr
+    "vif ${var.config.management.vlan} address"     = var.config.management.router_cidr
     "vif ${var.config.management.vlan} description" = "management"
   }
 }
@@ -26,7 +26,7 @@ resource "vyos_config" "https_key" {
 
 resource "vyos_config" "https_virtual_host" {
   key = "service https virtual-host rtr01 listen-address"
-  value = var.config.management.default_router
+  value = var.config.management.router
 }
 
 /* End of imported */

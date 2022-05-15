@@ -3,6 +3,7 @@ resource "vyos_config_block_tree" "dhcp_server_lan" {
 
   configs = merge(
     {
+      # main setup
       "shared-network-name lan subnet ${var.config.lan.cidr} default-router" = var.config.lan.default_router,
       "shared-network-name lan subnet ${var.config.lan.cidr} domain-name" = var.config.lan.dhcp.domain_name,
       "shared-network-name lan subnet ${var.config.lan.cidr} lease" = "86400",
@@ -10,9 +11,11 @@ resource "vyos_config_block_tree" "dhcp_server_lan" {
       "shared-network-name lan subnet ${var.config.lan.cidr} enable-failover"=""
     },
     {
+      # ranges start
       for name, range in var.config.lan.dhcp.range : "shared-network-name lan subnet ${var.config.lan.cidr} range ${name} start" => range.start
     },
     {
+      # ranges stop
       for name, range in var.config.lan.dhcp.range : "shared-network-name lan subnet ${var.config.lan.cidr} range ${name} stop" => range.stop
     },
     {
@@ -20,9 +23,36 @@ resource "vyos_config_block_tree" "dhcp_server_lan" {
       "failover name" = "lan"
       "failover remote" = var.config.lan.dhcp.failover.remote
       "failover status" = var.config.lan.dhcp.failover.status
+    },
+    {
+      # static allocation
+      for host in local.host_by_name_with_mac : "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} mac-address" => host.mac
+    },
+    {
+      for host in local.host_by_name_with_mac : "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} ip-address" => host.ip
     }
   )
   depends_on = [
     vyos_config_block_tree.eth0
   ]
+  timeouts {
+    create = "60m"
+    update = "50s"
+    default = "50s"
+  }
+
 }
+
+# resource "vyos_config" "dhcp_server_static_rule_mac" {
+#   for_each = local.host_by_name_with_mac
+#   key = "service dhcp-server shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${each.key} mac-address"
+#   value = each.value.mac
+#   depends_on = [ vyos_config_block_tree.dhcp_server_lan]
+# }
+
+# resource "vyos_config" "dhcp_server_static_rule_ip" {
+#   for_each = local.host_by_name_with_mac
+#   key = "service dhcp-server shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${each.key} ip-address"
+#   value = each.value.ip
+#   depends_on = [ vyos_config_block_tree.dhcp_server_lan]
+# }

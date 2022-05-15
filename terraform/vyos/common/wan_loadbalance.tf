@@ -12,6 +12,13 @@ resource "vyos_config_block_tree" "load_balance_wan" {
       for id, target in var.config.lte.ping      : "interface-health ${var.config.lte.device     } test ${id} target" => target
     },
     {
+      # Exclude traffic to local networks
+      "rule 5 exclude" = ""
+      "rule 5 inbound-interface" = "eth+"
+      "rule 5 destination address" = "192.168.0.0/16"
+    },
+    {
+      # Load balance all the remaining traffic arriving via the lan
       "rule 10 inbound-interface"= var.config.lan.device,
       "rule 10 failover" = "",
       "rule 10 interface ${var.config.fritzbox.device} weight"= "10",

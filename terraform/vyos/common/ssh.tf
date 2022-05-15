@@ -12,5 +12,6 @@ resource "vyos_config_block_tree" "ssh" {
   configs = {
     "port"      = "22",
     "disable-password-authentication" = "", #Keep simple passwords for login via terminal but require key for ssh
+    "listen-address" = var.config.management.router
   }
 }

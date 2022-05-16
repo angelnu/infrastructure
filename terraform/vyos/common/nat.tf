@@ -1,56 +1,67 @@
 // LAN -> WAN
 resource "vyos_config_block_tree" "nat_lan_to_wan" {
   for_each = {
-      "100": var.config.fritzbox.device
-      "110": var.config.lte.device
+      "10": var.config.fritzbox
+      "11": var.config.lte
   }
   path = "nat source rule ${each.key}"
 
   configs = {
     "description" = "LAN -> WAN"
-    "outbound-interface"= each.value,
+    "outbound-interface"= each.value.device,
     "source address"= var.config.lan.cidr,
+    "destination address"= each.value.cidr,
     "translation address": "masquerade"
   }
   depends_on = [
     vyos_config_block_tree.eth0,
     vyos_config_block_tree.eth1
   ]
+  timeouts {
+    create = "60m"
+    update = "50s"
+    default = "50s"
+  }
 }
 
 // PORT FORWARDING
 locals {
   port_forwards_list = toset(flatten([
       for delta, inbound in {0:"fritzbox", 1:"lte"}: [
-        for rule, values in var.config.port_forwards: merge({inbound=inbound, rule=rule+delta}, values)
+        //Start at 100 so we have the range up to 100 available for other rules
+        for rule, values in var.config.port_forwards: merge({inbound=inbound, rule=100+2*(rule)+delta}, values)
       ]
   ]))
 }
 
-resource "vyos_config_block_tree" "nat_port_forwarding" {
+resource "vyos_config_block_tree" "nat_destination_rules" {
 
-  path = "nat destination rule"
+  path = "nat destination"
 
   configs = merge(
     {
       # description
-      for rule, entry in local.port_forwards_list : "${entry.rule} description" => "port forwarding ${entry.inbound}:${entry.port} to ${entry.address}"
+      for rule, entry in local.port_forwards_list : "rule ${entry.rule} description" => "${entry.inbound} - ${entry.description}"
     },
     {
       # destination port
-      for rule, entry in local.port_forwards_list : "${entry.rule} destination port" => entry.port
+      for rule, entry in local.port_forwards_list : "rule ${entry.rule} destination port" => entry.port
     },
     {
       # inbound-interface
-      for rule, entry in local.port_forwards_list : "${entry.rule} inbound-interface" => var.config[entry.inbound].device
+      for rule, entry in local.port_forwards_list : "rule ${entry.rule} inbound-interface" => var.config[entry.inbound].device
     },
     {
       # protocol
-      for rule, entry in local.port_forwards_list : "${entry.rule} protocol" => entry.protocol
+      for rule, entry in local.port_forwards_list : "rule ${entry.rule} protocol" => entry.protocol
     },
     {
       # translation address
-      for rule, entry in local.port_forwards_list : "${entry.rule} translation address" => entry.address
+      for rule, entry in local.port_forwards_list : "rule ${entry.rule} translation address" => entry.address
+    },
+    {
+      # translation port
+      for rule, entry in local.port_forwards_list : "rule ${entry.rule} translation port" => contains(keys(entry), "translationPort") ? entry.translationPort: entry.port
     },
   )
   depends_on = [
@@ -63,6 +74,12 @@ resource "vyos_config_block_tree" "nat_port_forwarding" {
     default = "50s"
   }
 }
+
+
+
+
+
+
 
 # [edit nat destination]
 #  rule 200 {

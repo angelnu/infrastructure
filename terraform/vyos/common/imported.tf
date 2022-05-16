@@ -7,10 +7,10 @@ terraform import module.vyos.module.common_appliance.vyos_config.https_virtual_h
 resource "vyos_config_block_tree" "eth0" {
   path = "interfaces ethernet eth0"
   configs = {
-    #"address"           = "dhcp"
-    #"description"       = "API"
-    "vif ${var.config.lan.vlan} address"     = var.config.lan.router_cidr
-    "vif ${var.config.lan.vlan} description" = "lan"
+    "address"           = var.config.lan.router_cidr
+    "description"       = "lan"
+    #"vif ${var.config.lan.vlan} address"     = var.config.lan.router_cidr
+    #"vif ${var.config.lan.vlan} description" = "lan"
     
     "vif ${var.config.lte.vlan} address"     = var.config.lte.router_cidr
     "vif ${var.config.lte.vlan} description" = "lte"

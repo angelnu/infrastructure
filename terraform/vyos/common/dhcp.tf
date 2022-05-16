@@ -42,17 +42,3 @@ resource "vyos_config_block_tree" "dhcp_server_lan" {
   }
 
 }
-
-# resource "vyos_config" "dhcp_server_static_rule_mac" {
-#   for_each = local.host_by_name_with_mac
-#   key = "service dhcp-server shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${each.key} mac-address"
-#   value = each.value.mac
-#   depends_on = [ vyos_config_block_tree.dhcp_server_lan]
-# }
-
-# resource "vyos_config" "dhcp_server_static_rule_ip" {
-#   for_each = local.host_by_name_with_mac
-#   key = "service dhcp-server shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${each.key} ip-address"
-#   value = each.value.ip
-#   depends_on = [ vyos_config_block_tree.dhcp_server_lan]
-# }

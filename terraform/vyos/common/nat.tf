@@ -38,31 +38,18 @@ resource "vyos_config_block_tree" "nat_destination_rules" {
 
   path = "nat destination"
 
-  configs = merge(
-    {
-      # description
-      for rule, entry in local.port_forwards_list : "rule ${entry.rule} description" => "${entry.inbound} - ${entry.description}"
-    },
-    {
-      # destination port
-      for rule, entry in local.port_forwards_list : "rule ${entry.rule} destination port" => entry.port
-    },
-    {
-      # inbound-interface
-      for rule, entry in local.port_forwards_list : "rule ${entry.rule} inbound-interface" => var.config[entry.inbound].device
-    },
-    {
-      # protocol
-      for rule, entry in local.port_forwards_list : "rule ${entry.rule} protocol" => entry.protocol
-    },
-    {
-      # translation address
-      for rule, entry in local.port_forwards_list : "rule ${entry.rule} translation address" => entry.address
-    },
-    {
-      # translation port
-      for rule, entry in local.port_forwards_list : "rule ${entry.rule} translation port" => contains(keys(entry), "translationPort") ? entry.translationPort: entry.port
-    },
+  configs = merge([
+      
+        for rule, entry in local.port_forwards_list:
+        {
+          "rule ${entry.rule} description": "${entry.inbound} - ${entry.description}",
+          "rule ${entry.rule} destination port": entry.port,
+          "rule ${entry.rule} inbound-interface": var.config[entry.inbound].device,
+          "rule ${entry.rule} protocol": entry.protocol
+          "rule ${entry.rule} translation address": entry.address
+          "rule ${entry.rule} translation port": contains(keys(entry), "translationPort") ? entry.translationPort: entry.port
+        }
+    ]...
   )
   depends_on = [
     vyos_config_block_tree.eth0,

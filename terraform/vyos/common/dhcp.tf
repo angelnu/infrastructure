@@ -10,27 +10,26 @@ resource "vyos_config_block_tree" "dhcp_server_lan" {
       "shared-network-name lan subnet ${var.config.lan.cidr} name-server"= var.config.lan.default_router
       "shared-network-name lan subnet ${var.config.lan.cidr} enable-failover"=""
     },
-    {
-      # ranges start
-      for name, range in var.config.lan.dhcp.range : "shared-network-name lan subnet ${var.config.lan.cidr} range ${name} start" => range.start
-    },
-    {
-      # ranges stop
-      for name, range in var.config.lan.dhcp.range : "shared-network-name lan subnet ${var.config.lan.cidr} range ${name} stop" => range.stop
-    },
+    merge([
+      # ranges
+      for name, range in var.config.lan.dhcp.range : {
+        "shared-network-name lan subnet ${var.config.lan.cidr} range ${name} start" = range.start
+        "shared-network-name lan subnet ${var.config.lan.cidr} range ${name} stop" = range.stop
+      }
+    ]...),
     {
       "failover source-address" = var.config.lan.router
       "failover name" = "lan"
       "failover remote" = var.config.lan.dhcp.failover.remote
       "failover status" = var.config.lan.dhcp.failover.status
     },
-    {
+    merge([
       # static allocation
-      for host in local.host_by_name_with_mac : "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} mac-address" => host.mac
-    },
-    {
-      for host in local.host_by_name_with_mac : "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} ip-address" => host.ip
-    }
+      for host in local.host_by_name_with_mac : {
+        "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} mac-address" = host.mac
+        "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} ip-address" = host.ip
+      }
+    ]...),
   )
   depends_on = [
     vyos_config_block_tree.eth0

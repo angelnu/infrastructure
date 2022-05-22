@@ -1,6 +1,6 @@
 resource "vyos_config_block_tree" "vpn_wireguard" {
   path = "interfaces wireguard wg01"
-  count = (var.config.tunnel && length(var.config.wireguard.peers) > 0 ) ? 1 : 0
+  count = (/*var.config.tunnel && */ length(var.config.wireguard.peers) > 0 ) ? 1 : 0
 
   configs = merge(
     {

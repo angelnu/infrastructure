@@ -1,7 +1,7 @@
 locals {
     domain_records_list = flatten([
         for domain_cfg in var.domains : [
-            for record in concat(domain_cfg.records, var.common.common_records): {
+            for record in concat(domain_cfg.records, var.domains_common.common_records): {
                 domain = domain_cfg.url
                 record = record
             }
@@ -18,7 +18,7 @@ resource "dme_dns_record" "records" {
   name          = each.value.record.name
   type          = each.value.record.type
   value         = each.value.record.value
-  ttl           = lookup(each.value.record, "ttl", var.common.default_ttl)
+  ttl           = lookup(each.value.record, "ttl", var.domains_common.default_ttl)
   mx_level      = lookup(each.value.record, "mx_level", null)
   weight        = lookup(each.value.record, "weight", null)
   dynamic_dns   = lookup(each.value.record, "dynamic_dns", null)

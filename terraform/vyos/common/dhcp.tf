@@ -28,7 +28,7 @@ resource "vyos_config_block_tree" "dhcp" {
       for host in local.host_by_name_with_mac : {
         "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} mac-address" = host.mac
         "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name} ip-address" = host.ip
-      }
+      } if lookup(host, "is_dhcp", true)
     ]...),
   )
   depends_on = [

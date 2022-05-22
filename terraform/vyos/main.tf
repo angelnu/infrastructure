@@ -27,7 +27,9 @@ module "common_primary" {
 
   config = module.deepmerge_primary.merged
   network_clients = var.network_clients
-
+  domains        = var.domains
+  domains_common = var.domains_common
+  
   providers = {
     vyos = vyos.primary
   }
@@ -52,7 +54,8 @@ module "common_secondary" {
 
   config = module.deepmerge_secondary.merged
   network_clients = var.network_clients
-
+  domains        = var.domains
+  domains_common = var.domains_common
   providers = {
     vyos = vyos.secondary
   }

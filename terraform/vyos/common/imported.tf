@@ -19,14 +19,19 @@ resource "vyos_config_block_tree" "eth0" {
   }
 }
 
-resource "vyos_config" "https_key" {
-  key = "service https api keys id terraform key"
-  value = sensitive(var.config.api.key)
-}
-
-resource "vyos_config" "https_virtual_host" {
-  key = "service https virtual-host rtr01 listen-address"
-  value = var.config.management.router
+resource "vyos_config_block_tree" "http_api" {
+  path = "service https"
+  configs = {
+    "api keys id terraform key"               = sensitive(var.config.api.key)
+    "virtual-host rtr01 listen-address"       = var.config.management.router
+    "virtual-host rtr01_lan listen-address"   = var.config.lan.router
+  }
+  timeouts {
+    create = "60m"
+    update = "60m"
+    delete = "60m"
+    default = "60m"
+  }
 }
 
 /* End of imported */

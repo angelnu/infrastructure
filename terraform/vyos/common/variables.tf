@@ -8,3 +8,13 @@ variable "network_clients" {
     type        = map(list(map(string)))
 }
 
+variable "domains" {
+    description = "DNS domains" 
+    type        = any
+}
+
+variable "domains_common" {
+    description = "DNS common settings" 
+    type        = any
+}
+

@@ -15,7 +15,7 @@ variable "domains" {
     type        = any
 }
 
-variable "common" {
+variable "domains_common" {
     description = "DNS common settings" 
     type        = any
 }

@@ -27,14 +27,14 @@ module "unifi" {
   unifi_wlan_password = data.sops_file.settings_secrets.data["unifi.wlan.password"]
 }
 
-module "openwrt" {
-  source = "./terraform/openwrt"
+# module "openwrt" {
+#   source = "./terraform/openwrt"
 
-  network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
-  router_IP       = "192.168.2.1"
-  router_ssh_key  = file("~/.ssh/id_rsa")
-  dnsmasq_config_extra = nonsensitive(data.sops_file.settings_secrets.data["openwrt.dnsmasq_config_extra"])
-}
+#   network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
+#   router_IP       = "192.168.2.1"
+#   router_ssh_key  = file("~/.ssh/id_rsa")
+#   dnsmasq_config_extra = nonsensitive(data.sops_file.settings_secrets.data["openwrt.dnsmasq_config_extra"])
+# }
 
 data "sops_file" "authentik" {
   source_file = "${path.module}/settings/authentik.yaml"
@@ -51,15 +51,15 @@ module "authentik" {
   authentik_config       = yamldecode(nonsensitive(data.sops_file.authentik.raw))
 }
 
-data "sops_file" "dnsmadeeasy" {
-  source_file = "${path.module}/settings/dnsmadeeasy.yaml"
+data "sops_file" "domains" {
+  source_file = "${path.module}/settings/domains.yaml"
 }
 module "dnsmadeeasy" {
-  source = "./terraform/dnsmadeeasy"
-  api_key    = data.sops_file.dnsmadeeasy.data["credentials.api_key"]
-  secret_key = data.sops_file.dnsmadeeasy.data["credentials.secret_key"]
-  domains    = yamldecode(nonsensitive(data.sops_file.dnsmadeeasy.raw)).domains
-  common     = yamldecode(nonsensitive(data.sops_file.dnsmadeeasy.raw)).common
+  source         = "./terraform/dnsmadeeasy"
+  api_key        = data.sops_file.settings_secrets.data["dnsmadeeasy.credentials.api_key"]
+  secret_key     = data.sops_file.settings_secrets.data["dnsmadeeasy.credentials.secret_key"]
+  domains        = yamldecode(nonsensitive(data.sops_file.domains.raw)).domains
+  domains_common = yamldecode(nonsensitive(data.sops_file.domains.raw)).common
 }
 
 data "sops_file" "vyos" {
@@ -70,5 +70,6 @@ module "vyos" {
 
   config    = yamldecode(nonsensitive(data.sops_file.vyos.raw))
   network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
-
+  domains        = yamldecode(nonsensitive(data.sops_file.domains.raw)).domains
+  domains_common = yamldecode(nonsensitive(data.sops_file.domains.raw)).common
 }

@@ -1,4 +1,4 @@
-resource "vyos_config_block_tree" "vpnl_ipsec" {
+resource "vyos_config_block_tree" "ipsec" {
   path = "vpn ipsec"
   count = (var.config.tunnel && length(var.config.site_to_site) > 0 ) ? 1 : 0
 

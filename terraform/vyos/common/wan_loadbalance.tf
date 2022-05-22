@@ -47,22 +47,3 @@ locals {
   ])
 }
 
-// Static rules for ping targets
-resource "vyos_config_block_tree" "load_balance_wan_test_route" {
-  for_each = {
-    for entry in local.load_balance_wan_test_route_entries : entry.target => entry.nexthop
-  }
-  path = "protocols static route ${each.key}/32"
-  configs = {
-    "next-hop ${each.value}" = ""
-  }
-}
-
-// Default rute for local traffic
-resource "vyos_config_block_tree" "load_balance_default_localhost" {
-  path = "protocols static route 0.0.0.0/0"
-  configs = {
-    "next-hop ${var.config.fritzbox.nexthop} distance" = "1"    
-    "next-hop ${var.config.lte.nexthop} distance" = "10"
-  }
-}

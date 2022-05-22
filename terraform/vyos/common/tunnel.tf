@@ -61,6 +61,7 @@ resource "vyos_config_block_tree" "vpnl_ipsec" {
     create = "60m"
     delete = "60m"
     update = "60m"
+    default = "60m"
   }
 
 }

@@ -1,54 +1,18 @@
 // LAN -> WAN
-resource "vyos_config_block_tree" "nat_lan_to_wan" {
-  for_each = {
-      "10": var.config.fritzbox
-      "11": var.config.lte
-  }
-  path = "nat source rule ${each.key}"
+resource "vyos_config_block_tree" "nat_source" {
 
-  configs = {
-    "description" = "LAN -> WAN"
-    "outbound-interface"= each.value.device,
-    "source address"= var.config.lan.cidr,
-    "destination address"= each.value.cidr,
-    "translation address": "masquerade"
-  }
-  depends_on = [
-    vyos_config_block_tree.eth0,
-    vyos_config_block_tree.eth1
-  ]
-  timeouts {
-    create = "60m"
-    update = "50s"
-    default = "50s"
-  }
-}
-
-// PORT FORWARDING
-locals {
-  port_forwards_list = toset(flatten([
-      for delta, inbound in {0:"fritzbox", 1:"lte"}: [
-        //Start at 100 so we have the range up to 100 available for other rules
-        for rule, values in var.config.port_forwards: merge({inbound=inbound, rule=100+2*(rule)+delta}, values)
-      ]
-  ]))
-}
-
-resource "vyos_config_block_tree" "nat_destination_rules" {
-
-  path = "nat destination"
+  path = "nat source rule"
 
   configs = merge([
       
-        for rule, entry in local.port_forwards_list:
-        {
-          "rule ${entry.rule} description": "${entry.inbound} - ${entry.description}",
-          "rule ${entry.rule} destination port": entry.port,
-          "rule ${entry.rule} inbound-interface": var.config[entry.inbound].device,
-          "rule ${entry.rule} protocol": entry.protocol
-          "rule ${entry.rule} translation address": entry.address
-          "rule ${entry.rule} translation port": contains(keys(entry), "translationPort") ? entry.translationPort: entry.port
-        }
+      for delta, inbound in ["fritzbox", "lte"]: 
+      {
+        "${100+delta} description" = "LAN -> WAN (${inbound})"
+        "${100+delta} outbound-interface"= var.config[inbound].device,
+        "${100+delta} source address"= var.config.lan.cidr,
+        "${100+delta} destination address"= var.config[inbound].cidr,
+        "${100+delta} translation address": "masquerade"
+      }
     ]...
   )
   depends_on = [
@@ -57,8 +21,40 @@ resource "vyos_config_block_tree" "nat_destination_rules" {
   ]
   timeouts {
     create = "60m"
-    update = "50s"
-    default = "50s"
+    update = "60m"
+    delete = "60m"
+    default = "60m"
+  }
+}
+
+resource "vyos_config_block_tree" "nat_destination" {
+
+  path = "nat destination"
+
+  configs = merge(flatten([
+      
+      for delta, inbound in ["fritzbox", "lte"]: [
+        for index, rule in var.config.port_forwards:
+        {
+          "rule ${100+2*index+delta} description": "${inbound} - ${rule.description}",
+          "rule ${100+2*index+delta} destination port": rule.port,
+          "rule ${100+2*index+delta} inbound-interface": var.config[inbound].device,
+          "rule ${100+2*index+delta} protocol": rule.protocol
+          "rule ${100+2*index+delta} translation address": rule.address
+          "rule ${100+2*index+delta} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
+        }
+      ]
+    ])...
+  )
+  depends_on = [
+    vyos_config_block_tree.eth0,
+    vyos_config_block_tree.eth1
+  ]
+  timeouts {
+    create = "60m"
+    update = "60m"
+    delete = "60m"
+    default = "60m"
   }
 }
 

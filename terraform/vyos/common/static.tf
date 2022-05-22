@@ -3,22 +3,24 @@ resource "vyos_config_block_tree" "static_routes" {
 
   configs = merge(
     {
-        # Default route
-        "0.0.0.0/0 next-hop ${var.config.fritzbox.nexthop} distance" = "1"    
-        "0.0.0.0/0 next-hop ${var.config.lte.nexthop} distance" = "10"
+      # Default route
+      "0.0.0.0/0 next-hop ${var.config.fritzbox.nexthop} distance" = "1"    
+      "0.0.0.0/0 next-hop ${var.config.lte.nexthop} distance" = "10"
     },
     merge([
-        # wireguard targets
-        for site_name, site in var.config.wireguard.peers: {
-            "${site.AllowedIPs} interface wg01" = ""
-        }
+      # wireguard targets
+      for site_name, site in var.config.wireguard.peers: {
+          "${site.AllowedIPs} interface wg01" = ""
+      }
     ]...),
-    merge([
-        # rules for ping targets for wan_loadbalance
-        for entry in local.load_balance_wan_test_route_entries: {
-            "${entry.target}/32 next-hop ${entry.nexthop}" = ""
+    merge(flatten([
+      # rules for ping targets for wan_loadbalance
+      for entry in [var.config.fritzbox,var.config.lte] : [
+        for id, target in entry.ping: {
+            "${target}/32 next-hop ${entry.nexthop}" = ""
         }
-    ]...),
+      ]
+    ])...),
   )
   depends_on = [
     vyos_config_block_tree.vpn_wireguard
@@ -27,6 +29,7 @@ resource "vyos_config_block_tree" "static_routes" {
     create = "60m"
     delete = "60m"
     update = "60m"
+    default = "60m"
   }
 
 }

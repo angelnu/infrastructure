@@ -34,8 +34,9 @@ resource "vyos_config_block_tree" "system_dns_static_host_mapping" {
   )
   timeouts {
     create  = "60m"
-    update  = "60s"
-    default = "60s"
+    update  = "60m"
+    default = "60m"
+    default = "60m"
   }
 
 }

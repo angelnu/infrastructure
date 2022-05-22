@@ -1,4 +1,4 @@
-resource "vyos_config_block_tree" "dhcp_server_lan" {
+resource "vyos_config_block_tree" "dhcp" {
   path = "service dhcp-server"
 
   configs = merge(
@@ -36,8 +36,9 @@ resource "vyos_config_block_tree" "dhcp_server_lan" {
   ]
   timeouts {
     create = "60m"
-    update = "50s"
-    default = "50s"
+    update = "60m"
+    delete = "60m"
+    default = "60m"
   }
 
 }

@@ -30,20 +30,14 @@ resource "vyos_config_block_tree" "load_balance_wan" {
     }
 
   )
+  timeouts {
+    create = "60m"
+    update = "60m"
+    delete = "60m"
+    default = "60m"
+  }
   depends_on = [
     vyos_config_block_tree.eth0,
     vyos_config_block_tree.eth1
   ]
 }
-
-locals {
-  load_balance_wan_test_route_entries = flatten([
-    for entry in [var.config.fritzbox,var.config.lte] : [
-      for id, target in entry.ping: {
-        "target"  = target,
-        "nexthop" = entry.nexthop
-      }
-    ]
-  ])
-}
-

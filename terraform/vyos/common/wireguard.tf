@@ -34,6 +34,7 @@ resource "vyos_config_block_tree" "vpn_wireguard" {
     create = "60m"
     delete = "60m"
     update = "60m"
+    default = "60m"
   }
 
 }

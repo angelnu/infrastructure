@@ -4,7 +4,8 @@ resource "vyos_config_block_tree" "dns" {
   configs = {
     "cache-size"      = "0",
     "allow-from" = var.config.lan.cidr,
-    "listen-address" = "0.0.0.0",
+    "listen-address ${var.config.lan.default_router}" = "",
+    "listen-address ${var.config.lan.router}" = "",
     "system" = ""
   }
   depends_on = [

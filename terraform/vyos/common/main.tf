@@ -3,7 +3,7 @@ terraform {
     vyos = {
       source = "Foltik/vyos"
       //source= "github.com/foltik/vyos"
-      version = "0.3.2"
+      version = "0.3.3"
     }
   }
 }

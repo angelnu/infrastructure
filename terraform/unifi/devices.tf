@@ -25,16 +25,16 @@ resource "unifi_device" "switch_living_room" {
 }
 
 resource "unifi_device" "switch_workroom" {
-    mac      = "24:5a:4c:53:1b:db"
+    mac      = "d0:21:f9:de:ac:ab"
     name     = "Switch Workroom"
     site     = "default"
     port_override {
-        name            = "Switch Workroom Right"
+        name            = "Switch Guestroom"
         number          = 1
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Switch Guestroom"
+        name            = "Switch Workroom PC Right"
         number          = 2
         port_profile_id = data.unifi_port_profile.all.id
     }
@@ -44,13 +44,33 @@ resource "unifi_device" "switch_workroom" {
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Switch Workroom Right"
+        name            = "Base Table Right"
         number          = 4
         port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Printer"
+        name            = "Switch Workroom PC Left"
+        number          = 6
+        port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Base Table Left"
         number          = 8
+        port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Desktop Right"
+        number          = 12
+        port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Desktop Left"
+        number          = 14
+        port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Printer"
+        number          = 16
         port_profile_id = data.unifi_port_profile.all.id
     }
 }

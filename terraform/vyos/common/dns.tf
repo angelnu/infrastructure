@@ -2,8 +2,9 @@ resource "vyos_config_block_tree" "dns" {
   path = "service dns forwarding"
 
   configs = {
-    "cache-size"      = "0",
-    "allow-from" = var.config.lan.cidr,
+    "cache-size"      = "200",
+    "allow-from ${var.config.lan.cidr}" = ""
+    "allow-from ${var.config.wireguard.client_cidr}" = ""
     "listen-address ${var.config.lan.default_router}" = "",
     "listen-address ${var.config.lan.router}" = "",
     "system" = ""

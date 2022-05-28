@@ -26,13 +26,13 @@ resource "vyos_config_block_tree" "dhcp" {
       "failover remote" = var.config.lan.dhcp.failover.remote
       "failover status" = var.config.lan.dhcp.failover.status
     },
-    # merge([
-    #   # static allocation
-    #   for host in local.host_by_name_with_mac : {
-    #     "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name}${trimsuffix(host.name, ".") != host.name ? "" : ".${var.config.lan.dhcp.domain_name}" } mac-address" = host.mac
-    #     "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name}${trimsuffix(host.name, ".") != host.name ? "" : ".${var.config.lan.dhcp.domain_name}" } ip-address" = host.ip
-    #   } if lookup(host, "is_dhcp", true)
-    # ]...),
+    merge([
+      # static allocation
+      for host in local.host_by_name_with_mac : {
+        "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name}${trimsuffix(host.name, ".") != host.name ? "" : ".${var.config.lan.dhcp.domain_name}" } mac-address" = host.mac
+        "shared-network-name lan subnet ${var.config.lan.cidr} static-mapping ${host.name}${trimsuffix(host.name, ".") != host.name ? "" : ".${var.config.lan.dhcp.domain_name}" } ip-address" = host.ip
+      } if lookup(host, "is_dhcp", true)
+    ]...),
   )
   depends_on = [
     vyos_config_block_tree.eth0

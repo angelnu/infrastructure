@@ -65,8 +65,7 @@ common:
           protocol: ENC[AES256_GCM,data:htf4,iv:JK43UeP9Xhdao0I26ztdlG4wtVjrOxKRMNeJQP1ED4k=,tag:gTY+FdCGBgAlrNW0tizrFw==,type:str]
           address: ENC[AES256_GCM,data:EeOQ7zR85VQpvXXt4Q==,iv:tdRtsrqWiptVzsHmj4UUsaKr9HLMoQ5FYO2paJ9yaIU=,tag:KdYldqsXZRWZP+T3NRJgwA==,type:str]
         - description: ENC[AES256_GCM,data:583J0L3vbg==,iv:uwBawIvOQw+fLCTsOxJ2jxwDNVl+pPT/cYFAb0b2Ci8=,tag:6o4CbBi5i7bPrCdek8NPnA==,type:str]
-          port: ENC[AES256_GCM,data:LzXtkQ==,iv:6k6behwUnsOs3NF/ue7mK8SGV4wiGlPtTSAYk90rDjI=,tag:6eU5qX+4c1Gw62U6wTr93Q==,type:int]
-          translationPort: ENC[AES256_GCM,data:KhU=,iv:I6RK6zlI8IlGmORt5DL7ylBEzUcIC0pwno7a2eh3uNQ=,tag:JMhnms6K5s6zNySTg+1fww==,type:int]
+          port: ENC[AES256_GCM,data:GFyftA==,iv:+91SipEM0z2V+bb7+Rj40xpS8Z0m6Iz3qMWA8du6LTQ=,tag:z85OTh9fX/NYLDt7/SOofg==,type:int]
           protocol: ENC[AES256_GCM,data:htf4,iv:JK43UeP9Xhdao0I26ztdlG4wtVjrOxKRMNeJQP1ED4k=,tag:gTY+FdCGBgAlrNW0tizrFw==,type:str]
           address: ENC[AES256_GCM,data:Zfb9U6vydHzCH7CgCA==,iv:vQqj4T7p0y3P01eiKjQs9uy0tF2Sm+WCs2zM6JxQXfM=,tag:P6hWr8b+GZ/s43yF2oQA2Q==,type:str]
         - description: ENC[AES256_GCM,data:kGqysk2ityf6M1yL5Q==,iv:h9z1/CBW/JVpS3bNEHKm5FuKmbpFqpT+I6X2dTp9Taw=,tag:fVuARMx1XfWu6/EnKS/NhQ==,type:str]
@@ -186,8 +185,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-05-27T22:12:02Z"
-    mac: ENC[AES256_GCM,data:1CRzKUEP7Y5/m4SI5BPv+MSwZ1OrzgQjK+1mQtPTPEw3r/kupvke4NOhI935wcbhuO+fEPbDukCRAWd8w/yh9ux1KzVUl+ZBKfFbTK2rr9PZBf2JS4ZMW8s7p1q2gs68XvhRyQvqJF3TLno7gohfcesmaBiZssLsNa8x+67EILw=,iv:ISCO7bLowd4ihvWrCXc6P4Nl3P5A3wjyWTZVYn4aqyo=,tag:E2Yaf7JemMqBkT9aQ96wGg==,type:str]
+    lastmodified: "2022-05-29T17:56:05Z"
+    mac: ENC[AES256_GCM,data:ga51GA2/T96KvS8Au/xivqDnKcgX+3s3TlQLK23WpGRR9gIGdD2OpB1nE6LSDN7+I/Y7e/8kGORpmMxFOcF6FtXORiwmdV6KZlTc76wynbd2Inp/eSn/eBap4qk+PIPjmKg9UIm2htBoDT/sjYM9UoB/HPR2pyZIL0pCfwprJog=,iv:QAryUy+gqjCn2mZ2JfL/8nPMHkecLLIImviXh3/fcWM=,tag:6HI+P69vYn9b7zGxIlvHOA==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

@@ -3,10 +3,8 @@ resource "vyos_config_block_tree" "dns" {
 
   configs = {
     "cache-size"      = "200",
-    "allow-from ${var.config.lan.cidr}" = ""
-    "allow-from ${var.config.wireguard.client_cidr}" = ""
-    "listen-address ${var.config.lan.default_router}" = "",
-    "listen-address ${var.config.lan.router}" = "",
+    "allow-from" = jsonencode([var.config.lan.cidr,var.config.wireguard.client_cidr])
+    "listen-address" = jsonencode([var.config.lan.default_router, var.config.lan.router])
     "system" = ""
   }
   depends_on = [
@@ -26,7 +24,6 @@ resource "vyos_config_block_tree" "system_dns_static_host_mapping" {
     merge([
         for host in local.host_by_name: {
           # static allocation for hosts
-          "host-name ${host.name}${length(split(".", host.name)) > 1 ? "": ".${var.config.lan.dhcp.domain_name}" }"      = ""
           "host-name ${host.name}${length(split(".", host.name)) > 1 ? "": ".${var.config.lan.dhcp.domain_name}" } inet" = host.ip
         }
     ]...),
@@ -34,7 +31,6 @@ resource "vyos_config_block_tree" "system_dns_static_host_mapping" {
         for domain in var.domains: [
           for record in concat(domain.records, var.domains_common.common_records): {
             # static allocation for A Records
-            "host-name ${record.name}${trimsuffix(record.name, ".") != record.name ? "": ".${domain.url}" }"      = ""
             "host-name ${record.name}${trimsuffix(record.name, ".") != record.name ? "": ".${domain.url}" } inet" = record.value
           } if record.type == "A"
         ]
@@ -43,7 +39,6 @@ resource "vyos_config_block_tree" "system_dns_static_host_mapping" {
         for domain in var.domains: [
           for record in concat(domain.records, var.domains_common.common_records): {
             # static allocation for CNAME Records
-            "host-name ${record.local_value}.${domain.url}"       = ""
             "host-name ${record.local_value}.${domain.url} alias" = "${record.name}${trimsuffix(record.name, ".") != record.name ? "": ".${domain.url}" }"
           } if record.type == "CNAME"
             && contains(keys(record), "local_value")

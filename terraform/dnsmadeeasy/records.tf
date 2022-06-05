@@ -8,7 +8,7 @@ locals {
         ]
     ])
 
-    domain_records = { for i, entry in local.domain_records_list: "${entry.domain}.${entry.record.type}.${entry.record.name}.${ md5(entry.record.value) }" => entry }
+    domain_records = { for i, entry in local.domain_records_list: "${entry.domain}.${entry.record.type}.${entry.record.name}.${ md5(contains(keys(entry.record), "value") ? entry.record.value : "") }" => entry }
 }
 
 resource "dme_dns_record" "records" {
@@ -17,7 +17,8 @@ resource "dme_dns_record" "records" {
   domain_id     = "${dme_domain.domains[each.value.domain].id}"
   name          = each.value.record.name
   type          = each.value.record.type
-  value         = each.value.record.value
+  init_value    = contains(keys(each.value.record), "init_value") ? each.value.record.init_value : null
+  value         = contains(keys(each.value.record), "value"     ) ? each.value.record.value      : null
   ttl           = lookup(each.value.record, "ttl", var.domains_common.default_ttl)
   mx_level      = lookup(each.value.record, "mx_level", null)
   weight        = lookup(each.value.record, "weight", null)

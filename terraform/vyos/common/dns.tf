@@ -33,6 +33,7 @@ resource "vyos_config_block_tree" "system_dns_static_host_mapping" {
             # static allocation for A Records
             "host-name ${record.name}${trimsuffix(record.name, ".") != record.name ? "": ".${domain.url}" } inet" = record.value
           } if record.type == "A"
+            && contains(keys(record), "value")
         ]
     ])...),
     merge(flatten([

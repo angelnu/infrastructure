@@ -25,10 +25,11 @@ module "deepmerge_primary" {
 module "common_primary" {
   source = "./common"
 
-  config = module.deepmerge_primary.merged
+  config          = module.deepmerge_primary.merged
+  config_raw      = var.config
   network_clients = var.network_clients
-  domains        = var.domains
-  domains_common = var.domains_common
+  domains         = var.domains
+  domains_common  = var.domains_common
   
   providers = {
     vyos = vyos.primary
@@ -52,10 +53,11 @@ module "deepmerge_secondary" {
 module "common_secondary" {
   source = "./common"
 
-  config = module.deepmerge_secondary.merged
+  config          = module.deepmerge_secondary.merged
+  config_raw      = var.config
   network_clients = var.network_clients
-  domains        = var.domains
-  domains_common = var.domains_common
+  domains         = var.domains
+  domains_common  = var.domains_common
   providers = {
     vyos = vyos.secondary
   }

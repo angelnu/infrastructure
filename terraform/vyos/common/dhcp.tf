@@ -10,7 +10,14 @@ resource "vyos_config_block_tree" "dhcp" {
       "shared-network-name lan ping-check" = "",
       "shared-network-name lan subnet ${var.config.lan.cidr} default-router" = var.config.lan.default_router,
       "shared-network-name lan subnet ${var.config.lan.cidr} lease" = "86400",
-      "shared-network-name lan subnet ${var.config.lan.cidr} name-server"= var.config.lan.default_router
+      "shared-network-name lan subnet ${var.config.lan.cidr} name-server"= jsonencode([
+        var.config.lan.default_router,
+        var.config_raw.primary.lan.router,
+        var.config_raw.secondary.lan.router,
+        #"1.1.1.1",
+        #"9.9.9.9",
+        #"8.8.8.8"
+      ])
       "shared-network-name lan subnet ${var.config.lan.cidr} enable-failover"=""
     },
     merge([

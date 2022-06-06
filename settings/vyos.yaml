@@ -58,7 +58,12 @@ common:
     vrrp:
         vrid: ENC[AES256_GCM,data:VEA=,iv:R2VxuPclGiRdiCuJqoJrfjG8VUGFKqehMg/FJznjf2o=,tag:HcjtFWTXhruFOhX2tSNNRA==,type:int]
     system:
-        dns: ENC[AES256_GCM,data:DC8YDp2kReEmZRUi,iv:Ctgs6b8xs+vtwFCN3pu03Qbv4xrZbhJG6XWIHmW6c4M=,tag:IGrD/CN1Jl0Zt5bfIcYe1w==,type:str]
+        dns:
+            - ENC[AES256_GCM,data:DC8YDp2kReEmZRUi,iv:Ctgs6b8xs+vtwFCN3pu03Qbv4xrZbhJG6XWIHmW6c4M=,tag:IGrD/CN1Jl0Zt5bfIcYe1w==,type:str]
+            - ENC[AES256_GCM,data:mCk6jNeQ2J0Oq/db,iv:ug+CXLg3kC+AgikHJsrprJ5NIMP/7aDU+ng/lMg+un8=,tag:E1o/4WUCOBV3HcBolnllkg==,type:str]
+            - ENC[AES256_GCM,data:TF1N2xYHeQ==,iv:j0NdH5LEQtqfQ6WKwX6npRLOGfiHHE+kuABBjOXGTiM=,tag:9LhMJkKgl5DMTnr+0FMLog==,type:str]
+            - ENC[AES256_GCM,data:wFN9j4lMJQ==,iv:frc+ltH1L416oUyfLUvKDEAZnZ/6xqP3Sq0tWS91Tvg=,tag:gbh2pLtDw/qhw6yRSziT5A==,type:str]
+            - ENC[AES256_GCM,data:5AsH2EBLdw==,iv:1UqFaOZZYmsL06HENRpcJPVUh/Q+iEjC/dje203IbXo=,tag:NDvzTXipf5EZIe8iwdStkg==,type:str]
     port_forwards:
         - description: ENC[AES256_GCM,data:PvfdZGmFZw==,iv:Hi9SUWpAs4fnXQ4CaZ+OpC27SzdiMC6WYEgv0IVH2o4=,tag:p1vmk9Xdql6xSrWT6QsrJQ==,type:str]
           port: ENC[AES256_GCM,data:3igL,iv:Ua8Rp5ny1MoQgJIk8HZfifM+xLxGNWP0ZbqgBwh1Cys=,tag:5OUV7Ne7StzGLRzXy3j4Mg==,type:int]
@@ -185,8 +190,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-05-29T17:56:05Z"
-    mac: ENC[AES256_GCM,data:ga51GA2/T96KvS8Au/xivqDnKcgX+3s3TlQLK23WpGRR9gIGdD2OpB1nE6LSDN7+I/Y7e/8kGORpmMxFOcF6FtXORiwmdV6KZlTc76wynbd2Inp/eSn/eBap4qk+PIPjmKg9UIm2htBoDT/sjYM9UoB/HPR2pyZIL0pCfwprJog=,iv:QAryUy+gqjCn2mZ2JfL/8nPMHkecLLIImviXh3/fcWM=,tag:6HI+P69vYn9b7zGxIlvHOA==,type:str]
+    lastmodified: "2022-06-06T16:47:51Z"
+    mac: ENC[AES256_GCM,data:1Pa6xSB0Ino/w65RuuWonQ53gV7yTvLCrI4Nuqd5RI6UHBlZPajhBYLRHf/CdAQQFUdOwW3GD7xXL82Ukyv3SfrU1T6ndCwQ29Zqu9QjS1MREh9budu6/PpXxuTuBPjdTXdT+Jk09vl+B3GaBPDKpRvon2zKZB71NAhh+Bz3h04=,iv:P2NfPWLL+33V7bw0yTRBxkWRJVOXb5sCx/wtsTwhL/A=,tag:jrJiQzTumRbcQ2onJASejQ==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

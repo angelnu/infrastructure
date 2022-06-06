@@ -12,7 +12,7 @@ The home network is divided in non overlapping segments so, beyond the WANs, all
 - remote devices connected via wireguard to casa96 connect to devices in casa128
 - Madrid devices to connect to WAN devices
 
-## Phisical network with Unifi
+## Physical network with Unifi
 
 The casa97 phisicall network is implemented with Unifi switches. This allows to:
 - assign switch ports to a subnetwork/VLAN

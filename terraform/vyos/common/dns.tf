@@ -12,9 +12,9 @@ resource "vyos_config_block_tree" "dns" {
   ]
 }
 
-resource "vyos_config" "system_name_server" {
-  key = "system name-server"
-  value = var.config.system.dns
+resource "vyos_config_block_tree" "system_name_server" {
+  path = "system name-server"
+  configs = {"": jsonencode(var.config.system.dns)}
 }
 
 resource "vyos_config_block_tree" "system_dns_static_host_mapping" {

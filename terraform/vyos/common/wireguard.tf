@@ -1,5 +1,5 @@
 resource "vyos_config_block_tree" "vpn_wireguard" {
-  path = "interfaces wireguard wg01"
+  path = "interfaces wireguard ${var.config.wireguard.device}"
   count = (/*var.config.tunnel && */ length(var.config.wireguard.peers) > 0 ) ? 1 : 0
 
   configs = merge(
@@ -7,7 +7,7 @@ resource "vyos_config_block_tree" "vpn_wireguard" {
         "private-key" = var.config.wireguard.PrivateKey,
         "port" = var.config.wireguard.Port,
         //"address" = "192.168.0.2/18"
-        "description" = "VPN-to-wg01"
+        "description" = "VPN-to-${var.config.wireguard.device}"
     },
     merge([
         for site_name, site in var.config.wireguard.peers: {

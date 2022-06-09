@@ -3,7 +3,11 @@ common:
         PrivateKey: ENC[AES256_GCM,data:UQLJ+CyAeyAsIq65uN0OvSQiPD1yP2G/K6n2p197Dl51R9HBPrfVVLbP3u0=,iv:a3qfaC5gbDTsib4NkTVZinVvIAn2UYQdoeqgDhyfRys=,tag:a3FsQjm+35rFp51S0+3n/A==,type:str]
         PublicKey: ENC[AES256_GCM,data:Fu8qrplxdGionFKTqG/VXkv1ofpXQjsakSbxujEcSUcLwEguj2mY27udVXI=,iv:tlvcWI28tV6ymVGytg6mwHu3tEwvldOCab3bL3/eHLY=,tag:rvXubKVynGlLdseWxzkByQ==,type:str]
         Port: ENC[AES256_GCM,data:37r33WI=,iv:P2Y19HWGqewLZSLpsf6JXFDzT8UUqaqvDOZegG7cYu4=,tag:ucEhKF2bLt0nSXRbHTeg7w==,type:int]
+        device: ENC[AES256_GCM,data:2gdtmw==,iv:YXM0ofNGcQ3FZ+GTalP/8v35Lj+JxbcboX6Ke4c0a/k=,tag:oBsRKKoXLqviIpnfLRXiCg==,type:str]
+        #ENC[AES256_GCM,data:4AP5M0mOqCwcwRDPMkICHJDZ+hQugVg/7A==,iv:JG1sJi7BZEOsPnoHPInUeVaWn1PsXZafdu5OUNKREa8=,tag:7ACp/D9GCwPnpjfm/SWNIw==,type:comment]
         client_cidr: ENC[AES256_GCM,data:nTE4ygAsNt3IDP3SGuKR,iv:75vV+cA8+XXkVP/Mv4TEiPUc4wf9PWzdCQ/1qL2Edmk=,tag:QGmaBkvco6NqCjrQ7h/aqw==,type:str]
+        #ENC[AES256_GCM,data:5+v/uuUaT0BYXZr4oCriLQ/mLzWmwxo=,iv:B9hO41am0Hd9PTYznuoxca8ASN8uZZwOKbNnVwrb79E=,tag:uyFkq6buWxNVRj9iyuRRBA==,type:comment]
+        peers_cidr: ENC[AES256_GCM,data:U9kZaYnRI4GIRBByiptb,iv:AngxIE8F29wpQIXRBcNWCNIaPTOYs3nJmuBcaKkh17M=,tag:QBcVt3k3wUppvkwJdAZ7ZQ==,type:str]
         peers:
             madrid:
                 PublicKey: ENC[AES256_GCM,data:4RTANKurf0ZzPGOxiOfiiVlXIZQuINWDzDGWPga42qoASI40kyn2m1SLXhI=,iv:9Y7RyZNY5dVV9+JI7xwvJnqsAfBHWAgfpOtsZlHES+s=,tag:Igh/2+she+wCNWO6exmvIQ==,type:str]
@@ -190,8 +194,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-06-06T16:47:51Z"
-    mac: ENC[AES256_GCM,data:1Pa6xSB0Ino/w65RuuWonQ53gV7yTvLCrI4Nuqd5RI6UHBlZPajhBYLRHf/CdAQQFUdOwW3GD7xXL82Ukyv3SfrU1T6ndCwQ29Zqu9QjS1MREh9budu6/PpXxuTuBPjdTXdT+Jk09vl+B3GaBPDKpRvon2zKZB71NAhh+Bz3h04=,iv:P2NfPWLL+33V7bw0yTRBxkWRJVOXb5sCx/wtsTwhL/A=,tag:jrJiQzTumRbcQ2onJASejQ==,type:str]
+    lastmodified: "2022-06-09T16:28:44Z"
+    mac: ENC[AES256_GCM,data:ZS2nU2NMw68Ru3nwL2f6zruyhi6Wli+ApKpkXRWTPFToU/UsgREXaOi2c9t0k5235O1u5x56LiVF0c+VU2RJDFalNEHisSLLmUWVCDHNMCeJmHdaLFeKA2rsHf18l3zzs+O79xEhwnOTZIMoCQ8YIUkf/RAcWPx4OM85Fo45jhs=,iv:BX3ePeeBA1MkPjXptfSWfh8YfpA4XKm5Y2dyTHTSZCc=,tag:JDTIMNvqSmHuK3H4RLyQeA==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

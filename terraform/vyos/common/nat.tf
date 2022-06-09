@@ -7,11 +7,24 @@ resource "vyos_config_block_tree" "nat_source" {
       
       for delta, inbound in ["fritzbox", "lte"]: 
       {
+        # LAN -> WAN
         "${100+delta} description" = "LAN -> WAN (${inbound})"
         "${100+delta} outbound-interface"= var.config[inbound].device,
         "${100+delta} source address"= var.config.lan.cidr,
         "${100+delta} destination address"= var.config[inbound].cidr,
         "${100+delta} translation address": "masquerade"
+        # Wireguard peers -> WAN
+        "${102+delta} description" = "Wireguard peers-> WAN (${inbound})"
+        "${102+delta} outbound-interface"= var.config[inbound].device,
+        "${102+delta} source address"= var.config.wireguard.peers_cidr
+        "${102+delta} destination address"= var.config[inbound].cidr,
+        "${102+delta} translation address": "masquerade"
+        # Wireguard clients -> WAN
+        "${104+delta} description" = "Wireguard clients -> WAN (${inbound})"
+        "${104+delta} outbound-interface"= var.config[inbound].device,
+        "${102+delta} source address"= var.config.wireguard.client_cidr
+        "${104+delta} destination address"= var.config[inbound].cidr,
+        "${104+delta} translation address": "masquerade"
       }
     ]...
   )

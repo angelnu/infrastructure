@@ -18,11 +18,24 @@ resource "vyos_config_block_tree" "load_balance_wan" {
       "rule 5 destination address" = "192.168.0.0/16"
     },
     {
+      # Exclude traffic to wireguard
+      "rule 6 exclude" = ""
+      "rule 6 inbound-interface" = var.config.wireguard.device
+      "rule 6 destination address" = "192.168.0.0/16"
+    },
+    {
       # Load balance all the remaining traffic arriving via the lan
       "rule 10 inbound-interface"= var.config.lan.device,
       "rule 10 failover" = "",
       "rule 10 interface ${var.config.fritzbox.device} weight"= "10",
       "rule 10 interface ${var.config.lte.device} weight"= "1",
+    },
+    {
+      # Load balance all the remaining traffic arriving via the wireguard
+      "rule 11 inbound-interface"= var.config.wireguard.device,
+      "rule 11 failover" = "",
+      "rule 11 interface ${var.config.fritzbox.device} weight"= "10",
+      "rule 11 interface ${var.config.lte.device} weight"= "1",
     },
     {
       "flush-connections" = "",

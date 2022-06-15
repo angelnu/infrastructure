@@ -20,7 +20,7 @@ resource "vyos_config_block_tree" "ssh" {
   configs = {
     "port"      = "22",
     "disable-password-authentication" = "", #Keep simple passwords for login via terminal but require key for ssh
-    "listen-address" = jsonencode([var.config.lan.router, var.config.management.router])
-    //"listen-address" = var.config.lan.router
+    "listen-address" = jsonencode([var.config.networks.lan.router, var.config.networks.management.router])
+    //"listen-address" = var.config.networks.lan.router
   }
 }

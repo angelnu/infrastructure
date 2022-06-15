@@ -4,8 +4,8 @@ resource "vyos_config_block_tree" "static_routes" {
   configs = merge(
     {
       # Default route
-      "0.0.0.0/0 next-hop ${var.config.fritzbox.nexthop} distance" = "1"    
-      "0.0.0.0/0 next-hop ${var.config.lte.nexthop} distance" = "10"
+      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} distance" = "1"    
+      "0.0.0.0/0 next-hop ${var.config.networks.lte.nexthop} distance" = "10"
     },
     merge([
       # wireguard targets
@@ -15,7 +15,7 @@ resource "vyos_config_block_tree" "static_routes" {
     ]...),
     merge(flatten([
       # rules for ping targets for wan_loadbalance
-      for entry in [var.config.fritzbox,var.config.lte] : [
+      for entry in [var.config.networks.fritzbox,var.config.networks.lte] : [
         for id, target in entry.ping: {
             "${target}/32 next-hop ${entry.nexthop}" = ""
         }

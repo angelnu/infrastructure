@@ -9,21 +9,21 @@ resource "vyos_config_block_tree" "nat_source" {
       {
         # LAN -> WAN
         "${100+delta} description" = "LAN -> WAN (${inbound})"
-        "${100+delta} outbound-interface"= var.config[inbound].device,
-        "${100+delta} source address"= var.config.lan.cidr,
-        "${100+delta} destination address"= var.config[inbound].cidr,
+        "${100+delta} outbound-interface"= var.config.networks[inbound].device,
+        "${100+delta} source address"= var.config.networks.lan.cidr,
+        "${100+delta} destination address"= var.config.networks[inbound].cidr,
         "${100+delta} translation address": "masquerade"
         # Wireguard peers -> WAN
         "${102+delta} description" = "Wireguard peers-> WAN (${inbound})"
-        "${102+delta} outbound-interface"= var.config[inbound].device,
+        "${102+delta} outbound-interface"= var.config.networks[inbound].device,
         "${102+delta} source address"= var.config.wireguard.peers_cidr
-        "${102+delta} destination address"= var.config[inbound].cidr,
+        "${102+delta} destination address"= var.config.networks[inbound].cidr,
         "${102+delta} translation address": "masquerade"
         # Wireguard clients -> WAN
         "${104+delta} description" = "Wireguard clients -> WAN (${inbound})"
-        "${104+delta} outbound-interface"= var.config[inbound].device,
+        "${104+delta} outbound-interface"= var.config.networks[inbound].device,
         "${102+delta} source address"= var.config.wireguard.client_cidr
-        "${104+delta} destination address"= var.config[inbound].cidr,
+        "${104+delta} destination address"= var.config.networks[inbound].cidr,
         "${104+delta} translation address": "masquerade"
       }
     ]...
@@ -51,7 +51,7 @@ resource "vyos_config_block_tree" "nat_destination" {
         {
           "rule ${100+2*index+delta} description": "${inbound} - ${rule.description}",
           "rule ${100+2*index+delta} destination port": rule.port,
-          "rule ${100+2*index+delta} inbound-interface": var.config[inbound].device,
+          "rule ${100+2*index+delta} inbound-interface": var.config.networks[inbound].device,
           "rule ${100+2*index+delta} protocol": rule.protocol
           "rule ${100+2*index+delta} translation address": rule.address
           "rule ${100+2*index+delta} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port

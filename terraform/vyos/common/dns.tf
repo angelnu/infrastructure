@@ -3,8 +3,8 @@ resource "vyos_config_block_tree" "dns" {
 
   configs = {
     "cache-size"      = "200",
-    "allow-from" = jsonencode([var.config.lan.cidr,var.config.wireguard.client_cidr])
-    "listen-address" = jsonencode([var.config.lan.default_router, var.config.lan.router])
+    "allow-from" = jsonencode([var.config.networks.lan.cidr,var.config.wireguard.client_cidr])
+    "listen-address" = jsonencode([var.config.networks.lan.default_router, var.config.networks.lan.router])
     "system" = ""
   }
   depends_on = [
@@ -24,7 +24,7 @@ resource "vyos_config_block_tree" "system_dns_static_host_mapping" {
     merge([
         for host in local.host_by_name: {
           # static allocation for hosts
-          "host-name ${host.name}${length(split(".", host.name)) > 1 ? "": ".${var.config.lan.dhcp.domain_name}" } inet" = host.ip
+          "host-name ${host.name}${length(split(".", host.name)) > 1 ? "": ".${var.config.networks.lan.dhcp.domain_name}" } inet" = host.ip
         }
     ]...),
     merge(flatten([

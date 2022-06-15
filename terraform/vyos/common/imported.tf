@@ -7,15 +7,15 @@ terraform import module.vyos.module.common_appliance.vyos_config.https_virtual_h
 resource "vyos_config_block_tree" "eth0" {
   path = "interfaces ethernet eth0"
   configs = {
-    "address"           = var.config.lan.router_cidr
+    "address"           = var.config.networks.lan.router_cidr
     "description"       = "lan"
-    #"vif ${var.config.lan.vlan} address"     = var.config.lan.router_cidr
-    #"vif ${var.config.lan.vlan} description" = "lan"
+    #"vif ${var.config.networks.lan.vlan} address"     = var.config.networks.lan.router_cidr
+    #"vif ${var.config.networks.lan.vlan} description" = "lan"
     
-    "vif ${var.config.lte.vlan} address"     = var.config.lte.router_cidr
-    "vif ${var.config.lte.vlan} description" = "lte"
-    "vif ${var.config.management.vlan} address"     = var.config.management.router_cidr
-    "vif ${var.config.management.vlan} description" = "management"
+    "vif ${var.config.networks.lte.vlan} address"     = var.config.networks.lte.router_cidr
+    "vif ${var.config.networks.lte.vlan} description" = "lte"
+    "vif ${var.config.networks.management.vlan} address"     = var.config.networks.management.router_cidr
+    "vif ${var.config.networks.management.vlan} description" = "management"
   }
 }
 
@@ -23,8 +23,8 @@ resource "vyos_config_block_tree" "http_api" {
   path = "service https"
   configs = {
     "api keys id terraform key"               = sensitive(var.config.api.key)
-    "virtual-host rtr01 listen-address"       = var.config.management.router
-    "virtual-host rtr01_lan listen-address"   = var.config.lan.router
+    "virtual-host rtr01 listen-address"       = var.config.networks.management.router
+    "virtual-host rtr01_lan listen-address"   = var.config.networks.lan.router
   }
   timeouts {
     create = "60m"

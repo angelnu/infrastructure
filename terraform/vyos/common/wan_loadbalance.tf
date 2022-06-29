@@ -54,7 +54,7 @@ resource "vyos_config_block_tree" "load_balance_wan" {
       "rule 11 protocol"          = "all"
     },
     {
-      "flush-connections" = "",
+      "flush-connections" = "", #Problem with https://phabricator.vyos.net/T1311
       //"enable-local-traffic" = "" It does not seem to do anything -> replace with static default rule bellow
     }
 

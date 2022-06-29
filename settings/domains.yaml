@@ -132,6 +132,9 @@ domains:
           name: ENC[AES256_GCM,data:dbNGFQ==,iv:xsF5pbVxBD942GFf7P1BTABSoqF6yRVGKpqoBDKkYlw=,tag:iIhif+rOlQGpZQZG2nRRqw==,type:str]
           value: ENC[AES256_GCM,data:MXSV1pauCUwtwJBW,iv:mK544HcgTSOxXw/7uLUVWKTKG1qLurD0NDsmVXOXVyU=,tag:msYHupUGLKEgF+XivSObdg==,type:str]
         - type: ENC[AES256_GCM,data:IA==,iv:n8iKvQXlEf8307CD8pKwQ/pn409/jFlSjxMMeV+09Qs=,tag:xraunY1Brq9rIZqC2qs5eA==,type:str]
+          name: ENC[AES256_GCM,data:BsSd4Q==,iv:cbf8ApRZoDJAfZQffC8RRx8hliaXFQyHfDb3B7gP6AI=,tag:BJRMP7kgO8u6Zw2eLNrKsw==,type:str]
+          value: ENC[AES256_GCM,data:6p9k2z4uK9pnXKUb,iv:ep+bXj0Wn/aLk0d9ArjBihNiKTcKhS8fxysX4DUjW3A=,tag:qoekIblv51cex7B8bvVezw==,type:str]
+        - type: ENC[AES256_GCM,data:IA==,iv:n8iKvQXlEf8307CD8pKwQ/pn409/jFlSjxMMeV+09Qs=,tag:xraunY1Brq9rIZqC2qs5eA==,type:str]
           name: ENC[AES256_GCM,data:I1XpgEyWenegHQKlpKOh,iv:wgYILpHt2Y3S8TJ3JpFxHd2SI0fEK8+m+hIev5Luls0=,tag:XeYKiFbB3JEso8sU6B2i3g==,type:str]
           value: ENC[AES256_GCM,data:1yDm0bZNOBIjnpgzGnE=,iv:qMZjXuy/2Kkl16eLGvE4ByvRA6sJkGpwIZ5iS2wmunE=,tag:MbV0N+DoimEOUfaSNhQyaQ==,type:str]
         - type: ENC[AES256_GCM,data:IA==,iv:n8iKvQXlEf8307CD8pKwQ/pn409/jFlSjxMMeV+09Qs=,tag:xraunY1Brq9rIZqC2qs5eA==,type:str]
@@ -260,8 +263,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-06-05T15:07:30Z"
-    mac: ENC[AES256_GCM,data:KZtzpZldRKzG9zky1PrmVN1CYmNRYNBPf8dv55b6KZbUpsYOgxEx8w7OcoXfFpVZKTHTn7n2AMHD/R9HyFgObyAPsNHHmcLbOV7CQ9isYopATK1m/JFGVbxXNwJqXYtStLGXHJX8tY8tHMirufO5ng3L+njjuX2RAq34icNCt/w=,iv:qtceYu/j5uQoqHrgbpILm0bsaOdahSuCFFLc45lbDV8=,tag:ImEqS8GgmLeyBl7yV8Gq6Q==,type:str]
+    lastmodified: "2022-06-29T17:04:14Z"
+    mac: ENC[AES256_GCM,data:Z3P/JmlXXS/qXGd5gdWWKi18F4i7qXf+Bd2kO+wrJxLcIBE8b4ww7s0AMZcAhQlTsD6geNxm+4B+GnbASJQ2So3ETFOs+dR4HOw0bOa+ZHdVvG+0qOwCoyiwr92/1tTzVpge3lrWFV6JTcZk8vhE5JcrKHw+ErOGWDKCTOmZm0M=,iv:OyLwcquPI3PC7gU7DWxLa418SoOZdo64CoQkd6u72iM=,tag:JWfgszdtkUc98jYaUvdNyw==,type:str]
     pgp:
         - created_at: "2022-03-27T15:25:09Z"
           enc: |

@@ -7,6 +7,7 @@ resource "authentik_provider_saml" "nextcloud" {
   audience           = "https://nextcloud.${var.main_home_domain}/apps/user_saml/saml/metadata"
   property_mappings  = data.authentik_property_mapping_saml.default.ids
   signing_kp         = data.authentik_certificate_key_pair.generated.id
+  session_valid_not_on_or_after = "hours=24"
 }
 
 resource "authentik_application" "nextcloud" {

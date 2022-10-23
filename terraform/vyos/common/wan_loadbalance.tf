@@ -4,14 +4,14 @@ resource "vyos_config_block_tree" "load_balance_wan" {
     {
       "interface-health ${var.config.networks.fritzbox.device} nexthop" = var.config.networks.fritzbox.nexthop
       "interface-health ${var.config.networks.fritzbox.device} failure-count" = "1"
-      "interface-health ${var.config.networks.fritzbox.device} success-count"    = "1"
+      "interface-health ${var.config.networks.fritzbox.device} success-count"    = "10" # wait before switching back
       "interface-health ${var.config.networks.fritzbox.device} test 0 resp-time" = "5"
       "interface-health ${var.config.networks.fritzbox.device} test 0 ttl-limit" = "1"
       "interface-health ${var.config.networks.fritzbox.device} test 1 resp-time" = "5"
       "interface-health ${var.config.networks.fritzbox.device} test 1 ttl-limit" = "1"
       "interface-health ${var.config.networks.lte.device     } nexthop" = var.config.networks.lte.nexthop
       "interface-health ${var.config.networks.lte.device     } failure-count" = "1"
-      "interface-health ${var.config.networks.lte.device     } success-count"    = "1"
+      "interface-health ${var.config.networks.lte.device     } success-count"    = "10"
       "interface-health ${var.config.networks.lte.device     } test 0 resp-time" = "5"
       "interface-health ${var.config.networks.lte.device     } test 0 ttl-limit" = "1"
       "interface-health ${var.config.networks.lte.device     } test 1 resp-time" = "5"

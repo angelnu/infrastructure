@@ -16,6 +16,7 @@ resource "vyos_config_block_tree" "high_availability_vrrp" {
         "sync-group MAIN member" = interface
       }
     ]...),
+    # Generate own NIC (if having two IPs in the same MAC is a problem)
     {"group fritzbox rfc3768-compatibility" = ""}
   )
   depends_on = [

@@ -49,12 +49,19 @@ resource "vyos_config_block_tree" "nat_destination" {
       for delta, inbound in ["fritzbox", "lte"]: [
         for index, rule in var.config.port_forwards:
         {
-          "rule ${100+2*index+delta} description": "${inbound} - ${rule.description}",
-          "rule ${100+2*index+delta} destination port": rule.port,
-          "rule ${100+2*index+delta} inbound-interface": var.config.networks[inbound].device,
-          "rule ${100+2*index+delta} protocol": rule.protocol
-          "rule ${100+2*index+delta} translation address": rule.address
-          "rule ${100+2*index+delta} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
+          "rule ${100+4*index+delta} description": "${inbound} - ${rule.description}",
+          "rule ${100+4*index+delta} destination port": rule.port,
+          "rule ${100+4*index+delta} inbound-interface": var.config.networks[inbound].device,
+          "rule ${100+4*index+delta} protocol": rule.protocol
+          "rule ${100+4*index+delta} translation address": rule.address
+          "rule ${100+4*index+delta} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
+          # load balancer
+          "rule ${100+4*index+delta+2} description": "${inbound} (load balancer) - ${rule.description}",
+          "rule ${100+4*index+delta+2} destination port": rule.port,
+          "rule ${100+4*index+delta+2} inbound-interface": "${var.config.networks[inbound].device}${var.config.vrrp.nic_suffix}",
+          "rule ${100+4*index+delta+2} protocol": rule.protocol
+          "rule ${100+4*index+delta+2} translation address": rule.address
+          "rule ${100+4*index+delta+2} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
         }
       ]
     ])...

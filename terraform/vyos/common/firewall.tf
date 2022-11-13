@@ -42,7 +42,8 @@ resource "vyos_config_block_tree" "firewall" {
       {
         "zone ${zone} interface"=jsonencode(sort(concat(
           [for network in var.config.networks: network.device if network.zone == zone],
-          [for nic in [var.config.wireguard.device]: nic if zone == "lan"]
+          [for nic in [var.config.wireguard.device]: nic if zone == "lan"],
+          [for network_name, network in var.config.networks: "${var.config.networks[network_name].device}${var.config.vrrp.nic_suffix}" if network.zone == zone]
         )))
       }
     ]...),

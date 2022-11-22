@@ -163,6 +163,18 @@ users:
         - ENC[AES256_GCM,data:dIueuV7CCcFB8qM=,iv:GYgyOM27K9mxcSb4jJg1M/1CxJBrSVGSWc7nKkdSWfk=,tag:8bMXpN6Tl/yX55RGpi/bpQ==,type:str]
       attributes:
         goauthentik.io/user/token-expires: ENC[AES256_GCM,data:DsBYUdc=,iv:iSSdMNaXZJ7M1lEviJIrRoF9z+XZqEK/aA4ydKKplTY=,tag:S5KvxY2BQiFsQRp9+wRvPg==,type:bool]
+    - id: ENC[AES256_GCM,data:GWgcLc0=,iv:xyPOJW12qQbu+NxlbEuPhSV+r7husTI4hTFqtLRitU0=,tag:4dkkaNqSUv/7HjO/gF+VYw==,type:str]
+      name: ENC[AES256_GCM,data:uLGRu8rz5PGgNus=,iv:g2RUVzVq1bh1VdcHBznQalfsgsTwmD7ur7BWjZ/Gmu8=,tag:ofl20hFKqu4seADEtjPx4Q==,type:str]
+      email: ENC[AES256_GCM,data:5IAGAGIKCizylMPVHhOaAtMBj0hWPKg=,iv:fP5ndQH2C2oF/VuAT77xsSg1Y8lwgyWWWdWtCTbNd1E=,tag:jh4JMgKLbjcFQJLJokp5ew==,type:str]
+      groups:
+        - ENC[AES256_GCM,data:tHHE7y1o7Fh096QyyEMB,iv:73MmTQwGtCePzZLpgvSsNzaQyjrZiqdrvPh5u5nECVQ=,tag:l80FMwbuIusT3FGaf2nElw==,type:str]
+        - ENC[AES256_GCM,data:ybbvby4=,iv:xNEhnpN37zaQYvLK2215LKsA7mDAf5xCl7sKrSKVv/Q=,tag:RLQJ5/IfNrDjFa9dH+x+5Q==,type:str]
+    - id: ENC[AES256_GCM,data:fCjqWSY=,iv:WZjuenLE9eIBxNw2aYiTHUxBE6AnVFqbaqxHhqBRlpw=,tag:Bmgw+9Xb0OF7zf71L82ACg==,type:str]
+      name: ENC[AES256_GCM,data:lj3OAKUgm3STVZgkejPaklI=,iv:ZBfcxlx/2a8uei5l2gf70+Te9jvjwwku0v5ovkD4Gv8=,tag:4F6fQUYY3nki7TVePeDruA==,type:str]
+      email: ENC[AES256_GCM,data:GjwuMm+8j07M78fr9n4/,iv:RaTC+mQybVVgbE1VU/ynVP9vrwt1ufhlrpwAUwXlRHg=,tag:mbZ3uDdH84NXwBexnaaHQw==,type:str]
+      groups:
+        - ENC[AES256_GCM,data:tHHE7y1o7Fh096QyyEMB,iv:73MmTQwGtCePzZLpgvSsNzaQyjrZiqdrvPh5u5nECVQ=,tag:l80FMwbuIusT3FGaf2nElw==,type:str]
+        - ENC[AES256_GCM,data:ybbvby4=,iv:xNEhnpN37zaQYvLK2215LKsA7mDAf5xCl7sKrSKVv/Q=,tag:RLQJ5/IfNrDjFa9dH+x+5Q==,type:str]
     - id: ENC[AES256_GCM,data:rnBFvBXx,iv:i56PDfEF133fET2GVp18f1L589T8PGY2Q3PNH7sMzWM=,tag:Bs/mtTnZpLQYZeur/5vFnw==,type:str]
       name: ENC[AES256_GCM,data:BQ5PUMKK/LMgjqYbC2nDiOWwgAIsAYtucUuVWUPUb8qj,iv:dmTWbBByvpDs+LKD6Bt+IFszygMj8ZC9x1DXZY3QJ0A=,tag:lcm2S82p9im1TPyWLoy93w==,type:str]
       email: ENC[AES256_GCM,data:mX/H3/MqrzRSJkID628Ttkd3,iv:moUNz7SeaGqf2BDQKtO7iy+oQKw7lzd3ah59ji4C5kU=,tag:NK+OyDm3Fk7qNO/xiUJcLw==,type:str]
@@ -173,8 +185,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-06-30T17:28:49Z"
-    mac: ENC[AES256_GCM,data:6wi/6EAVed+yAFY1Xb37pR6lepXJ95do03+h6IP6VBdvMnlAlq5sYuo6OPb/yA2WPkEBfHT7jGx7MDsiW5xgBlHEaRL5xSIXj7Nr/NYRguyI7ignvCjWamWwZuZLa4U2LFW5/i08czfnpaQIcH9DwsCGn+rO/hELYY/Nv54RP4s=,iv:2pt/I6g5ml+eA/F3nOg3pQPh530pe35H5eO6uI5xcNo=,tag:dvT5vuwAitWpqNw+GoryNg==,type:str]
+    lastmodified: "2022-11-16T15:29:28Z"
+    mac: ENC[AES256_GCM,data:RCTSaX7K87K5blExCYRnF9J+AxK2VkTYo9aQNISkDhANZTQU7N/ill5YNh4vLFnPDPiDxmbW01DFaaYyZ/f43fgzjUCArqDmqdFJ9bgavCsEd3uGBh2FKyq+uLKkhPShw3uXSh93Q2vO7abPE55hyrKLUGRJC/9HdUoz3e4VfpQ=,iv:oQVizPj9RbgBC42UHJdDKqiEizLKVQUTZUgJPDMrVZ8=,tag:+AJLo3sJF/0XFS3WcTi7PA==,type:str]
     pgp:
         - created_at: "2022-03-27T15:24:57Z"
           enc: |

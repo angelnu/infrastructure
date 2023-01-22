@@ -44,8 +44,6 @@ module "authentik" {
   authentik_api_url      = data.sops_file.authentik.data["api.url"]
   authentik_api_token    = data.sops_file.authentik.data["api.token"]
   main_home_domain       = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
-  authentik_ldap_base_dn = nonsensitive(data.sops_file.authentik.data["apps.ldap.base_dn"])
-  gitea_client_secret    = data.sops_file.authentik.data["apps.gitea.client_secret"]
   authentik_users        = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
   authentik_groups       = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
   authentik_config       = yamldecode(nonsensitive(data.sops_file.authentik.raw))

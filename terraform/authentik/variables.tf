@@ -27,16 +27,6 @@ variable "main_home_domain" {
     type        = string
 }
 
-variable "authentik_ldap_base_dn" {
-    description = "LDAP base DN" 
-    type        = string
-}
-
-variable "gitea_client_secret" {
-    description = "Gitea client secret" 
-    type        = string
-}
-
 variable "authentik_config" {
     description = "Authentik config" 
     type        = any

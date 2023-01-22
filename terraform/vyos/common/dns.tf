@@ -25,7 +25,7 @@ resource "vyos_config_block_tree" "system_dns_static_host_mapping" {
         for host in local.host_by_name: {
           # static allocation for hosts
           "host-name ${host.name}${length(split(".", host.name)) > 1 ? "": ".${var.config.networks.lan.dhcp.domain_name}" } inet" = host.ip
-        }
+        } #if !lookup(host, "is_dhcp", true) 
     ]...),
     merge(flatten([
         for domain in var.domains: [

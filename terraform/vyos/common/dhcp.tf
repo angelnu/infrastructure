@@ -8,16 +8,10 @@ resource "vyos_config_block_tree" "dhcp" {
       "host-decl-name" = ""  # Will drop <shared-network-name>_ from client DNS record, using only the host declaration name and domain: <hostname>.<domain-name>
       "shared-network-name lan domain-name" = var.config.networks.lan.dhcp.domain_name,
       "shared-network-name lan ping-check" = "",
+      "shared-network-name lan authoritative" = "",
       "shared-network-name lan subnet ${var.config.networks.lan.cidr} default-router" = var.config.networks.lan.default_router,
       "shared-network-name lan subnet ${var.config.networks.lan.cidr} lease" = "86400",
-      "shared-network-name lan subnet ${var.config.networks.lan.cidr} name-server"= jsonencode([
-        var.config.networks.lan.default_router,
-        var.config_raw.primary.networks.lan.router,
-        var.config_raw.secondary.networks.lan.router,
-        #"1.1.1.1",
-        #"9.9.9.9",
-        #"8.8.8.8"
-      ])
+      "shared-network-name lan subnet ${var.config.networks.lan.cidr} name-server"= var.config.networks.lan.default_router,
       "shared-network-name lan subnet ${var.config.networks.lan.cidr} enable-failover"=""
     },
     merge([
@@ -36,8 +30,8 @@ resource "vyos_config_block_tree" "dhcp" {
     merge([
       # static allocation
       for host in local.host_by_name_with_mac : {
-        "shared-network-name lan subnet ${var.config.networks.lan.cidr} static-mapping ${host.name}${trimsuffix(host.name, ".") != host.name ? "" : ".${var.config.networks.lan.dhcp.domain_name}" } mac-address" = host.mac
-        "shared-network-name lan subnet ${var.config.networks.lan.cidr} static-mapping ${host.name}${trimsuffix(host.name, ".") != host.name ? "" : ".${var.config.networks.lan.dhcp.domain_name}" } ip-address" = host.ip
+        "shared-network-name lan subnet ${var.config.networks.lan.cidr} static-mapping ${host.name} mac-address" = host.mac
+        "shared-network-name lan subnet ${var.config.networks.lan.cidr} static-mapping ${host.name} ip-address" = host.ip
       } if lookup(host, "is_dhcp", true)
     ]...),
   )

@@ -1,0 +1,47 @@
+#cloud-config
+hostname: ${hostname}
+manage_etc_hosts: true
+locale: en_GB.UTF-8
+timezone: Europe/Berlin
+
+disable_root: False
+chpasswd:
+  expire: False
+  users:
+  - name: root
+    password: ${password}
+
+ssh_pwauth: false
+ssh_authorized_keys:
+%{ for key in ssh_auth_keys ~}
+  - ${key}
+%{ endfor ~}
+
+device_aliases:
+  db_disk: /dev/sdb
+fs_setup:
+- label: databases
+  filesystem: ext4
+  device: db_disk
+mounts:
+- ["db_disk", "/media/db"]
+
+
+package_upgrade: true
+package_reboot_if_required: true
+
+runcmd:
+  - systemctl reload ssh
+  - systemctl start qemu-guest-agent
+packages:
+  - qemu-guest-agent
+  - rsync
+  - nfs-common # mount nfs
+  - ceph # mount ceph
+  - attr
+  - conntrack
+  - vim
+  - git
+  - ansible #For ansible-vault
+  - ansible-lint # For Visual Code linter
+  - gpg # For SOPS

@@ -1,20 +1,4 @@
-data "unifi_port_profile" "all" {
-}
 
-data  "unifi_port_profile" "disabled" {
-}
-
-data "unifi_port_profile" "lan" {
-    name= "LAN"
-}
-
-data "unifi_port_profile" "lte" {
-    name= "lte"
-}
-
-data "unifi_port_profile" "fritzbox" {
-    name= "fritzbox"
-}
 
 resource "unifi_port_profile" "off" {
     name = "Off"
@@ -24,4 +8,8 @@ resource "unifi_port_profile" "off" {
     lldpmed_enabled = false
     stp_port_mode = false
     poe_mode = "off"
+    egress_rate_limit_kbps = 100
+    stormctrl_bcast_rate = 100
+    stormctrl_mcast_rate = 100
+    stormctrl_ucast_rate = 100
 }

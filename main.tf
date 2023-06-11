@@ -3,7 +3,7 @@ terraform {
   required_providers {
     sops = {
       source = "carlpett/sops"
-      version = "0.7.1"
+      version = "0.7.2"
     }
   }
 }
@@ -70,4 +70,12 @@ module "vyos" {
   network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
   domains        = yamldecode(nonsensitive(data.sops_file.domains.raw)).domains
   domains_common = yamldecode(nonsensitive(data.sops_file.domains.raw)).common
+}
+
+module "proxmox" {
+  source = "./terraform/proxmox"
+
+  config    = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).proxmox
+  network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
+  lan_config    = yamldecode(nonsensitive(data.sops_file.vyos.raw)).common.networks.lan
 }

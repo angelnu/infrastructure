@@ -138,6 +138,7 @@ common:
         lan:
             zone: ENC[AES256_GCM,data:JS7Y,iv:x4gCYI72WQODifzOCYVFnEpHDN8KTK39eNnHE4T1VA0=,tag:OPUv6um1hYs9ggzuyQvBIA==,type:str]
             default_router: ENC[AES256_GCM,data:SUxSi5rZH8xV794=,iv:7GX0vOU/Y2ZHppjtYvMmWDBCXUFd19XKnnlOlryNi58=,tag:S3zwUGvnh88EGNSfdchq5g==,type:str]
+            mask_length: ENC[AES256_GCM,data:alU=,iv:I64ILo0jtom4dclmeNkPIM9v+OQd8rS/xTcaNlyapdI=,tag:Z+rKmG8VIbk/J5FXOXiRIw==,type:int]
             default_router_cidr: ENC[AES256_GCM,data:qzGIFcBy8taWysESxdo=,iv:tb/FRQfEVU9wlJAnNy902dVym2Om8pZ0Kv5esMGCBXc=,tag:/Djjn+DzkjuADHdfL/2Ppg==,type:str]
             cidr: ENC[AES256_GCM,data:2vMNRttJRCt0pbqcXaY=,iv:vLjEFkHg7Cei151GKbGjxdXa/9P23GUVSTBD8NbJ12U=,tag:GA35vCSOo5e8cZkM08tn1A==,type:str]
             device: ENC[AES256_GCM,data:pKwuUQ==,iv:DatyCcmY3GCtdwx9PdbVgcrsb6NjylzN8TuqKZ2QtJg=,tag:AaZggFbvxwmmwsqLLKpc1Q==,type:str]
@@ -203,8 +204,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2023-04-10T15:37:56Z"
-    mac: ENC[AES256_GCM,data:hz02rEI9rVGOri6lZZ+kGT6ahoQJcHRgO3ST2qV1qB3xmaHzr+WVyA5WzcvE50MYPO+yMA7qGrqcdkIBaCmL9/MZV7i+hpGx9uh2uMBJectIBd3pYXLgjY4TBbI9NtinWmzSBbP00RTU6C68Zl9Jb0pmPfoBlMmQHKxqcpnw85E=,iv:Zi0lHeyue0DZdvXIccdefCHbp7qJD6qr3q2rR6LfVsk=,tag:LV4bKzkcCyum1R6j/FdB3Q==,type:str]
+    lastmodified: "2023-05-06T20:14:35Z"
+    mac: ENC[AES256_GCM,data:RgUqsWFSRzTDt4LIiFXy2OFpwRGWJ95dJPf0O85BanTOBYX3+viK6RXl27PF/M2PaNZxB9R7oALTfCjlwwUPUSfxDq0XY0+7I6OKRP6ln1kj8pkiWYd+rGVa4Bs/npg/QYyk3XqXGKkfAqZlnG59t8Fggrm3t7JO4IV+hwaCLuQ=,iv:GYpeqa2xJ7XRSBXOdDRw1XFqj62FcXD7vZFOdJmChlM=,tag:mPHSFmNYEZsT7JCPrPRvtg==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

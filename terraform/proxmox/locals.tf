@@ -1,7 +1,7 @@
 locals {
     
     test_cluster = {
-      memory = 2000
+      memory = 16000
       sockets = 2
       hostpci = []
       boot_disk_size = "50G"

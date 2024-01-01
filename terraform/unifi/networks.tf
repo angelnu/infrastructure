@@ -62,3 +62,24 @@ resource "unifi_network" "LAN" {
     wan_dns             = []
     wan_egress_qos      = 0
 }
+resource "unifi_network" "pueblo_modem" {
+    dhcp_dns            = []
+    dhcp_enabled        = false
+    dhcp_lease          = 86400
+    dhcp_relay_enabled  = false
+    dhcp_start          = "192.168.254.6"
+    dhcp_stop           = "192.168.254.254"
+    dhcpd_boot_enabled  = false
+    domain_name         = "localdomain"
+    igmp_snooping       = false
+    ipv6_interface_type = "none"
+    ipv6_ra_enable      = false
+    name                = "pueblo-modem"
+    network_group       = "LAN"
+    purpose             = "corporate"
+    site                = "default"
+    subnet              = "192.168.254.0/24"
+    vlan_id             = 6
+    wan_dns             = []
+    wan_egress_qos      = 0
+}

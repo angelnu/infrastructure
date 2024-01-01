@@ -21,3 +21,10 @@ resource "unifi_device" "ap_workroom" {
     name     = "AP Workroom"
     site     = "default"
 }
+
+resource "unifi_device" "ap_pueblo_galeria" {
+    mac      = "60:22:32:ff:32:25"
+    name     = "Pueblo AP Galeria"
+    site     = "default"
+    forget_on_destroy = true
+}

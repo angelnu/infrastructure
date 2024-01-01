@@ -22,8 +22,8 @@ resource "vyos_config_block_tree" "nat_source" {
         # Wireguard clients -> WAN
         "${104+delta} description" = "Wireguard clients -> WAN (${inbound})"
         "${104+delta} outbound-interface"= var.config.networks[inbound].device,
-        "${102+delta} source address"= var.config.wireguard.client_cidr
-        "${104+delta} destination address"= var.config.networks[inbound].cidr,
+        "${104+delta} source address"= var.config.wireguard.client_cidr
+        #"${104+delta} destination address"= var.config.networks[inbound].cidr,
         "${104+delta} translation address": "masquerade"
       }
     ]...

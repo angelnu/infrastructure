@@ -6,7 +6,7 @@ resource "vyos_config_block_tree" "vpn_wireguard" {
     {
         "private-key" = var.config.wireguard.PrivateKey,
         "port" = var.config.wireguard.Port,
-        //"address" = "192.168.0.2/18"
+        //"address" = "192.168.60.1/24"
         "description" = "VPN-to-${var.config.wireguard.device}"
     },
     merge([
@@ -15,8 +15,19 @@ resource "vyos_config_block_tree" "vpn_wireguard" {
             # Common peer settings
             "peer ${site_name} allowed-ips" = site.AllowedIPs
             "peer ${site_name} public-key" = site.PublicKey
-            "peer ${site_name} preshared-key" = site.PresharedKey
         }
+    ]...),
+    merge([
+        for site_name, site in var.config.wireguard.peers: {
+            # PresharedKey
+            "peer ${site_name} preshared-key" = site.PresharedKey
+        } if contains(keys(site), "PresharedKey")
+    ]...),
+    merge([
+        for site_name, site in var.config.wireguard.peers: {
+            # persistent-keepalive
+            "peer ${site_name} persistent-keepalive" = site.Keepalive
+        } if contains(keys(site), "Keepalive")
     ]...),
     merge([
         for site_name, site in var.config.wireguard.peers: {
@@ -36,5 +47,26 @@ resource "vyos_config_block_tree" "vpn_wireguard" {
     update = "60m"
     default = "60m"
   }
+}
 
+
+# (re-)set enpoint address from FQDN
+resource "vyos_config_block_tree" "vpn_wireguard_cronjob" {
+  for_each = { for k, v in var.config.wireguard.peers : k => v if contains(keys(v), "FQDN") }
+  path = "system task-scheduler task wireguard-FQDN-${each.key}"
+
+  configs = {
+    "interval" = "5m",
+    "executable path" = "/bin/bash",
+    "executable arguments" = "-c wg set ${var.config.wireguard.device} peer ${each.value.PublicKey} endpoint $(dig +short @8.8.8.8 ${each.value.FQDN}):${each.value.Port}"
+  }
+  depends_on = [
+    vyos_config_block_tree.vpn_wireguard
+  ]
+  timeouts {
+    create = "60m"
+    delete = "60m"
+    update = "60m"
+    default = "60m"
+  }
 }

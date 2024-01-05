@@ -14,7 +14,10 @@ resource "vyos_config_block_tree" "dns" {
 
 resource "vyos_config_block_tree" "system_name_server" {
   path = "system name-server"
-  configs = {"": jsonencode(var.config.system.dns)}
+  configs = {"": jsonencode(concat(
+    [var.config.networks.lan.router], #This helps when primary DNS is not available as the DNS forward caches results
+    var.config.system.dns
+  ))}
 }
 
 resource "vyos_config_block_tree" "system_dns_static_host_mapping" {

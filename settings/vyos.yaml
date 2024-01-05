@@ -76,11 +76,11 @@ common:
         nic_suffix: ENC[AES256_GCM,data:RFW1VWA=,iv:V5aKkmxrRrDmM6fS1Hi54LwYcwYQDBF1y567oWHvg+I=,tag:V74iBYRtb8cKSnNEafL4nQ==,type:str]
     system:
         dns:
-            - ENC[AES256_GCM,data:DC8YDp2kReEmZRUi,iv:Ctgs6b8xs+vtwFCN3pu03Qbv4xrZbhJG6XWIHmW6c4M=,tag:IGrD/CN1Jl0Zt5bfIcYe1w==,type:str]
-            - ENC[AES256_GCM,data:mCk6jNeQ2J0Oq/db,iv:ug+CXLg3kC+AgikHJsrprJ5NIMP/7aDU+ng/lMg+un8=,tag:E1o/4WUCOBV3HcBolnllkg==,type:str]
-            - ENC[AES256_GCM,data:/cAX2XCv5A==,iv:b/6oBIGvk5WQ1w+KUr/MgzCfchKFvTqr4jRMan4N/GM=,tag:rbThQ98S7L55nFp/RyWnuw==,type:str]
-            - ENC[AES256_GCM,data:wFN9j4lMJQ==,iv:frc+ltH1L416oUyfLUvKDEAZnZ/6xqP3Sq0tWS91Tvg=,tag:gbh2pLtDw/qhw6yRSziT5A==,type:str]
-            - ENC[AES256_GCM,data:5AsH2EBLdw==,iv:1UqFaOZZYmsL06HENRpcJPVUh/Q+iEjC/dje203IbXo=,tag:NDvzTXipf5EZIe8iwdStkg==,type:str]
+            - ENC[AES256_GCM,data:FbdGykmiIyIvOe71,iv:4IogP0u2ZbHa6qo3xjLxgyINvUGBLpoVxiXVpgmUiOM=,tag:9/YjwPTq2Ws9hHXs4nmz/Q==,type:str]
+            - ENC[AES256_GCM,data:uNVnqhcRVeuTAZvl,iv:NIEBfuE8o10H2bDhFrso3W6YCE9obybP7PyapFIyqx8=,tag:bi9Sfzln0Pv50dyXgfeyXQ==,type:str]
+            - ENC[AES256_GCM,data:sc4QKUZfow==,iv:zWSalzEK7vG5D2gct7qB8we9N56cpQtiwaPJeTmcqjE=,tag:5SH96CrBPoJ0/aeOq1/8xg==,type:str]
+            - ENC[AES256_GCM,data:fR3HO9koqw==,iv:v7dYzXKufzxFM0w+jUIB+Mg8dVXxNBhCsIJVjHq/uZc=,tag:TlEini0RWOrVNrPZq/nHeg==,type:str]
+            - ENC[AES256_GCM,data:t8r3vPzjYQ==,iv:3MNuWMBLUEUpJppiWcjn5z2ianZLvDuw44RVdrsqD9A=,tag:/77FlJNsmJ0pSMVvNvmo0g==,type:str]
     port_forwards:
         - description: ENC[AES256_GCM,data:PvfdZGmFZw==,iv:Hi9SUWpAs4fnXQ4CaZ+OpC27SzdiMC6WYEgv0IVH2o4=,tag:p1vmk9Xdql6xSrWT6QsrJQ==,type:str]
           port: ENC[AES256_GCM,data:3igL,iv:Ua8Rp5ny1MoQgJIk8HZfifM+xLxGNWP0ZbqgBwh1Cys=,tag:5OUV7Ne7StzGLRzXy3j4Mg==,type:int]
@@ -142,6 +142,8 @@ common:
             ping:
                 "0": ENC[AES256_GCM,data:xn/Pgo8b8Q==,iv:Z6cCvMGa/ryRZ4agH2vNdZg0p/BYQ+9U5n16XO3vonY=,tag:nAG3ZenbJlSglQH7qakaOw==,type:str]
                 "1": ENC[AES256_GCM,data:kY0ZZN3nnA==,iv:NGZInoChVrx/kyptinuaZc77uDWgIE9nTt/FeMs2qtI=,tag:ohHFIsbWuxbNDa2Q6DVNrA==,type:str]
+                "2": ENC[AES256_GCM,data:Gvtbi8i2Aw==,iv:ePm3rx1l1kUC4LbrH5AxT/l/YzgStWkmtekov3gBpLY=,tag:P/vUqC7DuSRiqzdJMQZyAA==,type:str]
+                "3": ENC[AES256_GCM,data:KR3xjc2EAQ==,iv:P1vBppnmZgyU4gn3HMVd0Ex+XWikzu7m9xWHY0mg59o=,tag:SVJHMag9WsQpXN8PbfLsAw==,type:str]
         management:
             zone: ENC[AES256_GCM,data:zNvv,iv:AZADVqWTsJwxSE6knckTK3Zuq6u5RU46SBlx1ISWIkA=,tag:0Pl3tZsrxzx1jgxP9dEnUQ==,type:str]
             floating_ip: ENC[AES256_GCM,data:GpX+2gdo5K/J2TEtUA==,iv:nOio+m+dGQ/6m3fWhFyLTSSZls3ofr17VaamdO28fZ4=,tag:VYxuUAtQQkICFOpLTAOHiA==,type:str]
@@ -165,7 +167,8 @@ common:
                         start: ENC[AES256_GCM,data:PsTBwK7JadKlcxuncA==,iv:0yUIdCEIjczLNPDjVvhyuE2EnACaILShGPDBZoBOwug=,tag:Jzv8pMvkGyXXtyu756sDcA==,type:str]
                         stop: ENC[AES256_GCM,data:X4HOm5JK8Lfdqwoyzzk=,iv:eVwSHe4A/76hH9Fd9c609Y+az6bAqUfmQ/x4r60xvIE=,tag:rsZe8kLYNES4QaDNYo7q8A==,type:str]
 primary:
-    #ENC[AES256_GCM,data:ffA/Km13sfnAbKjEVMfIzC5NQZsyvfEEqPQJmuqX5XPXppq8zUXXSw/OWpz6erkehoUln3sl2zzRz6eiwe/Omw==,iv:XpdXCVPkFg5hbIHCoR1DHJvZmWXqw1L0vTohNaSlQ3o=,tag:7oQNoTiACjGaK+YC6HLdkQ==,type:comment]
+    #ENC[AES256_GCM,data:bOqiNpP8WdD7j9e9vLorSB9nH0zJQD7ykepWEP8YDXf6vbyxOX1X4100Y/ISxwYjowKsj4i3BF6g/hjVhn59IwwZ+wUX+w==,iv:b5ZM92Lpgqc9+QWGGHOu60k5oc4VfjUVBw3ROx52AVM=,tag:dHglYZcmmqx58fWMvNg1pQ==,type:comment]
+    hostname: ENC[AES256_GCM,data:hi2yOpQREU0VA9Mc,iv:96tqVvQVXx8lVWC3NImftM0xn110iFX9+5jkU1fBeaA=,tag:F6OLce+sKruqycBjMoSEaQ==,type:str]
     vrrp:
         priority: ENC[AES256_GCM,data:K1U=,iv:01CL39qF3I0lBnWwGMMem13+j6G4697CvLLRMnP1vJo=,tag:IMIczCNd+Yq2Cmfp/kuTIQ==,type:int]
     ipsec:
@@ -191,7 +194,8 @@ primary:
                     status: ENC[AES256_GCM,data:aPUoTbpYng==,iv:YcxwkaPiELHkgi54kLaas3JtQbyK3hCN6N+ZUP5HQvk=,tag:yFUUR2dv50niVggm9/sAuw==,type:str]
                     remote: ENC[AES256_GCM,data:/Ce74p/yNhWtGf/uHA==,iv:UHZMZwsOZbnFhJq5nNKQBxxT8Jqyr+Ze6nLhIOBvh7E=,tag:lAfnQYFDrq0eS4IMS2vNUA==,type:str]
 secondary:
-    #ENC[AES256_GCM,data:5ZUVEOj6F00xeAyKlrPInVbZDgxalVzLIXLlPiRZBHUR1PWtDW5yQqorXBeuhiKfL5mpgdR8d2685VguB7Ny4w==,iv:gYInkroijb2SjSWpCpCEHvZbBJgnmgfIwdnrvLRF2tk=,tag:eDfaAVQ24IsODvnStWHqqw==,type:comment]
+    #ENC[AES256_GCM,data:YWZ+5pLJ6uu8Z93xr0aankG8m63AkZ/v9jnCBXCt9qCbsB5foYZvsQnR9semB/ybTjhgAVd1TdeuOtxkpvxNkApuqcbGKA==,iv:s0TUxeAxRti0lYzQEYqZ0VKCHeuNPupc/9tiu0MChmY=,tag:QgAiMGWsNSNCuHg4Rzu0uQ==,type:comment]
+    hostname: ENC[AES256_GCM,data:jXckRuXEyYjpqUjlqeA=,iv:WPMMZ8fLmFAg4ooESTyZhlv0EA04DMSdGULrs4HWdM0=,tag:/zUgGoe8c2faI+h0QGAQ8Q==,type:str]
     vrrp:
         priority: ENC[AES256_GCM,data:1Zw=,iv:Xa7DQSUQYsCaAwEyalpKFoqhlc/cM8XfYMmKh9evcis=,tag:4WM/cpY+s7BzXj/CtDpvIw==,type:int]
     ipsec:
@@ -222,8 +226,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-01-05T02:57:25Z"
-    mac: ENC[AES256_GCM,data:lJaWfSKNtsffwqZWXfbl6YOnsK8z9vokj5KRd2xlPVYJyYHmEhpj+aX9fJ1ONeOGoOkIA8Nud5Lc38hAOAPZevPzHLCoeWtw3KH40/Mtyxtax8soGEeIT2fgnWFZfww8FSGJkPy0hNheIMcGGWFasAFprBgp9fgKR57R1k/2tCw=,iv:3jiJqpEVWTBaLfsixhxaWoy7gRA7BPUVkgBpRFZUbaQ=,tag:cfoSD+KbQdGOhCKHQDB1pw==,type:str]
+    lastmodified: "2024-01-05T12:39:43Z"
+    mac: ENC[AES256_GCM,data:0mdoQeyoi1MHiHbhapevYxGMN1xsQG68SCjUfzRpsoJQvIoE/Xc62f8J/7rwdtPYQbWdtkaBRgfRGx9LMk/dlgrgVcTRc40km2CI2J19hxeX+L6S7m8svagi4pFkrR16Jzus6YAqpTMghb1tWCNJbDAFkYgLFD01UWV4Xeyb8d4=,iv:LcN5SbpUMwPEiUs8L4NVrpq9KFwHJyyjBVwH8MUgYXM=,tag:xjLB8n71i9jmfNKf8HN+pw==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

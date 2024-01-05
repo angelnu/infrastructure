@@ -53,14 +53,17 @@ resource "vyos_config_block_tree" "load_balance_wan" {
       "interface-health ${var.config.networks.lte.device     } test 1 ttl-limit" = "1"
     },
     {
-      for id, target in var.config.networks.fritzbox.ping : "interface-health ${var.config.networks.fritzbox.device} test ${id} target" => target
+      for id, target in var.config.ping_test_ips : "interface-health ${var.config.networks.fritzbox.device} test ${id} target" => target
     },
     {
-      for id, target in var.config.networks.lte.ping      : "interface-health ${var.config.networks.lte.device     } test ${id} target" => target
+      for id, target in var.config.ping_test_ips : "interface-health ${var.config.networks.fritzbox.device}${var.config.vrrp.nic_suffix} test ${id} target" => target
+    },
+    {
+      for id, target in var.config.ping_test_ips : "interface-health ${var.config.networks.lte.device     } test ${id} target" => target
     },
     {
       "flush-connections" = "", #Problem with https://phabricator.vyos.net/T1311
-      "enable-local-traffic" = "" #it uses mange to change the output - order is default route table -> output table (mangle) to mark packages -> dedicated
+      #"enable-local-traffic" = "" #it uses mange to change the output - order is default route table -> output table (mangle) to mark packages -> dedicated
     }
 
   )

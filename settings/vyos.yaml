@@ -120,6 +120,9 @@ common:
           port: ENC[AES256_GCM,data:nvlE,iv:DQyZJNFuZOXhDjC7FG62/Bdxy/ONt7YyaDgK/0GqTJo=,tag:QyW4Rg16TTl+qlCcrqEClg==,type:int]
           protocol: ENC[AES256_GCM,data:htf4,iv:JK43UeP9Xhdao0I26ztdlG4wtVjrOxKRMNeJQP1ED4k=,tag:gTY+FdCGBgAlrNW0tizrFw==,type:str]
           address: ENC[AES256_GCM,data:ytB8fcjBZSt/rSNH5Q==,iv:/tOZ6gif2/mNsPn9JaEzvjCyOcegtENFivrAete4Mvo=,tag:mB/P7cCtXLZAHICNJEMgiQ==,type:str]
+    ping_test_ips:
+        - ENC[AES256_GCM,data:eAFqT8cglw==,iv:nz1d3VFZAbt0pJ8uG4zESgbQd4BsaBHYPt6rMgTi+Tk=,tag:lsHorMDS+9hb4whlOGTL3w==,type:str]
+        - ENC[AES256_GCM,data:BJGgxr1G4A==,iv:zk/+OVm5QdzGEqyksZjE3z3qQiisfxja+yM85faCj94=,tag:K1r6Eoxje1ZWMaXMt4JlWg==,type:str]
     networks:
         lte:
             zone: ENC[AES256_GCM,data:p912,iv:1NYh+rNSGo28icNIoZ2eYI31zHUes+wR4hqM8KxobKs=,tag:kQjNmMKo9IV1UzlflKZLzQ==,type:str]
@@ -129,9 +132,6 @@ common:
             device: ENC[AES256_GCM,data:iwVgO89i,iv:gsKKF4KJ8dsuwV/mDvqBDoouosxVGsx8YPvPABsLdjY=,tag:Sul5OWGBUb4TmHqf2vNl/w==,type:str]
             vlan: ENC[AES256_GCM,data:Dg==,iv:YfKAC0q9lBkWVkhEXI+92USmnaWL5atPdygpp72QcJY=,tag:SuR2ehz+uPSi5BqmnR8meA==,type:int]
             nexthop: ENC[AES256_GCM,data:EErqry9KsTbHGDDJ,iv:SjjLco+hjfhwQ1J3TAqiLF9Ipz0rkbBt4y2CNGxiOTg=,tag:TjA+YKqN3s3o5JFk3ooaYQ==,type:str]
-            ping:
-                "0": ENC[AES256_GCM,data:w5JwlIi7EA==,iv:ePYzVFWW2PGRqsrwHW+hKXg59d2Ov+Uab7x2nT2VzdI=,tag:Gul688GuDAcF1QjQUwW4Vg==,type:str]
-                "1": ENC[AES256_GCM,data:IxWcK4UCGQ==,iv:v7paOVevWYVTp/dNAFWfxRlWRd+NBUeXR3iutgblB2w=,tag:XLDMrqxCYJonX6jzApConw==,type:str]
         fritzbox:
             zone: ENC[AES256_GCM,data:HanY,iv:p6fZ7AbyClvYUhxbP9zJ7BW3XG3X8KMMiHYKPF9PLk8=,tag:QApYRHsjqxfOeWL3d08kKw==,type:str]
             floating_ip: ENC[AES256_GCM,data:QYry33ljPLYniR2m,iv:Z2jJf30el/m7c1uYbC4kF2SDodNi6G3eWWT6ZNSwXwc=,tag:DKkmmnv+H3JyW0cCZboVCA==,type:str]
@@ -139,11 +139,6 @@ common:
             cidr: ENC[AES256_GCM,data:SXq3zZb0bJNW+9Ac0jjq,iv:HZF1c6ux5wyULzTFPs3lJGhwhgp4EhG28N86/O0FRG8=,tag:7xouSTpeK0IKYcjfiuproA==,type:str]
             device: ENC[AES256_GCM,data:ZnMdQA==,iv:JVp7EkluEbsC1auAx/RtxbtQFDAA7QN2e4lkWc/XwIM=,tag:pHCzuiZVrUYlDuZb+Fij9A==,type:str]
             nexthop: ENC[AES256_GCM,data:2Vwg5ihsmcnXhLyC,iv:b8qAbrjMtygz/mGTQ6W/rv+I68s2WwlI2NQiccVwgeg=,tag:gKPs5BgxEbN8QngBA0Gdfw==,type:str]
-            ping:
-                "0": ENC[AES256_GCM,data:xn/Pgo8b8Q==,iv:Z6cCvMGa/ryRZ4agH2vNdZg0p/BYQ+9U5n16XO3vonY=,tag:nAG3ZenbJlSglQH7qakaOw==,type:str]
-                "1": ENC[AES256_GCM,data:kY0ZZN3nnA==,iv:NGZInoChVrx/kyptinuaZc77uDWgIE9nTt/FeMs2qtI=,tag:ohHFIsbWuxbNDa2Q6DVNrA==,type:str]
-                "2": ENC[AES256_GCM,data:Gvtbi8i2Aw==,iv:ePm3rx1l1kUC4LbrH5AxT/l/YzgStWkmtekov3gBpLY=,tag:P/vUqC7DuSRiqzdJMQZyAA==,type:str]
-                "3": ENC[AES256_GCM,data:KR3xjc2EAQ==,iv:P1vBppnmZgyU4gn3HMVd0Ex+XWikzu7m9xWHY0mg59o=,tag:SVJHMag9WsQpXN8PbfLsAw==,type:str]
         management:
             zone: ENC[AES256_GCM,data:zNvv,iv:AZADVqWTsJwxSE6knckTK3Zuq6u5RU46SBlx1ISWIkA=,tag:0Pl3tZsrxzx1jgxP9dEnUQ==,type:str]
             floating_ip: ENC[AES256_GCM,data:GpX+2gdo5K/J2TEtUA==,iv:nOio+m+dGQ/6m3fWhFyLTSSZls3ofr17VaamdO28fZ4=,tag:VYxuUAtQQkICFOpLTAOHiA==,type:str]
@@ -226,8 +221,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-01-05T12:39:43Z"
-    mac: ENC[AES256_GCM,data:0mdoQeyoi1MHiHbhapevYxGMN1xsQG68SCjUfzRpsoJQvIoE/Xc62f8J/7rwdtPYQbWdtkaBRgfRGx9LMk/dlgrgVcTRc40km2CI2J19hxeX+L6S7m8svagi4pFkrR16Jzus6YAqpTMghb1tWCNJbDAFkYgLFD01UWV4Xeyb8d4=,iv:LcN5SbpUMwPEiUs8L4NVrpq9KFwHJyyjBVwH8MUgYXM=,tag:xjLB8n71i9jmfNKf8HN+pw==,type:str]
+    lastmodified: "2024-01-05T22:15:21Z"
+    mac: ENC[AES256_GCM,data:CHsYjbmOuTVnHgy6BbHqcO7umzLz3Tds1zNfS1b0s7D8ST0mFf+vZTRgD9w3cPUTI0HmS07jO9a+3wxbkEz/RmpThnSI7ehW57wQnGhMF6JZrrB/jozf1ByivNeXPUpi+oxHaF0qD66qXd6BEq31Cm64qkspKqNuelyW7DeRWzM=,iv:C6HrgWozVftYa57p0qMsnGp2+qD9M4KC01I6fDKBUsg=,tag:BxFWGF0htn7Lw6uQDVBHzw==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

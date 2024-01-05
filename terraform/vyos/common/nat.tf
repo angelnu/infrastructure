@@ -30,11 +30,13 @@ resource "vyos_config_block_tree" "nat_source" {
         # available we want to block the traffic to avoid confusing the remote peer.
         # This happens when the secondary VYOS is replaced by the primary after a reboot
         "${106+delta} description" = "block wireguard in ${outbound} "
-        "${106+delta} outbound-interface"= var.config.networks[outbound].device,
+        //"${106+delta} outbound-interface"= var.config.networks[outbound].device,
         "${106+delta} source address"= var.config.networks[outbound].router,
         "${106+delta} source port"= var.config.wireguard.Port
         "${106+delta} protocol"= "udp"
-        "${106+delta} translation address": "192.168.250.250"
+        #"${106+delta} translation address": "192.168.250.250"
+        "${106+delta} translation address": "192.168.63.2"
+        #"${106+delta} translation port": "52891"
       }
     ]...
   )

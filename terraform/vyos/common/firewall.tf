@@ -18,14 +18,14 @@ resource "vyos_config_block_tree" "firewall" {
         #Allow pings to vyos
         "global-options all-ping": "enable" 
 
-        # input traffic ok by default
-        "ipv4 input filter default-action": "accept"
+        # Output traffic ok by default
+        "ipv4 output filter default-action": "accept"
         # #filter wireguard traffic not using VRRP
-        "ipv4 input filter rule 101 action" : "accept"
-        "ipv4 input filter rule 101 destination address" : var.config.networks.fritzbox.floating_ip
-        "ipv4 input filter rule 102 action" : "accept"
-        "ipv4 input filter rule 102 protocol" : "udp"
-        "ipv4 input filter rule 102 destination port" : var.config.wireguard.Port
+        "ipv4 output filter rule 101 action" : "accept"
+        "ipv4 output filter rule 101 destination address" : var.config.networks.fritzbox.floating_ip
+        "ipv4 output filter rule 102 action" : "drop"
+        "ipv4 output filter rule 102 protocol" : "udp"
+        "ipv4 output filter rule 102 destination port" : var.config.wireguard.Port
 
         #Forwarding drop by default
         "ipv4 forward filter default-action": "drop"

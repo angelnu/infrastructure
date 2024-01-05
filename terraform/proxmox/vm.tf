@@ -71,7 +71,7 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
 
   #ipconfig0 = "ip=10.0.2.99/16,gw=10.0.2.2"
   ipconfig0 = "${each.value.ipconfig0 == null ?
-                format("ip=%s/%s,gw=%s", local.network_clients_dict[each.key].ip, var.lan_config.mask_length, var.lan_config.default_router) :
+                format("ip=%s/%s,gw=%s", local.network_clients_dict[each.key].ip, var.lan_config.mask_length, var.lan_config.floating_ip) :
                 each.value.ipconfig0 }"
 
   

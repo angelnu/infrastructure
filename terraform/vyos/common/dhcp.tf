@@ -9,9 +9,9 @@ resource "vyos_config_block_tree" "dhcp" {
       "shared-network-name lan domain-name" = var.config.networks.lan.dhcp.domain_name,
       "shared-network-name lan ping-check" = "",
       "shared-network-name lan authoritative" = "",
-      "shared-network-name lan subnet ${var.config.networks.lan.cidr} default-router" = var.config.networks.lan.default_router,
+      "shared-network-name lan subnet ${var.config.networks.lan.cidr} default-router" = var.config.networks.lan.floating_ip,
       "shared-network-name lan subnet ${var.config.networks.lan.cidr} lease" = "86400",
-      "shared-network-name lan subnet ${var.config.networks.lan.cidr} name-server"= var.config.networks.lan.default_router,
+      "shared-network-name lan subnet ${var.config.networks.lan.cidr} name-server"= var.config.networks.lan.floating_ip,
       "shared-network-name lan subnet ${var.config.networks.lan.cidr} enable-failover"=""
     },
     merge([

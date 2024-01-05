@@ -16,9 +16,18 @@ resource "vyos_config_block_tree" "firewall" {
     ]...),
     {
         #Allow pings to vyos
-        "global-options all-ping": "enable"
+        "global-options all-ping": "enable" 
 
-        #Forwarding ok by default
+        # input traffic ok by default
+        "ipv4 input filter default-action": "accept"
+        # #filter wireguard traffic not using VRRP
+        "ipv4 input filter rule 101 action" : "accept"
+        "ipv4 input filter rule 101 destination address" : var.config.networks.fritzbox.floating_ip
+        "ipv4 input filter rule 102 action" : "accept"
+        "ipv4 input filter rule 102 protocol" : "udp"
+        "ipv4 input filter rule 102 destination port" : var.config.wireguard.Port
+
+        #Forwarding drop by default
         "ipv4 forward filter default-action": "drop"
 
         # LAN -> LAN Accept
@@ -32,11 +41,6 @@ resource "vyos_config_block_tree" "firewall" {
         "ipv4 forward filter rule 106 jump-target"                        : "lan_from_wan"
         "ipv4 forward filter rule 106 outbound-interface interface-group" : "IG_lan"
         
-        # LAN Default drop
-        "ipv4 forward filter rule 111 action"                             = "drop"
-        "ipv4 forward filter rule 111 description"                        = "zone_lan default-action"
-        "ipv4 forward filter rule 111 outbound-interface interface-group" = "IG_lan"
-        
         # WLAN -> WLAN accept
         "ipv4 forward filter rule 116 action"                             = "accept"
         "ipv4 forward filter rule 116 inbound-interface interface-group"  = "IG_wan"
@@ -48,14 +52,9 @@ resource "vyos_config_block_tree" "firewall" {
         "ipv4 forward filter rule 121 jump-target"                        = "wan_from_lan"
         "ipv4 forward filter rule 121 outbound-interface interface-group" = "IG_wan"
         
-        # WLAN Default drop
-        "ipv4 forward filter rule 126 action"                             = "drop"
-        "ipv4 forward filter rule 126 description"                        = "zone_wan default-action"
-        "ipv4 forward filter rule 126 outbound-interface interface-group" = "IG_wan"
-        
         # Settings for LAN -> WAN
         "ipv4 name wan_from_lan description" : "lan to wan"
-        # - Drop by default
+        # - Accepty by default
         "ipv4 name wan_from_lan default-action" : "accept"
         
         # Settings for WAN -> LAN

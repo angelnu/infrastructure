@@ -2,7 +2,7 @@
 
 1. ssh into vyos
 2. `monitor log`
-3. call API/terraform and observ vyos log
+3. call API/terraform and observe vyos log
 
 # Test
 

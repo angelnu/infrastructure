@@ -4,8 +4,8 @@ resource "vyos_config_block_tree" "static_routes" {
   configs = merge(
     {
       # Default route
-      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} distance" = "1"    
-      "0.0.0.0/0 next-hop ${var.config.networks.lte.nexthop} distance" = "10"
+      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} distance" = "10"
+      "0.0.0.0/0 next-hop ${var.config.networks.lte.nexthop} distance" = "20"
     },
     merge([
       # wireguard targets

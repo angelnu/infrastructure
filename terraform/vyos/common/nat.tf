@@ -5,26 +5,36 @@ resource "vyos_config_block_tree" "nat_source" {
 
   configs = merge([
       
-      for delta, inbound in ["fritzbox", "lte"]: 
+      for delta, outbound in ["fritzbox", "lte"]: 
       {
         # LAN -> WAN
-        "${100+delta} description" = "LAN -> WAN (${inbound})"
-        "${100+delta} outbound-interface"= var.config.networks[inbound].device,
+        "${100+delta} description" = "LAN -> WAN (${outbound})"
+        "${100+delta} outbound-interface"= var.config.networks[outbound].device,
         "${100+delta} source address"= var.config.networks.lan.cidr,
-        "${100+delta} destination address"= var.config.networks[inbound].cidr,
+        "${100+delta} destination address"= var.config.networks[outbound].cidr,
         "${100+delta} translation address": "masquerade"
         # Wireguard peers -> WAN
-        "${102+delta} description" = "Wireguard peers-> WAN (${inbound})"
-        "${102+delta} outbound-interface"= var.config.networks[inbound].device,
+        "${102+delta} description" = "Wireguard peers-> WAN (${outbound})"
+        "${102+delta} outbound-interface"= var.config.networks[outbound].device,
         "${102+delta} source address"= var.config.wireguard.peers_cidr
-        "${102+delta} destination address"= var.config.networks[inbound].cidr,
+        "${102+delta} destination address"= var.config.networks[outbound].cidr,
         "${102+delta} translation address": "masquerade"
         # Wireguard clients -> WAN
-        "${104+delta} description" = "Wireguard clients -> WAN (${inbound})"
-        "${104+delta} outbound-interface"= var.config.networks[inbound].device,
+        "${104+delta} description" = "Wireguard clients -> WAN (${outbound})"
+        "${104+delta} outbound-interface"= var.config.networks[outbound].device,
         "${104+delta} source address"= var.config.wireguard.client_cidr
-        #"${104+delta} destination address"= var.config.networks[inbound].cidr,
+        "${104+delta} destination address"= var.config.networks[outbound].cidr,
         "${104+delta} translation address": "masquerade"
+        # Block wireguard if not floating IP NIC is used
+        # The WAN load balancer SNATs to the floating IP when available and if not
+        # available we want to block the traffic to avoid confusing the remote peer.
+        # This happens when the secondary VYOS is replaced by the primary after a reboot
+        "${106+delta} description" = "block wireguard in ${outbound} "
+        "${106+delta} outbound-interface"= var.config.networks[outbound].device,
+        "${106+delta} source address"= var.config.networks[outbound].router,
+        "${106+delta} source port"= var.config.wireguard.Port
+        "${106+delta} protocol"= "udp"
+        "${106+delta} translation address": "192.168.250.250"
       }
     ]...
   )

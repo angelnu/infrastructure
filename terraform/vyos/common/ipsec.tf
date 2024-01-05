@@ -1,6 +1,6 @@
 resource "vyos_config_block_tree" "ipsec" {
   path = "vpn ipsec"
-  count = (var.config.tunnel && length(var.config.site_to_site) > 0 ) ? 1 : 0
+  count = (var.config.ipsec.enabled && length(var.config.ipsec.peers) > 0 ) ? 1 : 0
 
   configs = merge(
     merge([

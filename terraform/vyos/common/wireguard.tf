@@ -56,9 +56,9 @@ resource "vyos_config_block_tree" "vpn_wireguard_cronjob" {
   path = "system task-scheduler task wireguard-FQDN-${each.key}"
 
   configs = {
-    "interval" = "5m",
-    "executable path" = "/bin/bash",
-    "executable arguments" = "-c wg set ${var.config.wireguard.device} peer ${each.value.PublicKey} endpoint $(dig +short @8.8.8.8 ${each.value.FQDN}):${each.value.Port}"
+    "interval" = "1m",
+    "executable path" = "/usr/bin/wg",
+    "executable arguments" = "set ${var.config.wireguard.device} peer ${each.value.PublicKey} endpoint $(dig +short @8.8.8.8 ${each.value.FQDN}):${each.value.Port}"
   }
   depends_on = [
     vyos_config_block_tree.vpn_wireguard

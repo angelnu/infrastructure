@@ -4,7 +4,7 @@ resource "vyos_config_block_tree" "dns" {
   configs = {
     "cache-size"      = "200",
     "allow-from" = jsonencode([var.config.networks.lan.cidr,var.config.wireguard.client_cidr])
-    "listen-address" = jsonencode([var.config.networks.lan.default_router, var.config.networks.lan.router])
+    "listen-address" = jsonencode([var.config.networks.lan.floating_ip, var.config.networks.lan.router])
     "system" = ""
   }
   depends_on = [

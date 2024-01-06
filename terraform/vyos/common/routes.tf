@@ -19,8 +19,9 @@ resource "vyos_config_block_tree" "static_routes" {
             merge (
               [ for device, destination in
                 {
-                  "${network.device}${network.vrrp.nic_suffix}" = "${ping}/32"
-                  "${network.device}"                           = "${replace(ping,"/\\d+$/", "0")}/24"
+                  "${network.device}"                           = "${ping}/32"
+                  # Make VRRP more specific so it gets prioriy by when routing
+                  "${network.device}${network.vrrp.nic_suffix}" = "${replace(ping,"/\\d+$/", "0")}/24"
                 }:
                 {
                   "${destination} next-hop ${network.nexthop} distance" = "100"
@@ -58,7 +59,7 @@ resource "vyos_config_block_tree" "failover_routes" {
               interface = network.device
             },
             {
-              address   = "0.0.0.0/1"
+              address   = "0.0.0.0/1" # Make VRRP more specific so it gets prioriy by when routing
               metric    = network.priority
               interface = "${network.device}${network.vrrp.nic_suffix}"
             },

@@ -3,41 +3,54 @@ resource "vyos_config_block_tree" "nat_source" {
 
   path = "nat source rule"
 
-  configs = merge([
-      
-      for delta, outbound in ["fritzbox", "lte"]: 
-      {
-        # LAN -> WAN
-        "${100+delta} description" = "LAN -> WAN (${outbound})"
-        "${100+delta} outbound-interface"= var.config.networks[outbound].device,
-        "${100+delta} source address"= var.config.networks.lan.cidr,
-        "${100+delta} destination address"= var.config.networks[outbound].cidr,
-        "${100+delta} translation address": "masquerade"
-        # Wireguard peers -> WAN
-        "${102+delta} description" = "Wireguard peers-> WAN (${outbound})"
-        "${102+delta} outbound-interface"= var.config.networks[outbound].device,
-        "${102+delta} source address"= var.config.wireguard.peers_cidr
-        "${102+delta} destination address"= var.config.networks[outbound].cidr,
-        "${102+delta} translation address": "masquerade"
-        # Wireguard clients -> WAN
-        "${104+delta} description" = "Wireguard clients -> WAN (${outbound})"
-        "${104+delta} outbound-interface"= var.config.networks[outbound].device,
-        "${104+delta} source address"= var.config.wireguard.client_cidr
-        "${104+delta} destination address"= var.config.networks[outbound].cidr,
-        "${104+delta} translation address": "masquerade"
-        # Block wireguard if not floating IP NIC is used
-        # The WAN load balancer SNATs to the floating IP when available and if not
-        # available we want to block the traffic to avoid confusing the remote peer.
-        # This happens when the secondary VYOS is replaced by the primary after a reboot
-        "${106+delta} description" = "block wireguard in ${outbound} "
-        //"${106+delta} outbound-interface"= var.config.networks[outbound].device,
-        "${106+delta} source address"= var.config.networks[outbound].router,
-        "${106+delta} source port"= var.config.wireguard.Port
-        "${106+delta} protocol"= "udp"
-        #"${106+delta} translation address": "192.168.250.250"
-        "${106+delta} translation address": "192.168.63.2"
-        #"${106+delta} translation port": "52891"
-      }
+  configs = merge(
+    # SNAT traffic to WAN (load balancer takes care of NATing traffic leaving the house)
+    [ for outbound_index, outbound in
+      flatten(
+        [ for network_name, network in var.config.networks:
+          [ for interface in
+            [
+              network.device,
+              "${network.device}${network.vrrp.nic_suffix}"
+            ]:
+            {
+              network_name: network_name
+              network: network
+              interface: interface
+            }
+          ] if network.zone == "wan"
+        ]
+      ):
+      merge(
+        [ for inbound_index, inbound in 
+          concat(
+            [ for network_name, network in var.config.networks:
+              {
+                network_name: network_name
+                cidr: network.cidr
+              } if network.zone == "lan"
+            ],
+            [
+              {
+                network_name: "Wireguard peers"
+                cidr: var.config.wireguard.peers_cidr
+              },
+              {
+                network_name: "Wireguard clients"
+                cidr: var.config.wireguard.clients_cidr
+              }
+            ]
+          ):
+          {
+            # LAN -> WAN
+            "${100 + 10*outbound_index + inbound_index} description" = "LAN (${inbound.network_name}) -> WAN (${outbound.network_name})"
+            "${100 + 10*outbound_index + inbound_index} outbound-interface"= outbound.interface,
+            "${100 + 10*outbound_index + inbound_index} destination address"= outbound.network.cidr,
+            "${100 + 10*outbound_index + inbound_index} source address"= inbound.cidr,
+            "${100 + 10*outbound_index + inbound_index} translation address": "masquerade"
+          }
+        ]...
+      )
     ]...
   )
   depends_on = [
@@ -56,27 +69,38 @@ resource "vyos_config_block_tree" "nat_destination" {
 
   path = "nat destination"
 
-  configs = merge(flatten([
-      
-      for delta, inbound in ["fritzbox", "lte"]: [
-        for index, rule in var.config.port_forwards:
-        {
-          "rule ${100+4*index+delta} description": "${inbound} - ${rule.description}",
-          "rule ${100+4*index+delta} destination port": rule.port,
-          "rule ${100+4*index+delta} inbound-interface": var.config.networks[inbound].device,
-          "rule ${100+4*index+delta} protocol": rule.protocol
-          "rule ${100+4*index+delta} translation address": rule.address
-          "rule ${100+4*index+delta} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
-          # load balancer
-          "rule ${100+4*index+delta+2} description": "${inbound} (load balancer) - ${rule.description}",
-          "rule ${100+4*index+delta+2} destination port": rule.port,
-          "rule ${100+4*index+delta+2} inbound-interface": "${var.config.networks[inbound].device}${var.config.vrrp.nic_suffix}",
-          "rule ${100+4*index+delta+2} protocol": rule.protocol
-          "rule ${100+4*index+delta+2} translation address": rule.address
-          "rule ${100+4*index+delta+2} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
-        }
-      ]
-    ])...
+  configs = merge(
+    [ for inbound_index, inbound in
+      flatten(
+        [ for network_name, network in
+          var.config.networks:
+            [
+              {
+                name: network_name
+                network: network
+                interface: network.device
+              },
+              {
+                name: "${network_name} (floating IP)"
+                network: network
+                interface: "${network.device}${network.vrrp.nic_suffix}"
+              }
+            ] if network.zone == "wan"
+        ]
+      ):
+      merge(
+        [ for rule_index, rule in var.config.port_forwards:
+          {
+            "rule ${100 + 10*rule_index+inbound_index} description": "${inbound.name} - ${rule.description}",
+            "rule ${100 + 10*rule_index+inbound_index} destination port": rule.port,
+            "rule ${100 + 10*rule_index+inbound_index} inbound-interface": inbound.interface,
+            "rule ${100 + 10*rule_index+inbound_index} protocol": rule.protocol
+            "rule ${100 + 10*rule_index+inbound_index} translation address": rule.address
+            "rule ${100 + 10*rule_index+inbound_index} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
+          }
+        ]...
+      )
+    ]...
   )
   depends_on = [
     vyos_config_block_tree.eth0,

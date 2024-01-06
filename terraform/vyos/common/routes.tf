@@ -1,33 +1,36 @@
 resource "vyos_config_block_tree" "static_routes" {
   path = "protocols static route"
 
-  configs = merge({
-      # Default route - fritzbox
-      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} distance" = "100"
-      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} interface" = var.config.networks.fritzbox.device
-    },
-    merge([
+  configs = merge(
+    merge(
       # wireguard targets
-      for site_name, site in var.config.wireguard.peers: {
+      [ for site_name, site in var.config.wireguard.peers:
+        {
           "${site.AllowedIPs} interface wg01" = ""
-      }
-    ]...),
-    merge([
-      # rules for ping targets for wan_loadbalance
-      for ping in var.config.ping_test_ips : {
-
-            "${ping}/32 next-hop ${var.config.networks.fritzbox.nexthop} distance" = "100"
-            "${ping}/32 next-hop ${var.config.networks.fritzbox.nexthop} interface" = "${var.config.networks.fritzbox.device}${var.config.vrrp.nic_suffix}"
-
-            "${replace(ping,"/\\d+$/", "0/24")} next-hop ${var.config.networks.fritzbox.nexthop} distance" = "100"
-            "${replace(ping,"/\\d+$/", "0/24")} next-hop ${var.config.networks.fritzbox.nexthop} interface" = var.config.networks.fritzbox.device
-
-            "${replace(ping,"/\\d+$/", "0/25")} next-hop ${var.config.networks.lte.nexthop} distance" = "100"
-            "${replace(ping,"/\\d+$/", "0/25")} next-hop ${var.config.networks.lte.nexthop} interface" = var.config.networks.lte.device
-            "${replace(ping,"/\\d+$/", "128/25")} next-hop ${var.config.networks.lte.nexthop} distance" = "100"
-            "${replace(ping,"/\\d+$/", "128/25")} next-hop ${var.config.networks.lte.nexthop} interface" = var.config.networks.lte.device
         }
-      ]...),
+      ]
+    ...),
+    merge(
+      # rules for ping targets for wan_loadbalance
+      # They can be displayed with: show ip route
+      [ for ping in var.config.ping_test_ips : 
+        merge(
+          [ for network_name, network in var.config.networks:
+            merge (
+              [ for device, destination in
+                {
+                  "${network.device}${network.vrrp.nic_suffix}" = "${ping}/32"
+                  "${network.device}"                           = "${replace(ping,"/\\d+$/", "0")}/24"
+                }:
+                {
+                  "${destination} next-hop ${network.nexthop} distance" = "100"
+                  "${destination} next-hop ${network.nexthop} interface" = device
+                } 
+              ]...
+            ) if network.zone == "wan"
+          ]...
+      )]...
+    ),
   )
   depends_on = [
     vyos_config_block_tree.vpn_wireguard
@@ -45,25 +48,34 @@ resource "vyos_config_block_tree" "failover_routes" {
   path = "protocols failover route"
 
   configs = merge(
-    {
-      # Default route - fritzbox VRP
-      "0.0.0.0/1 next-hop ${var.config.networks.fritzbox.nexthop} metric" = "5"
-      "0.0.0.0/1 next-hop ${var.config.networks.fritzbox.nexthop} interface" = "${var.config.networks.fritzbox.device}${var.config.vrrp.nic_suffix}"
-      "0.0.0.0/1 next-hop ${var.config.networks.fritzbox.nexthop} check target" = jsonencode(var.config.ping_test_ips)
-      "128.0.0.0/1 next-hop ${var.config.networks.fritzbox.nexthop} metric" = "5"
-      "128.0.0.0/1 next-hop ${var.config.networks.fritzbox.nexthop} interface" = "${var.config.networks.fritzbox.device}${var.config.vrrp.nic_suffix}"
-      "128.0.0.0/1 next-hop ${var.config.networks.fritzbox.nexthop} check target" = jsonencode(var.config.ping_test_ips)
+    # Default routes
+    [ for network_name, network in var.config.networks:
+      merge(
+        [ for destination in [
+            {
+              address   = "0.0.0.0/0"
+              metric    = 10 + network.priority # Room for up to 10 wan NICs as we should stay within [1-19] for the metric - it should be plenty :-)
+              interface = network.device
+            },
+            {
+              address   = "0.0.0.0/1"
+              metric    = network.priority
+              interface = "${network.device}${network.vrrp.nic_suffix}"
+            },
+            {
+              address   = "128.0.0.0/1"
+              metric    = network.priority
+              interface = "${network.device}${network.vrrp.nic_suffix}"
+            }
+          ]: {
+            "${destination.address} next-hop ${network.nexthop} metric" = destination.metric
+            "${destination.address} next-hop ${network.nexthop} interface" = destination.interface
+            "${destination.address} next-hop ${network.nexthop} check target" = jsonencode(var.config.ping_test_ips)
 
-      # Default route - fritzbox
-      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} metric" = "10"
-      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} interface" = var.config.networks.fritzbox.device
-      "0.0.0.0/0 next-hop ${var.config.networks.fritzbox.nexthop} check target" = jsonencode(var.config.ping_test_ips)
-
-      # Default route - lte
-      "0.0.0.0/0 next-hop ${var.config.networks.lte.nexthop} metric" = "15"
-      "0.0.0.0/0 next-hop ${var.config.networks.lte.nexthop} interface" = var.config.networks.lte.device
-      "0.0.0.0/0 next-hop ${var.config.networks.lte.nexthop} check target" = jsonencode(var.config.ping_test_ips)
-    },
+          }
+        ]...
+      ) if network.zone == "wan"
+    ]...
   )
   depends_on = [
     vyos_config_block_tree.vpn_wireguard

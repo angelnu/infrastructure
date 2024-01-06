@@ -4,28 +4,29 @@ resource "vyos_config_block_tree" "firewall" {
 
   configs = merge(
     # Define zones (lan, wan) and assign networks to them
-    merge([      
-      for zone in distinct([for network in var.config.networks: network.zone]):
-      {
-        "group interface-group IG_${zone} interface"=jsonencode(sort(concat(
-          [for network in var.config.networks: network.device if network.zone == zone],
-          [for nic in [var.config.wireguard.device]: nic if zone == "lan"],
-          [for network_name, network in var.config.networks: "${var.config.networks[network_name].device}${var.config.vrrp.nic_suffix}" if network.zone == zone]
-        )))
-      }
-    ]...),
+    merge(
+      [ for zone in
+        distinct(
+          # zones in networks
+          [ for network in var.config.networks: network.zone]
+        ):
+        {
+          "group interface-group IG_${zone} interface"=jsonencode(sort(concat(
+            # main NIC
+            [for network in var.config.networks: network.device if network.zone == zone],
+            # floating IP NIC
+            [for network_name, network in var.config.networks: "${var.config.networks[network_name].device}${var.config.networks[network_name].vrrp.nic_suffix}" if network.zone == zone],
+            # Wireguard NIC (LAN)
+            [for nic in [var.config.wireguard.device]: nic if zone == "lan"],
+          )))
+        }
+      ]...
+    ),
     {
         #Allow pings to vyos
         "global-options all-ping": "enable" 
 
-        # Output traffic ok by default
-        "ipv4 output filter default-action": "accept"
-        # #filter wireguard traffic not using VRRP
-        "ipv4 output filter rule 101 action" : "accept"
-        "ipv4 output filter rule 101 destination address" : var.config.networks.fritzbox.floating_ip
-        "ipv4 output filter rule 102 action" : "drop"
-        "ipv4 output filter rule 102 protocol" : "udp"
-        "ipv4 output filter rule 102 destination port" : var.config.wireguard.Port
+        # FORWARDING RULES
 
         #Forwarding drop by default
         "ipv4 forward filter default-action": "drop"
@@ -71,17 +72,41 @@ resource "vyos_config_block_tree" "firewall" {
         "ipv4 name lan_from_wan rule 101 state related": "enable"
         #"ipv4 name lan_from_wan rule 101 log": "enable"
     },
-    merge([
-      for index, rule in var.config.port_forwards:
-      {
-        # - Open port
-        "ipv4 name lan_from_wan rule ${10+index} description": rule.description
-        "ipv4 name lan_from_wan rule ${10+index} action": "accept"
-        "ipv4 name lan_from_wan rule ${10+index} destination port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
-        "ipv4 name lan_from_wan rule ${10+index} protocol": rule.protocol
-          
-      }
-    ]...)
+    merge(
+      [ for index, rule in var.config.port_forwards:
+        {
+          # - Open port
+          "ipv4 name lan_from_wan rule ${10+index} description": rule.description
+          "ipv4 name lan_from_wan rule ${10+index} action": "accept"
+          "ipv4 name lan_from_wan rule ${10+index} destination port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port
+          "ipv4 name lan_from_wan rule ${10+index} protocol": rule.protocol
+            
+        }
+      ]...
+    ),
+    {
+      # OUTPUT RULES        
+
+      # Output traffic ok by default
+      "ipv4 output filter default-action": "accept"
+    },
+    merge(
+      [ for outbound_index, outbound in 
+        [ for network_name, network in var.config.networks:
+          {
+            network: network
+          } if network.zone == "wan"
+        ]:
+        {
+          # #filter wireguard traffic not using VRRP
+          "ipv4 output filter rule ${100 + outbound_index} source address" : outbound.network.router
+          "ipv4 output filter rule ${100 + outbound_index} protocol" : "udp"
+          "ipv4 output filter rule ${100 + outbound_index} source port" : var.config.wireguard.Port
+          "ipv4 output filter rule ${100 + outbound_index} action" : "drop"
+          # "ipv4 output filter rule ${100 + outbound_index} log" : "enable"
+        }
+      ]...
+    ),
   )
   timeouts {
     create = "60m"

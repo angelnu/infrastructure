@@ -31,7 +31,7 @@ resource "vyos_config_block_tree" "ipsec" {
             "site-to-site peer ${site.exposed?site.remote:"31.4.242.182"} authentication id"="@casa96.angelnu.com",
             "site-to-site peer ${site.exposed?site.remote:"31.4.242.182"} authentication remote-id"="${site.exposed?"@":"@"}${site.remote}",
             "site-to-site peer ${site.exposed?site.remote:"31.4.242.182"} ike-group"="${site.remote}-ike",
-            "site-to-site peer ${site.exposed?site.remote:"31.4.242.182"} local-address"=var.config.networks.fritzbox.default_router,
+            "site-to-site peer ${site.exposed?site.remote:"31.4.242.182"} local-address"=var.config.networks.primary.default_router,
                         
             "site-to-site peer ${site.exposed?site.remote:"31.4.242.182"} connection-type"=site.exposed ? "initiate" : "respond"
             
@@ -50,7 +50,7 @@ resource "vyos_config_block_tree" "ipsec" {
             "ike-group ${site.remote}-ike dead-peer-detection interval"="30"
             "ike-group ${site.remote}-ike dead-peer-detection timeout"="120"
 
-            "interface"=var.config.networks.fritzbox.device,
+            "interface"=var.config.networks.primary.device,
         } if site.exposed
     ]...),
   )

@@ -174,6 +174,11 @@ common:
                 ip_cidr: ENC[AES256_GCM,data:QtoED+Nh9F6u8cJZe6nvkg==,iv:TsLWqnJLiyaLWBjEPDJLa8xg3B6FkTXsRAFAQnrP9xs=,tag:I92oJtOgMac2nygySPf8xw==,type:str]
                 vrid: ENC[AES256_GCM,data:1rc=,iv:059EZGoPf+8tG5AfhlDDfK2R7UuVQ/7gpqRu900w/FM=,tag:QvEOxMyeWYi5CQj4CoqOgg==,type:int]
                 nic_suffix: ENC[AES256_GCM,data:Pqbptm0=,iv:cS29213jmhQ1T0dmn6XqRr6UZTJwVhldi6Kx38ejtZw=,tag:zc3CdheFqLHWR8mc3sGKpg==,type:str]
+    dynamic_dns:
+        protocol: ENC[AES256_GCM,data:CR5vUKwqLiTUg+k=,iv:DgQ2NfeJo+TCGlMaDX7F+KoQVHDgDuJODRoiCGSDJQo=,tag:we20Kk/HfOl15nJf2rLc+w==,type:str]
+        username: ENC[AES256_GCM,data:WVsRpP3KSQ==,iv:upTDhpoBmgszkjBdsYRC0CqmmrlHp4B78Qi0KCDVjpY=,tag:YRNN2jo6UIez+Fyv++5UCg==,type:str]
+        password: ENC[AES256_GCM,data:T70jKuYhOI4=,iv:eyYPTtDmCdmeNCkUu0nvoWir61JiuUZkmvrPpmyj7zk=,tag:1bsbHmTBAmbI6/Uu5GjAhQ==,type:int]
+        hostname: ENC[AES256_GCM,data:hC5oqtKE91SZ,iv:s+nWQcHcRgLzAxMzS8JdSS2GnrwckJ1VGQpwiWc6Zhs=,tag:C5tk6KKEdK2t9EARPjZllw==,type:int]
 primary:
     #ENC[AES256_GCM,data:bOqiNpP8WdD7j9e9vLorSB9nH0zJQD7ykepWEP8YDXf6vbyxOX1X4100Y/ISxwYjowKsj4i3BF6g/hjVhn59IwwZ+wUX+w==,iv:b5ZM92Lpgqc9+QWGGHOu60k5oc4VfjUVBw3ROx52AVM=,tag:dHglYZcmmqx58fWMvNg1pQ==,type:comment]
     hostname: ENC[AES256_GCM,data:hi2yOpQREU0VA9Mc,iv:96tqVvQVXx8lVWC3NImftM0xn110iFX9+5jkU1fBeaA=,tag:F6OLce+sKruqycBjMoSEaQ==,type:str]
@@ -234,8 +239,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-01-06T17:33:20Z"
-    mac: ENC[AES256_GCM,data:OmACDMr0Vrl4k/aiwQwsPIUS8N4AWqMNXBO/11oqqF7bsagCI3jk73RY2xe8sT5CzASTDB+XmS10sav5uQmxgEKLMAxxrvolz2t/QLNH0Sc9CdhW2Yqv9jNIzDo4K02TRxm4/kWpqr4w2Sv91lQF0WiGbJ9QQv6rh574iAUkOcI=,iv:ykXy+V3giHk1ePNShgIPRE6ZdBOz7fOpbhTfWhVF0rI=,tag:hi2zLpAF1qWCO4hTtZqCPA==,type:str]
+    lastmodified: "2024-01-07T18:50:32Z"
+    mac: ENC[AES256_GCM,data:40q0+sKzwDJJpZbRfvIEAoW8tYyO/Ko9n1PkkZ49kB5T6fIYkm0eRZLi/8B8sQBJ/kVxnV+nuAs5Y9ch8KAVk31FPkXjZbJvmCgJwRm19SGIu3O6+B9qnSWfO6BKPpw+M8LM9UF7l4TpF9tt0doOAPGAOzGoXoS8rOAg++Zrg7M=,iv:ZMFwx9fdksj7eChaqhWz+q1yWiaf/6wzvjBmyZAEcpM=,tag:LLQubmAzBM/XFLdlPj/rxQ==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

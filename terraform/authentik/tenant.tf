@@ -1,4 +1,4 @@
-resource "authentik_tenant" "default" {
+resource "authentik_brand" "default" {
   domain         = var.main_home_domain
   default        = false
   branding_title   = "Casa"

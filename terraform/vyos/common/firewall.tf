@@ -18,6 +18,8 @@ resource "vyos_config_block_tree" "firewall" {
             [for network_name, network in var.config.networks: "${var.config.networks[network_name].device}${var.config.networks[network_name].vrrp.nic_suffix}" if network.zone == zone],
             # Wireguard NIC (LAN)
             [for nic in [var.config.wireguard.device]: nic if zone == "lan"],
+            # Podman NIC
+            [for nic in [var.config.containers.network.nic]: nic if zone == "lan"],
           )))
         }
       ]...

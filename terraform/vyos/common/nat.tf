@@ -38,6 +38,10 @@ resource "vyos_config_block_tree" "nat_source" {
               {
                 network_name: "Wireguard clients"
                 cidr: var.config.wireguard.clients_cidr
+              },
+              {
+                network_name: "Containers"
+                cidr: var.config.containers.network.cidr
               }
             ]
           ):

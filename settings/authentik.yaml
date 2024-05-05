@@ -177,12 +177,6 @@ users:
       groups:
         - ENC[AES256_GCM,data:tHHE7y1o7Fh096QyyEMB,iv:73MmTQwGtCePzZLpgvSsNzaQyjrZiqdrvPh5u5nECVQ=,tag:l80FMwbuIusT3FGaf2nElw==,type:str]
         - ENC[AES256_GCM,data:ybbvby4=,iv:xNEhnpN37zaQYvLK2215LKsA7mDAf5xCl7sKrSKVv/Q=,tag:RLQJ5/IfNrDjFa9dH+x+5Q==,type:str]
-    - id: ENC[AES256_GCM,data:83xvU/lD,iv:v7ix05hQEadRmCExu0JpInQgl/h2MjdEmy9XNUiZEYo=,tag:VL30mN2fV/z2d5ZBYPF/sg==,type:str]
-      name: ENC[AES256_GCM,data:ix4/jioiC6gLktKO4g==,iv:Bg4HGMKObR+1tXXVxA44C9uS3SoUbdVbCJEZU2kUerA=,tag:5bbs1Xn7srtOuMe0Z7SrPg==,type:str]
-      email: ENC[AES256_GCM,data:+KOSFKkH0tpLa+kEoP4ph1eE/WQ=,iv:WL4DbZ19rlu1UCAAJSfZg2f8E9xHBx2YF9ODio+Pp7U=,tag:M+zceaTS1BfZFW5IjoB0DQ==,type:str]
-      groups:
-        - ENC[AES256_GCM,data:tHHE7y1o7Fh096QyyEMB,iv:73MmTQwGtCePzZLpgvSsNzaQyjrZiqdrvPh5u5nECVQ=,tag:l80FMwbuIusT3FGaf2nElw==,type:str]
-        - ENC[AES256_GCM,data:ybbvby4=,iv:xNEhnpN37zaQYvLK2215LKsA7mDAf5xCl7sKrSKVv/Q=,tag:RLQJ5/IfNrDjFa9dH+x+5Q==,type:str]
     - id: ENC[AES256_GCM,data:rnBFvBXx,iv:i56PDfEF133fET2GVp18f1L589T8PGY2Q3PNH7sMzWM=,tag:Bs/mtTnZpLQYZeur/5vFnw==,type:str]
       name: ENC[AES256_GCM,data:BQ5PUMKK/LMgjqYbC2nDiOWwgAIsAYtucUuVWUPUb8qj,iv:dmTWbBByvpDs+LKD6Bt+IFszygMj8ZC9x1DXZY3QJ0A=,tag:lcm2S82p9im1TPyWLoy93w==,type:str]
       email: ENC[AES256_GCM,data:mX/H3/MqrzRSJkID628Ttkd3,iv:moUNz7SeaGqf2BDQKtO7iy+oQKw7lzd3ah59ji4C5kU=,tag:NK+OyDm3Fk7qNO/xiUJcLw==,type:str]
@@ -193,8 +187,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2023-03-06T22:24:11Z"
-    mac: ENC[AES256_GCM,data:krYKWcz8aPbBS1YitOOzrPOP2pSLK2IxAuHNxRu8yHFDgDfPGqjX9Qx87I0QTyKBNIN+Yjgduy+XjPIgzZI2630GIq3hXxT3tpoqdFrUtzKXXGSoJ4BD97OSmVCb3+JKkCElzt6iGbKLWqed1Du0ilCE6QsCG/SerkD6G31FD/0=,iv:/ASkP2stHW3FDrzYwYAfoboEAIYBf6nFklFh/YT0Lxo=,tag:ct3IIbK5sb2wMGXTfrXdUA==,type:str]
+    lastmodified: "2024-01-10T11:23:00Z"
+    mac: ENC[AES256_GCM,data:Ny2nCfpwdxctGIPLpnEqZeBCp+Th0okf1OADssb56Q7Rq9kWxvgkhwR2B6b+Y7dFKLXwDyvmvSdMbVW7MO/YlqxhzSlePp+fiO239hlL45lxowxAgSj6Eelr4mD8/at9qCIHywD0vk5DeiWo1CMs2ejg7z2N0W87wOygZjDgBfE=,iv:g3Y3SS5fV3FasgHWNB7QWF7kUTJg1mZehzluf6Xvo5Q=,tag:qWAcDT2J7npSdr0Gh8tM5g==,type:str]
     pgp:
         - created_at: "2022-03-27T15:24:57Z"
           enc: |

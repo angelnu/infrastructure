@@ -48,16 +48,14 @@ resource "vyos_config_block_tree" "load_balance_wan" {
             {
               # Health rules for device
               "interface-health ${device} nexthop" = network.nexthop
-              "interface-health ${device} failure-count" = "1"
+              "interface-health ${device} failure-count" = "2"
               "interface-health ${device} success-count"    = "2" # wait before switching back
-              "interface-health ${device} test 0 resp-time" = "5"
-              "interface-health ${device} test 0 ttl-limit" = "1"
-              "interface-health ${device} test 1 resp-time" = "5"
-              "interface-health ${device} test 1 ttl-limit" = "1"
             },
             [for id, target in var.config.ping_test_ips:
               {
                 # Health checks for NIC - pings
+                "interface-health ${device} test ${id} resp-time" = "5"
+                "interface-health ${device} test ${id} ttl-limit" = "1"
                 "interface-health ${device} test ${id} target" = target
               }
             ]

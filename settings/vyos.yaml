@@ -179,6 +179,12 @@ common:
         username: ENC[AES256_GCM,data:WVsRpP3KSQ==,iv:upTDhpoBmgszkjBdsYRC0CqmmrlHp4B78Qi0KCDVjpY=,tag:YRNN2jo6UIez+Fyv++5UCg==,type:str]
         password: ENC[AES256_GCM,data:T70jKuYhOI4=,iv:eyYPTtDmCdmeNCkUu0nvoWir61JiuUZkmvrPpmyj7zk=,tag:1bsbHmTBAmbI6/Uu5GjAhQ==,type:int]
         hostname: ENC[AES256_GCM,data:hC5oqtKE91SZ,iv:s+nWQcHcRgLzAxMzS8JdSS2GnrwckJ1VGQpwiWc6Zhs=,tag:C5tk6KKEdK2t9EARPjZllw==,type:int]
+    cloudflare:
+        token: ENC[AES256_GCM,data:Mcvyl4q58xl0do6HcrjQGC77GEdM60GhCQtASfbGrUqsOqsNXDb3H5CvgcEMzCcUN3vu+NwKT5xlhWyjrbRy9grJupOhYxRdl+C5qrSE658NA0LdDbpoZz7TJitgnUR1lhaI/+6nhgsYuCDeYCC8satSpGZ2HCe2QH6yuOLAS6r6REyM4CCOhQck6FokmS/teq4EgXpdKx0R9os1Ln/LCWGf7Xcy9gZSTJ4HslvYFC23AGZmQ2cpeA==,iv:isD07MewkwZsbWlocsZJuHWSsu1tXOdV+uNHHN2ZZ6s=,tag:YxI4sBUH6oK5W5PcLWOkig==,type:str]
+    containers:
+        network:
+            name: ENC[AES256_GCM,data:iRgfOoI3TbE3EA==,iv:yU76dAr3l1Mp3F1m4EJ9sBnYc1T/LX5CYZ9S/XX0j0Q=,tag:apFUEgbihgW49XP0jX4gwA==,type:str]
+            nic: ENC[AES256_GCM,data:lX95mBOR+g0gACP138o=,iv:1xZiJj1bn3MFjCChqGqsb4E93RRmq7L0y/GzRz+ACvo=,tag:MNmic0CFkS+rzc9k0p3aSw==,type:str]
 primary:
     #ENC[AES256_GCM,data:bOqiNpP8WdD7j9e9vLorSB9nH0zJQD7ykepWEP8YDXf6vbyxOX1X4100Y/ISxwYjowKsj4i3BF6g/hjVhn59IwwZ+wUX+w==,iv:b5ZM92Lpgqc9+QWGGHOu60k5oc4VfjUVBw3ROx52AVM=,tag:dHglYZcmmqx58fWMvNg1pQ==,type:comment]
     hostname: ENC[AES256_GCM,data:hi2yOpQREU0VA9Mc,iv:96tqVvQVXx8lVWC3NImftM0xn110iFX9+5jkU1fBeaA=,tag:F6OLce+sKruqycBjMoSEaQ==,type:str]
@@ -206,6 +212,9 @@ primary:
         management:
             router: ENC[AES256_GCM,data:emM8zq+GVVoIA7xODw==,iv:wZKJLfLCqrbBhmCoqKWXWHI1emxBG3KXcYZQ7MuMyA0=,tag:/E0NDom7gUapzGsNiGbOtQ==,type:str]
             router_cidr: ENC[AES256_GCM,data:iIBdaJAXSRstZJx67k41+w==,iv:z3XoHIKGA9YjkWXxjhOyskIW6CzKKQvGc27AJPi+R0g=,tag:h6pSLBcr6YCzTG9DBql+TA==,type:str]
+    containers:
+        network:
+            cidr: ENC[AES256_GCM,data:5G6h0Zd6fFQF/f8jo5uT,iv:P99u0mupuhBwXNCn3C11SVZdnDGERbzNFVo+Z2sWyCE=,tag:VknnMt9b5+6RdWGW3eqJSQ==,type:str]
 secondary:
     #ENC[AES256_GCM,data:YWZ+5pLJ6uu8Z93xr0aankG8m63AkZ/v9jnCBXCt9qCbsB5foYZvsQnR9semB/ybTjhgAVd1TdeuOtxkpvxNkApuqcbGKA==,iv:s0TUxeAxRti0lYzQEYqZ0VKCHeuNPupc/9tiu0MChmY=,tag:QgAiMGWsNSNCuHg4Rzu0uQ==,type:comment]
     hostname: ENC[AES256_GCM,data:jXckRuXEyYjpqUjlqeA=,iv:WPMMZ8fLmFAg4ooESTyZhlv0EA04DMSdGULrs4HWdM0=,tag:/zUgGoe8c2faI+h0QGAQ8Q==,type:str]
@@ -233,14 +242,17 @@ secondary:
         management:
             router: ENC[AES256_GCM,data:l1CGW3Ug4gyyJVbyGw==,iv:IzRymTZoW675KpVPpoRGxJOEqfZD5VEyN5pwzMKWjq0=,tag:j62ndYKSfr3nbdJaEfG1iQ==,type:str]
             router_cidr: ENC[AES256_GCM,data:9SdO75BTvCgWlFdKL6PCvg==,iv:BtVyJYHO/TsxVeTJ+aNXBwAuvdgOU7npdp6lVMGwYEE=,tag:nwRL7zU7qihdRJpTGGXSuQ==,type:str]
+    containers:
+        network:
+            cidr: ENC[AES256_GCM,data:UnqGf6EilwBbA6dI7A8KuA==,iv:7qGvpmCiAaPe97Q0mja7kvop4hDZsQNQwW5GOK/qMjM=,tag:WS0GFhvsd36a7YiOqkW4Ig==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-01-07T18:50:32Z"
-    mac: ENC[AES256_GCM,data:40q0+sKzwDJJpZbRfvIEAoW8tYyO/Ko9n1PkkZ49kB5T6fIYkm0eRZLi/8B8sQBJ/kVxnV+nuAs5Y9ch8KAVk31FPkXjZbJvmCgJwRm19SGIu3O6+B9qnSWfO6BKPpw+M8LM9UF7l4TpF9tt0doOAPGAOzGoXoS8rOAg++Zrg7M=,iv:ZMFwx9fdksj7eChaqhWz+q1yWiaf/6wzvjBmyZAEcpM=,tag:LLQubmAzBM/XFLdlPj/rxQ==,type:str]
+    lastmodified: "2024-01-08T01:41:06Z"
+    mac: ENC[AES256_GCM,data:8fpGS08aE7miwjOGpP2/qCDJpXI9cPUqK7CsECk4+8Wy1jGmzveo58exabr6fa9kNbDF/wnzpI8kixf61QHrk9TnarTbU/0DW/cCX0PpOt0PO03qjbDqaES/UHVp73g9EkRuzX4cZuL3rguB7S/WMNT9RSGpAi7VeHgZWus9Ehg=,iv:ANV3l1TTpJ1lhfI2q7TyQUOFMK5cCqKDj6SOiyZXq9A=,tag:Pv40AibpCOCKEWEZ3I2ljw==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

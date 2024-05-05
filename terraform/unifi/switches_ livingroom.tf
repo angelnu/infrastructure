@@ -5,6 +5,7 @@ resource "unifi_device" "switch_e_livingroom" {
     port_override {
         name            = "TBD"
         number          = 1
+        #aggregate_num_ports = 0
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
@@ -20,6 +21,11 @@ resource "unifi_device" "switch_e_livingroom" {
     port_override {
         name            = "TBD"
         number          = 4
+        #port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "TBD"
+        number          = 5
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
@@ -40,13 +46,16 @@ resource "unifi_device" "switch_e_livingroom" {
     port_override {
         name            = "TBD"
         number          = 9
+        aggregate_num_ports = 2
+        op_mode         = "aggregate"
         #port_profile_id = data.unifi_port_profile.all.id
     }
-    port_override {
-        name            = "TBD"
-        number          = 10
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
+    # port_override {
+    #     name            = "TBD"
+    #     number          = 10
+    #     aggregate_num_ports = 0
+    #     #port_profile_id = data.unifi_port_profile.all.id
+    # }
 }
 
 

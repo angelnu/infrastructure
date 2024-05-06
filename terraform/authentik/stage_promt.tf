@@ -8,8 +8,8 @@ resource "authentik_stage_prompt_field" "password" {
 }
 resource "authentik_stage_prompt_field" "password_repeat" {
   field_key   = "password_repeat"
-  name        = "Password"
-  label       = "Password"
+  name        = "Password-Repeat"
+  label       = "Password (repeat)"
   type        = "password"
   placeholder = "Password (repeat)"
   required    = true

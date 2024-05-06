@@ -3,7 +3,7 @@ resource "authentik_provider_oauth2" "gitea" {
   client_id              = "gitea"
   client_secret          = var.authentik_config.apps.gitea.client_secret
   authorization_flow     = authentik_flow.authorization_implicit_consent.uuid
-  access_token_validity  = "minutes=10"
+  access_token_validity  = "hours=1"
   refresh_token_validity = "days=30"
   redirect_uris          = ["https://git.${var.main_home_domain}/user/oauth2/authentik/callback"]
 }

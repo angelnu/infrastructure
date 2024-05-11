@@ -27,5 +27,5 @@ provider "linux" {
   host     = "pve1"
   port     = 22
   user     = "root"
-  private_key = file("/root/.ssh/id_ecdsa")
+  private_key = file(pathexpand("~/.ssh/id_ed25519"))
 }

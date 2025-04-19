@@ -2,7 +2,7 @@ resource "authentik_flow" "invalidation" {
   name        = "terraform-invalidation"
   title       = "Casa - logout"
   slug        = "terraform-invalidation"
-  background  = "/static/dist/assets/images/flow_background.jpg" 
+  background  = "/static/dist/assets/images/flow_background.jpg"
   designation = "invalidation"
 }
 

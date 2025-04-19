@@ -10,13 +10,13 @@ terraform {
 
 // primary
 provider "vyos" {
-  url = var.config.primary.api.url
-  key = var.config.primary.api.key
+  url   = var.config.primary.api.url
+  key   = var.config.primary.api.key
   alias = "primary"
 }
 
 module "deepmerge_primary" {
-  source  = "Invicton-Labs/deepmerge/null"
+  source = "Invicton-Labs/deepmerge/null"
   maps = [
     var.config.common,
     var.config.primary
@@ -30,7 +30,7 @@ module "common_primary" {
   network_clients = var.network_clients
   domains         = var.domains
   domains_common  = var.domains_common
-  
+
   providers = {
     vyos = vyos.primary
   }
@@ -38,13 +38,13 @@ module "common_primary" {
 
 // Secondary
 provider "vyos" {
-  url = var.config.secondary.api.url
-  key = var.config.secondary.api.key
+  url   = var.config.secondary.api.url
+  key   = var.config.secondary.api.key
   alias = "secondary"
 }
 
 module "deepmerge_secondary" {
-  source  = "Invicton-Labs/deepmerge/null"
+  source = "Invicton-Labs/deepmerge/null"
   maps = [
     var.config.common,
     var.config.secondary

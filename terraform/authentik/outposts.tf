@@ -29,7 +29,7 @@ resource "authentik_outpost" "ingress_outpost" {
     kubernetes_disabled_components: []
     kubernetes_image_pull_secrets: []
     EOT
-    ))
+  ))
 }
 
 resource "authentik_outpost" "ldap_outpost" {
@@ -57,5 +57,5 @@ resource "authentik_outpost" "ldap_outpost" {
     kubernetes_disabled_components: []
     kubernetes_image_pull_secrets: []
     EOT
-    ))
+  ))
 }

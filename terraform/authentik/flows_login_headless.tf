@@ -1,9 +1,9 @@
 resource "authentik_flow" "login_headless" {
-  name        = "terraform-login-headless"
-  title       = "casa headless"
-  slug        = "terraform-login-headless"
-  background  = "/static/dist/assets/images/flow_background.jpg" 
-  designation = "authentication"
+  name               = "terraform-login-headless"
+  title              = "casa headless"
+  slug               = "terraform-login-headless"
+  background         = "/static/dist/assets/images/flow_background.jpg"
+  designation        = "authentication"
   compatibility_mode = true
 }
 

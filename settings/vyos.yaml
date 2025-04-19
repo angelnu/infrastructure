@@ -175,7 +175,7 @@ common:
                 vrid: ENC[AES256_GCM,data:1rc=,iv:059EZGoPf+8tG5AfhlDDfK2R7UuVQ/7gpqRu900w/FM=,tag:QvEOxMyeWYi5CQj4CoqOgg==,type:int]
                 nic_suffix: ENC[AES256_GCM,data:Pqbptm0=,iv:cS29213jmhQ1T0dmn6XqRr6UZTJwVhldi6Kx38ejtZw=,tag:zc3CdheFqLHWR8mc3sGKpg==,type:str]
         okd:
-            zone: ENC[AES256_GCM,data:rIOI,iv:PFDi7AM+30WNkiGoay8s+gOzc6nEoEjFmHiza1p64hw=,tag:snfRIL0xnR+CDMUfqDxQ9A==,type:str]
+            zone: ENC[AES256_GCM,data:XsMh,iv:tgmYiBQZWnaJRAUUzszgSJ42IRgkVLtP+WtHGUSAokA=,tag:MADz8unCGwjBdxTs0IGnZA==,type:str]
             cidr: ENC[AES256_GCM,data:Sw6PeF/0nV279Glpdf5voQ==,iv:h3PxcpQLOqDFmmdnv62hqiopn03yj1q4ZyzbnsSmtFc=,tag:uioAUKlasDmqfPRL4HK/9Q==,type:str]
             device: ENC[AES256_GCM,data:x/AMwmLnAOg=,iv:U+WpsLHQhiKayFcK2Zhu97EJY2uXenECdji4CjhLu8s=,tag:42BIRqZ751NObTQm7ZD2xw==,type:str]
             vlan: ENC[AES256_GCM,data:f18z,iv:3cirTlnDPWwBqlQ0vclxexFTxVuHMEYdhX+W3prK5Tg=,tag:SYFNYkuvw8hmOwKClUmfGA==,type:int]
@@ -267,8 +267,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2025-04-19T13:28:30Z"
-    mac: ENC[AES256_GCM,data:bOJRhVJtzKDZbYYdRJQxQhp7bbA0RMRF5CsDGT+RTFYzs3c6ga2BZprY1kcxBiVxXrX4l+9RJPAeptnUqf80Bmsu3mdW2UuPIUspROBaGeBMfitfJrHJSQUD8woZwk7K4fUSOImdOmLM5Tt4WtH4Ox0RgE1WU19OV4smXe4O4kU=,iv:vaO7swNYtgv4RuYex8FjBapVAXfHF+nIPuEyZfd7h8w=,tag:KfH9EToJQ1IVMiuZ+AnzkQ==,type:str]
+    lastmodified: "2025-04-19T21:34:24Z"
+    mac: ENC[AES256_GCM,data:zkk2/RCoFQoM5MnyWp+VkBs1lb/OxncSS+FuJmOLYxnHiEkse/AOqrx7U6PuLxDfEelvMQlHnFjQ+WmJSBxP9SucGsbz1NfzdNJQxaNSoZlSYqxt17IoIN2AyvCxieo+dYEx4Tzbc0OE+k7lY1LGEzM5KmGKfCx26zO78d566gs=,iv:a4Sl1m9ni8AliNuc9l5WH4jI2gnKwfKz3eBr/+j3xDI=,tag:pRniVYkVGT9Tj6oHNTNTqQ==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

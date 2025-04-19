@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     unifi = {
-      source = "paultyng/unifi"
+      source  = "paultyng/unifi"
       version = "0.41.0"
     }
   }
@@ -10,7 +10,7 @@ terraform {
 provider "unifi" {
   username = var.unifi_api_username # optionally use UNIFI_USERNAME env var
   password = var.unifi_api_password # optionally use UNIFI_PASSWORD env var
-  api_url  = var.unifi_api_url  # optionally use UNIFI_API env var
+  api_url  = var.unifi_api_url      # optionally use UNIFI_API env var
 
   # you may need to allow insecure TLS communications unless you have configured
   # certificates for your controller

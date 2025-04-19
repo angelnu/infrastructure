@@ -6,7 +6,7 @@ resource "authentik_provider_oauth2" "recipes" {
   invalidation_flow      = authentik_flow.invalidation.uuid
   access_token_validity  = "hours=1"
   refresh_token_validity = "days=30"
-  allowed_redirect_uris  = [
+  allowed_redirect_uris = [
     {
       matching_mode = "strict",
       url           = "https://recipes.pub.${var.main_home_domain}/accounts/authentik/login/callback/"

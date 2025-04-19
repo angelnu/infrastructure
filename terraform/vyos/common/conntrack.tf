@@ -5,7 +5,7 @@
 # DISABLED until https://phabricator.vyos.net/T1311 is fixed
 
 # resource "vyos_config_block_tree" "service_conntrack_sync" {
-  
+
 #   path = "service conntrack-sync"
 
 #   configs = {

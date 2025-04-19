@@ -9,7 +9,7 @@ resource "authentik_provider_oauth2" "gitea" {
   signing_key            = data.authentik_certificate_key_pair.generated.id
   access_token_validity  = "hours=1"
   refresh_token_validity = "days=30"
-  allowed_redirect_uris  = [
+  allowed_redirect_uris = [
     {
       matching_mode = "strict",
       url           = "https://git.${var.main_home_domain}/user/oauth2/authentik/callback"

@@ -1,9 +1,9 @@
 resource "authentik_flow" "login" {
-  name        = "terraform-login"
-  title       = "Welcome to Casa!"
-  slug        = "terraform-login"
-  background  = "/static/dist/assets/images/flow_background.jpg" 
-  designation = "authentication"
+  name               = "terraform-login"
+  title              = "Welcome to Casa!"
+  slug               = "terraform-login"
+  background         = "/static/dist/assets/images/flow_background.jpg"
+  designation        = "authentication"
   compatibility_mode = true
 }
 

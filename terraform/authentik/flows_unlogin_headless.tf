@@ -2,7 +2,7 @@ resource "authentik_flow" "unlogin_headless" {
   name        = "terraform-unlogin-headless"
   title       = "Casa - unlogin headless"
   slug        = "terraform-unlogin-headless"
-  background  = "/static/dist/assets/images/flow_background.jpg" 
+  background  = "/static/dist/assets/images/flow_background.jpg"
   designation = "invalidation"
 }
 

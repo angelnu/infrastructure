@@ -169,13 +169,11 @@ users:
       name: ENC[AES256_GCM,data:uLGRu8rz5PGgNus=,iv:g2RUVzVq1bh1VdcHBznQalfsgsTwmD7ur7BWjZ/Gmu8=,tag:ofl20hFKqu4seADEtjPx4Q==,type:str]
       email: ENC[AES256_GCM,data:y10AA2iYyWfB8JNg+K8Vetg=,iv:eCy1Eqg+7tWXTO0iAfAQDJfzVDTFAnAqhWlZan6UuFw=,tag:YNhjdxyxqVUUDJPF6NR5Pg==,type:str]
       groups:
-        - ENC[AES256_GCM,data:tHHE7y1o7Fh096QyyEMB,iv:73MmTQwGtCePzZLpgvSsNzaQyjrZiqdrvPh5u5nECVQ=,tag:l80FMwbuIusT3FGaf2nElw==,type:str]
         - ENC[AES256_GCM,data:ybbvby4=,iv:xNEhnpN37zaQYvLK2215LKsA7mDAf5xCl7sKrSKVv/Q=,tag:RLQJ5/IfNrDjFa9dH+x+5Q==,type:str]
     - id: ENC[AES256_GCM,data:fCjqWSY=,iv:WZjuenLE9eIBxNw2aYiTHUxBE6AnVFqbaqxHhqBRlpw=,tag:Bmgw+9Xb0OF7zf71L82ACg==,type:str]
       name: ENC[AES256_GCM,data:lj3OAKUgm3STVZgkejPaklI=,iv:ZBfcxlx/2a8uei5l2gf70+Te9jvjwwku0v5ovkD4Gv8=,tag:4F6fQUYY3nki7TVePeDruA==,type:str]
       email: ENC[AES256_GCM,data:GjwuMm+8j07M78fr9n4/,iv:RaTC+mQybVVgbE1VU/ynVP9vrwt1ufhlrpwAUwXlRHg=,tag:mbZ3uDdH84NXwBexnaaHQw==,type:str]
       groups:
-        - ENC[AES256_GCM,data:tHHE7y1o7Fh096QyyEMB,iv:73MmTQwGtCePzZLpgvSsNzaQyjrZiqdrvPh5u5nECVQ=,tag:l80FMwbuIusT3FGaf2nElw==,type:str]
         - ENC[AES256_GCM,data:ybbvby4=,iv:xNEhnpN37zaQYvLK2215LKsA7mDAf5xCl7sKrSKVv/Q=,tag:RLQJ5/IfNrDjFa9dH+x+5Q==,type:str]
     - id: ENC[AES256_GCM,data:rnBFvBXx,iv:i56PDfEF133fET2GVp18f1L589T8PGY2Q3PNH7sMzWM=,tag:Bs/mtTnZpLQYZeur/5vFnw==,type:str]
       name: ENC[AES256_GCM,data:BQ5PUMKK/LMgjqYbC2nDiOWwgAIsAYtucUuVWUPUb8qj,iv:dmTWbBByvpDs+LKD6Bt+IFszygMj8ZC9x1DXZY3QJ0A=,tag:lcm2S82p9im1TPyWLoy93w==,type:str]
@@ -187,8 +185,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-01-10T11:23:00Z"
-    mac: ENC[AES256_GCM,data:Ny2nCfpwdxctGIPLpnEqZeBCp+Th0okf1OADssb56Q7Rq9kWxvgkhwR2B6b+Y7dFKLXwDyvmvSdMbVW7MO/YlqxhzSlePp+fiO239hlL45lxowxAgSj6Eelr4mD8/at9qCIHywD0vk5DeiWo1CMs2ejg7z2N0W87wOygZjDgBfE=,iv:g3Y3SS5fV3FasgHWNB7QWF7kUTJg1mZehzluf6Xvo5Q=,tag:qWAcDT2J7npSdr0Gh8tM5g==,type:str]
+    lastmodified: "2024-09-01T20:19:32Z"
+    mac: ENC[AES256_GCM,data:WyeAvATAQ1So75KXzsNkNpoOJkSwGxvvpg/JVEr/ZHlzp6q8Fm3s8BSmu3WwnUPKVHrMDlDTBueVN+ENhv9v4D2rPspMgsmtuKKNmvTepEIrNqzx6q04kwILYVrJgN1Id1sP59Zjr+xQ746oP8iTfuE5y/s54PYctZmupt+e8Bg=,iv:2M2PO7h3y4fEn5EPi9VzuiM/QJYBIvylCQSAL+pC3OA=,tag:uGf8J6CR3SS5y6LayXam8A==,type:str]
     pgp:
         - created_at: "2022-03-27T15:24:57Z"
           enc: |
@@ -211,4 +209,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: E61087FD0DC8B3AA734061498564C79FC27F08E2
     unencrypted_suffix: _unencrypted
-    version: 3.7.1
+    version: 3.9.0

@@ -174,6 +174,16 @@ common:
                 ip_cidr: ENC[AES256_GCM,data:QtoED+Nh9F6u8cJZe6nvkg==,iv:TsLWqnJLiyaLWBjEPDJLa8xg3B6FkTXsRAFAQnrP9xs=,tag:I92oJtOgMac2nygySPf8xw==,type:str]
                 vrid: ENC[AES256_GCM,data:1rc=,iv:059EZGoPf+8tG5AfhlDDfK2R7UuVQ/7gpqRu900w/FM=,tag:QvEOxMyeWYi5CQj4CoqOgg==,type:int]
                 nic_suffix: ENC[AES256_GCM,data:Pqbptm0=,iv:cS29213jmhQ1T0dmn6XqRr6UZTJwVhldi6Kx38ejtZw=,tag:zc3CdheFqLHWR8mc3sGKpg==,type:str]
+        okd:
+            zone: ENC[AES256_GCM,data:rIOI,iv:PFDi7AM+30WNkiGoay8s+gOzc6nEoEjFmHiza1p64hw=,tag:snfRIL0xnR+CDMUfqDxQ9A==,type:str]
+            cidr: ENC[AES256_GCM,data:Sw6PeF/0nV279Glpdf5voQ==,iv:h3PxcpQLOqDFmmdnv62hqiopn03yj1q4ZyzbnsSmtFc=,tag:uioAUKlasDmqfPRL4HK/9Q==,type:str]
+            device: ENC[AES256_GCM,data:x/AMwmLnAOg=,iv:U+WpsLHQhiKayFcK2Zhu97EJY2uXenECdji4CjhLu8s=,tag:42BIRqZ751NObTQm7ZD2xw==,type:str]
+            vlan: ENC[AES256_GCM,data:f18z,iv:3cirTlnDPWwBqlQ0vclxexFTxVuHMEYdhX+W3prK5Tg=,tag:SYFNYkuvw8hmOwKClUmfGA==,type:int]
+            vrrp:
+                ip: ENC[AES256_GCM,data:MsrWgwWdoJ9LLeT67g==,iv:vLk83aPv681QamelVO4ko+5R3mgkMqbBdpqafDdmAZw=,tag:qWXQKXhPfZj+xrZbSiAUqg==,type:str]
+                ip_cidr: ENC[AES256_GCM,data:ncp57G9N0uEoYwsWMe5zew==,iv:SrC9HNZaJl8I6E9pqUiJy9kNdiuKGVe+qqXWJLyUsrg=,tag:xJj0IfxCDZfnK7bUysZnUw==,type:str]
+                vrid: ENC[AES256_GCM,data:gM0=,iv:+7GKEeOuUmWkha05DmsBpZor1G3KrvSvYkl7Vn3UBKk=,tag:BXSU0U+Oex3PABKpMBdtoA==,type:int]
+                nic_suffix: ENC[AES256_GCM,data:ylrYjqI=,iv:9w7OvnlBbjykSNbo526SROwuK4Z1/j3gSpev1op+kLo=,tag:2lwnyy6hPFNgJzxBtnrVyw==,type:str]
     dynamic_dns:
         protocol: ENC[AES256_GCM,data:CR5vUKwqLiTUg+k=,iv:DgQ2NfeJo+TCGlMaDX7F+KoQVHDgDuJODRoiCGSDJQo=,tag:we20Kk/HfOl15nJf2rLc+w==,type:str]
         username: ENC[AES256_GCM,data:WVsRpP3KSQ==,iv:upTDhpoBmgszkjBdsYRC0CqmmrlHp4B78Qi0KCDVjpY=,tag:YRNN2jo6UIez+Fyv++5UCg==,type:str]
@@ -212,6 +222,9 @@ primary:
         management:
             router: ENC[AES256_GCM,data:emM8zq+GVVoIA7xODw==,iv:wZKJLfLCqrbBhmCoqKWXWHI1emxBG3KXcYZQ7MuMyA0=,tag:/E0NDom7gUapzGsNiGbOtQ==,type:str]
             router_cidr: ENC[AES256_GCM,data:iIBdaJAXSRstZJx67k41+w==,iv:z3XoHIKGA9YjkWXxjhOyskIW6CzKKQvGc27AJPi+R0g=,tag:h6pSLBcr6YCzTG9DBql+TA==,type:str]
+        okd:
+            router: ENC[AES256_GCM,data:mOr7wTpD72CMjhzknA==,iv:rnT4aW3Ixx9ppPdEoMkrJ27EyqjWRMWgHErBwgeQ2L0=,tag:2sj4CBWEN8AbJm0wzfzZtw==,type:str]
+            router_cidr: ENC[AES256_GCM,data:HbEejA/yLMYX12bXqKTFSw==,iv:+3XuTdNR9XQXa2oAm5VLLpdBFq0lZ9TjCIpv9W6vGnE=,tag:aEaSN8thKwEP0IG05YI9zg==,type:str]
     containers:
         network:
             cidr: ENC[AES256_GCM,data:5G6h0Zd6fFQF/f8jo5uT,iv:P99u0mupuhBwXNCn3C11SVZdnDGERbzNFVo+Z2sWyCE=,tag:VknnMt9b5+6RdWGW3eqJSQ==,type:str]
@@ -242,6 +255,9 @@ secondary:
         management:
             router: ENC[AES256_GCM,data:l1CGW3Ug4gyyJVbyGw==,iv:IzRymTZoW675KpVPpoRGxJOEqfZD5VEyN5pwzMKWjq0=,tag:j62ndYKSfr3nbdJaEfG1iQ==,type:str]
             router_cidr: ENC[AES256_GCM,data:9SdO75BTvCgWlFdKL6PCvg==,iv:BtVyJYHO/TsxVeTJ+aNXBwAuvdgOU7npdp6lVMGwYEE=,tag:nwRL7zU7qihdRJpTGGXSuQ==,type:str]
+        okd:
+            router: ENC[AES256_GCM,data:+fzsdaRxKrLPFynmLQ==,iv:P9cOiqYAxCtwj+KwEay1q+Ytm2hn2uC8mdXkrY9ES8A=,tag:520XokiOWWQcG3K7UGGjTg==,type:str]
+            router_cidr: ENC[AES256_GCM,data:nXU6JtPRh/Pm3tUfFToqTA==,iv:RDefN3WaFC+sStIhRUdWma5bcg6uBr24d/KZglkqcKM=,tag:Axw1VAh6biSffx8er4/CpQ==,type:str]
     containers:
         network:
             cidr: ENC[AES256_GCM,data:UnqGf6EilwBbA6dI7A8KuA==,iv:7qGvpmCiAaPe97Q0mja7kvop4hDZsQNQwW5GOK/qMjM=,tag:WS0GFhvsd36a7YiOqkW4Ig==,type:str]
@@ -251,8 +267,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-05-08T00:34:07Z"
-    mac: ENC[AES256_GCM,data:bMVMoLX2LaQYL+yJo472ymbvbHh5P7w7Su3r3jmFE7dns5oqw5fiQOygFg1d2ZEyUqgg9Lz0ClHFcBfGSSA3ARQ+56B8Yaq2/9w6LYLEJYWbVXn2zSawGHmMzZK3uCw8nOJg5hfBwvkMEmRPQTB2TJK+CRQSFCDqS4yStR3ZupY=,iv:LDNJpYmYuuk8EkxFMX1r+j1bjVYTtK+S36jqUQP6ODI=,tag:euyFvLlXuM7uV8ulx+hrLg==,type:str]
+    lastmodified: "2025-04-19T13:28:30Z"
+    mac: ENC[AES256_GCM,data:bOJRhVJtzKDZbYYdRJQxQhp7bbA0RMRF5CsDGT+RTFYzs3c6ga2BZprY1kcxBiVxXrX4l+9RJPAeptnUqf80Bmsu3mdW2UuPIUspROBaGeBMfitfJrHJSQUD8woZwk7K4fUSOImdOmLM5Tt4WtH4Ox0RgE1WU19OV4smXe4O4kU=,iv:vaO7swNYtgv4RuYex8FjBapVAXfHF+nIPuEyZfd7h8w=,tag:KfH9EToJQ1IVMiuZ+AnzkQ==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |
@@ -275,4 +291,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: E61087FD0DC8B3AA734061498564C79FC27F08E2
     unencrypted_suffix: _unencrypted
-    version: 3.8.1
+    version: 3.9.4

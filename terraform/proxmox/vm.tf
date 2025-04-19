@@ -16,51 +16,71 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
 
   onboot = true
 
-  clone = "Ubuntu-22.04-template-${each.value.node}"
+  clone = "Ubuntu-24.04-template"
+  full_clone = true
 
   # The destination resource pool for the new VM
   # pool = "pool0"
 
-  disk {
-    // This disk will become scsi0
-    type = "scsi"
-    storage = "local-lvm"
-    size = each.value.boot_disk_size
-    ssd = 1
-    discard = "on"
-  }
+  disks {
+    scsi {
+      scsi0 {
+        disk {
+          storage = "local-lvm"
+          size = each.value.boot_disk_size
+          format  = "raw"
+          replicate = true
 
-  disk {
-    // This disk will become scsi1
-    type = "scsi"
-    storage = ""
-    size = each.value.data_disk_size
-    volume = each.value.data_disk_volume
-    #file = each.value.data_disk_file
-    ssd = 1
-    discard = "on"
+          discard = true
+          emulatessd = true
+        }
+      }
+      scsi1 {
+        passthrough {
+          #size = each.value.data_disk_size
+          file = each.value.data_disk_volume
+          replicate = true
+
+          discard = true
+          emulatessd = true
+        }
+      }
+    }
+    ide {
+      ide0 {
+        cloudinit {
+            storage = "local-lvm"
+        }
+      }
+    }
   }
 
   network {
+    id        = 0
     bridge    = "vmbr0"
     model     = "virtio"
     macaddr   = local.network_clients_dict[each.key].mac
     #tag       = -1
   }
   
+  serial {
+    id   = 0
+    type = "socket"
+  }
   
   cores   = 4
   sockets = each.value.sockets
   memory  = each.value.memory
   scsihw  = "virtio-scsi-single"
 
-  dynamic hostpci {
-   for_each = each.value.hostpci
-   content {
-    host   = lookup(hostpci.value, "host", null)
-    rombar = lookup(hostpci.value, "rombar", null)
-    pcie   = lookup(hostpci.value, "pcie", null)
-   }
+  dynamic pci {
+    for_each = each.value.pci
+    content {
+      id     = pci.key
+      raw_id   = lookup(pci.value, "raw_id", null)
+      rombar = lookup(pci.value, "rombar", true)
+      pcie   = lookup(pci.value, "pcie", false)
+    }
   }
 
   # os_type   = "cloud-init"

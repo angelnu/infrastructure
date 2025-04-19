@@ -1,4 +1,4 @@
-data "authentik_property_mapping_saml" "default" {
+data "authentik_property_mapping_provider_saml" "default" {
   managed_list = [
     "goauthentik.io/providers/saml/upn",
     "goauthentik.io/providers/saml/uid",

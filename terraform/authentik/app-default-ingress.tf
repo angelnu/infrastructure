@@ -2,6 +2,7 @@ resource "authentik_provider_proxy" "default_ingress" {
   name                   = "default-ingress-proxy"
   mode                   = "forward_domain"
   authorization_flow     = authentik_flow.authorization_implicit_consent.uuid
+  invalidation_flow      = authentik_flow.invalidation.uuid
   external_host          = "https://authentik.pub.${var.main_home_domain}"
   cookie_domain          = var.main_home_domain
   access_token_validity  = "hours=1"
@@ -15,8 +16,9 @@ resource "authentik_application" "default_ingress" {
 }
 
 resource "authentik_policy_binding" "default_ingress_app_access" {
-  target = authentik_application.default_ingress.uuid
-  group  = authentik_group.groups["default_ingress"].id
-  order  = 0
+  target  = authentik_application.default_ingress.uuid
+  group   = authentik_group.groups["default_ingress"].id
+  order   = 0
+  timeout = 1440
 }
 

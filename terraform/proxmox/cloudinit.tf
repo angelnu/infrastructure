@@ -2,7 +2,7 @@ resource "random_password" "salt" {
   length = 8
 }
 resource "htpasswd_password" "user_password" {
-  password = "DidIpay4k3s?"
+  password = var.config.default_vm_admin_password
   salt     = random_password.salt.result
 }
 

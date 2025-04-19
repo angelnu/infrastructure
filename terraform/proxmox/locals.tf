@@ -3,7 +3,7 @@ locals {
     test_cluster = {
       memory = 16000
       sockets = 2
-      hostpci = []
+      pci = []
       boot_disk_size = "50G"
       data_disk_size = "10G"
       data_disk_volume = "/dev/pve/k3s-data-staging"
@@ -14,9 +14,9 @@ locals {
     production_cluster = {
       memory = 16000
       sockets = 2
-      hostpci = [
+      pci = [
         {
-          host = "0000:00:02"
+          raw_id = "0000:00:02"
         }
       ]
       boot_disk_size = "50G"
@@ -48,41 +48,40 @@ locals {
           ipconfig0 = null
         }
       )
-
-      "k3s1" = merge(
-        local.production_cluster,
-        {
-          node = "pve1"
-          ipconfig0 = null
-        }
-      )
-      "k3s2" = merge(
-        local.production_cluster,
-        {
-          node = "pve2"
-          ipconfig0 = null
-        }
-      )
-      "k3s3" = merge(
-        local.production_cluster,
-        {
-          node = "pve3"
-          ipconfig0 = null
-        }
-      )
-      "k3s4" = merge(
-        local.production_cluster,
-        {
-          node = "pve4"
-          ipconfig0 = null
-          hostpci = [
-            {
-              host = "0000:01:00"
-              rombar = 0
-            }
-          ]
-        }
-      )
+      # "k3s1" = merge(
+      #   local.production_cluster,
+      #   {
+      #     node = "pve1"
+      #     ipconfig0 = null
+      #   }
+      # )
+      # "k3s2" = merge(
+      #   local.production_cluster,
+      #   {
+      #     node = "pve2"
+      #     ipconfig0 = null
+      #   }
+      # )
+      # "k3s3" = merge(
+      #   local.production_cluster,
+      #   {
+      #     node = "pve3"
+      #     ipconfig0 = null
+      #   }
+      # )
+      # "k3s4" = merge(
+      #   local.production_cluster,
+      #   {
+      #     node = "pve4"
+      #     ipconfig0 = null
+      #     pci = [
+      #       {
+      #         raw_id = "0000:01:00"
+      #         rombar = false
+      #       }
+      #     ]
+      #   }
+      # )
     }
 
     network_clients_dict = { for i, entry in var.network_clients.hosts: entry.name => entry }

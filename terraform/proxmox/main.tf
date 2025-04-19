@@ -2,7 +2,7 @@ terraform {
   required_providers {
     proxmox = {
       source = "Telmate/proxmox"
-      version = "2.9.14"
+      version = "3.0.1-rc8"
     }   
     linux = {
       source = "TelkomIndonesia/linux"
@@ -24,8 +24,9 @@ provider "proxmox" {
 }
 
 provider "linux" {
-  host     = "pve1"
-  port     = 22
-  user     = "root"
+  host        = "pve1"
+  port        = 22
+  user        = "root"
   private_key = file(pathexpand("~/.ssh/id_ed25519"))
+  password    = var.config.crendentials.password
 }

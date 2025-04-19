@@ -48,7 +48,7 @@ resource "vyos_config_block_tree" "nat_source" {
           {
             # LAN -> WAN
             "${100 + 10*outbound_index + inbound_index} description" = "LAN (${inbound.network_name}) -> WAN (${outbound.network_name})"
-            "${100 + 10*outbound_index + inbound_index} outbound-interface"= outbound.interface,
+            "${100 + 10*outbound_index + inbound_index} outbound-interface name"= outbound.interface,
             "${100 + 10*outbound_index + inbound_index} destination address"= outbound.network.cidr,
             "${100 + 10*outbound_index + inbound_index} source address"= inbound.cidr,
             "${100 + 10*outbound_index + inbound_index} translation address": "masquerade"
@@ -97,7 +97,7 @@ resource "vyos_config_block_tree" "nat_destination" {
           {
             "rule ${100 + 10*rule_index+inbound_index} description": "${inbound.name} - ${rule.description}",
             "rule ${100 + 10*rule_index+inbound_index} destination port": rule.port,
-            "rule ${100 + 10*rule_index+inbound_index} inbound-interface": inbound.interface,
+            "rule ${100 + 10*rule_index+inbound_index} inbound-interface name": inbound.interface,
             "rule ${100 + 10*rule_index+inbound_index} protocol": rule.protocol
             "rule ${100 + 10*rule_index+inbound_index} translation address": rule.address
             "rule ${100 + 10*rule_index+inbound_index} translation port": contains(keys(rule), "translationPort") ? rule.translationPort: rule.port

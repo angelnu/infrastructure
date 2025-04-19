@@ -24,9 +24,8 @@ resource "vyos_config_block_tree" "eth0" {
 resource "vyos_config_block_tree" "http_api" {
   path = "service https"
   configs = {
-    "api keys id terraform key"               = sensitive(var.config.api.key)
-    "virtual-host rtr01 listen-address"       = var.config.networks.management.router
-    "virtual-host rtr01_lan listen-address"   = var.config.networks.lan.router
+    "api keys id terraform key" = sensitive(var.config.api.key)
+    "listen-address"            = jsonencode([var.config.networks.management.router, var.config.networks.lan.router])
   }
   timeouts {
     create = "60m"

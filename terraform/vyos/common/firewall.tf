@@ -35,25 +35,25 @@ resource "vyos_config_block_tree" "firewall" {
 
         # LAN -> LAN Accept
         "ipv4 forward filter rule 101 action"                            :"accept"
-        "ipv4 forward filter rule 101 inbound-interface interface-group" : "IG_lan"
-        "ipv4 forward filter rule 101 outbound-interface interface-group": "IG_lan"
+        "ipv4 forward filter rule 101 inbound-interface group" : "IG_lan"
+        "ipv4 forward filter rule 101 outbound-interface group": "IG_lan"
 
         # WLAN - LAN jump
         "ipv4 forward filter rule 106 action"                             : "jump"
-        "ipv4 forward filter rule 106 inbound-interface interface-group"  : "IG_wan"
+        "ipv4 forward filter rule 106 inbound-interface group"  : "IG_wan"
         "ipv4 forward filter rule 106 jump-target"                        : "lan_from_wan"
-        "ipv4 forward filter rule 106 outbound-interface interface-group" : "IG_lan"
+        "ipv4 forward filter rule 106 outbound-interface group" : "IG_lan"
         
         # WLAN -> WLAN accept
         "ipv4 forward filter rule 116 action"                             = "accept"
-        "ipv4 forward filter rule 116 inbound-interface interface-group"  = "IG_wan"
-        "ipv4 forward filter rule 116 outbound-interface interface-group" = "IG_wan"
+        "ipv4 forward filter rule 116 inbound-interface group"  = "IG_wan"
+        "ipv4 forward filter rule 116 outbound-interface group" = "IG_wan"
 
         # WLAN -> LAN jump
         "ipv4 forward filter rule 121 action"                             = "jump"
-        "ipv4 forward filter rule 121 inbound-interface interface-group"  = "IG_lan"
+        "ipv4 forward filter rule 121 inbound-interface group"  = "IG_lan"
         "ipv4 forward filter rule 121 jump-target"                        = "wan_from_lan"
-        "ipv4 forward filter rule 121 outbound-interface interface-group" = "IG_wan"
+        "ipv4 forward filter rule 121 outbound-interface group" = "IG_wan"
         
         # Settings for LAN -> WAN
         "ipv4 name wan_from_lan description" : "lan to wan"
@@ -68,10 +68,10 @@ resource "vyos_config_block_tree" "firewall" {
         #"ipv4 name lan_from_wan enable-default-log" : ""
         # - Accept stablished TCP traffic
         "ipv4 name lan_from_wan rule 100 action": "accept"
-        "ipv4 name lan_from_wan rule 100 state established": "enable"
+        "ipv4 name lan_from_wan rule 100 state": "established"
         # - Accept related
         "ipv4 name lan_from_wan rule 101 action": "accept"
-        "ipv4 name lan_from_wan rule 101 state related": "enable"
+        "ipv4 name lan_from_wan rule 101 state": "related"
         #"ipv4 name lan_from_wan rule 101 log": "enable"
     },
     merge(

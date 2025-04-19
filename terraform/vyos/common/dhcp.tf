@@ -5,14 +5,12 @@ resource "vyos_config_block_tree" "dhcp" {
     {
       # main setup
       "hostfile-update" = "" # Create DNS record per client lease, by adding clients to /etc/hosts file. Entry will have format: <shared-network-name>_<hostname>.<domain-name>
-      "host-decl-name" = ""  # Will drop <shared-network-name>_ from client DNS record, using only the host declaration name and domain: <hostname>.<domain-name>
-      "shared-network-name lan domain-name" = var.config.networks.lan.dhcp.domain_name,
-      "shared-network-name lan ping-check" = "",
+      "shared-network-name lan option domain-name" = var.config.networks.lan.dhcp.domain_name,
       "shared-network-name lan authoritative" = "",
-      "shared-network-name lan subnet ${var.config.networks.lan.cidr} default-router" = var.config.networks.lan.vrrp.ip,
+      "shared-network-name lan subnet ${var.config.networks.lan.cidr} option default-router" = var.config.networks.lan.vrrp.ip,
       "shared-network-name lan subnet ${var.config.networks.lan.cidr} lease" = "86400",
-      "shared-network-name lan subnet ${var.config.networks.lan.cidr} name-server"= var.config.networks.lan.vrrp.ip,
-      "shared-network-name lan subnet ${var.config.networks.lan.cidr} enable-failover"=""
+      "shared-network-name lan subnet ${var.config.networks.lan.cidr} option name-server"= var.config.networks.lan.vrrp.ip,
+      "shared-network-name lan subnet ${var.config.networks.lan.cidr} subnet-id"="1"
     },
     merge([
       # ranges
@@ -22,15 +20,15 @@ resource "vyos_config_block_tree" "dhcp" {
       }
     ]...),
     {
-      "failover source-address" = var.config.networks.lan.router
-      "failover name" = "lan"
-      "failover remote" = var.config.networks.lan.dhcp.failover.remote
-      "failover status" = var.config.networks.lan.dhcp.failover.status
+      "high-availability source-address" = var.config.networks.lan.router
+      "high-availability name" = "lan"
+      "high-availability remote" = var.config.networks.lan.dhcp.failover.remote
+      "high-availability status" = var.config.networks.lan.dhcp.failover.status
     },
     merge([
       # static allocation
       for host in local.host_by_name_with_mac : {
-        "shared-network-name lan subnet ${var.config.networks.lan.cidr} static-mapping ${host.name} mac-address" = host.mac
+        "shared-network-name lan subnet ${var.config.networks.lan.cidr} static-mapping ${host.name} mac" = host.mac
         "shared-network-name lan subnet ${var.config.networks.lan.cidr} static-mapping ${host.name} ip-address" = host.ip
       } if lookup(host, "is_dhcp", true)
     ]...),

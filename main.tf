@@ -2,7 +2,7 @@
 terraform {
   required_providers {
     sops = {
-      source = "carlpett/sops"
+      source  = "carlpett/sops"
       version = "1.0.0"
     }
   }
@@ -40,13 +40,13 @@ data "sops_file" "authentik" {
   source_file = "${path.module}/settings/authentik.yaml"
 }
 module "authentik" {
-  source = "./terraform/authentik"
-  authentik_api_url      = data.sops_file.authentik.data["api.url"]
-  authentik_api_token    = data.sops_file.authentik.data["api.token"]
-  main_home_domain       = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
-  authentik_users        = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
-  authentik_groups       = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
-  authentik_config       = yamldecode(nonsensitive(data.sops_file.authentik.raw))
+  source              = "./terraform/authentik"
+  authentik_api_url   = data.sops_file.authentik.data["api.url"]
+  authentik_api_token = data.sops_file.authentik.data["api.token"]
+  main_home_domain    = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  authentik_users     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
+  authentik_groups    = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
+  authentik_config    = yamldecode(nonsensitive(data.sops_file.authentik.raw))
 }
 
 data "sops_file" "domains" {
@@ -66,16 +66,16 @@ data "sops_file" "vyos" {
 module "vyos" {
   source = "./terraform/vyos"
 
-  config    = yamldecode(nonsensitive(data.sops_file.vyos.raw))
+  config          = yamldecode(nonsensitive(data.sops_file.vyos.raw))
   network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
-  domains        = yamldecode(nonsensitive(data.sops_file.domains.raw)).domains
-  domains_common = yamldecode(nonsensitive(data.sops_file.domains.raw)).common
+  domains         = yamldecode(nonsensitive(data.sops_file.domains.raw)).domains
+  domains_common  = yamldecode(nonsensitive(data.sops_file.domains.raw)).common
 }
 
 module "proxmox" {
   source = "./terraform/proxmox"
 
-  config    = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).proxmox
+  config          = yamldecode(nonsensitive(data.sops_file.settings_secrets.raw)).proxmox
   network_clients = yamldecode(nonsensitive(data.sops_file.network_clients.raw))
-  lan_config    = yamldecode(nonsensitive(data.sops_file.vyos.raw)).common.networks.lan
+  lan_config      = yamldecode(nonsensitive(data.sops_file.vyos.raw)).common.networks.lan
 }

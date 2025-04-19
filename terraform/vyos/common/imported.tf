@@ -16,6 +16,8 @@ resource "vyos_config_block_tree" "eth0" {
     "vif ${var.config.networks.secondary.vlan} description" = "Secondary WAN"
     "vif ${var.config.networks.management.vlan} address"     = var.config.networks.management.router_cidr
     "vif ${var.config.networks.management.vlan} description" = "management"
+    "vif ${var.config.networks.okd.vlan} address"     = var.config.networks.okd.router_cidr
+    "vif ${var.config.networks.okd.vlan} description" = "okd"
   }
 }
 

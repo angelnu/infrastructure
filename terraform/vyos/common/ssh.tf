@@ -6,11 +6,11 @@ resource "vyos_config_block" "ssh_vyos_root_at_dev" {
   }
 }
 
-resource "vyos_config_block" "ssh_vyos_anunez_at_mac" {
-  path = "system login user vyos authentication public-keys anunez@mac"
+resource "vyos_config_block" "ssh_vyos_angel_nix" {
+  path = "system login user vyos authentication public-keys angel@nix"
   configs = {
-    "type" = "ecdsa-sha2-nistp521",
-    "key"  = "AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAC/8OR+845gri1Ov0FQDy52mD4ve3f/KXVl8DDyAqowpqTCQbFqu8qV/Jlc0px1fIU74gfcM1NgcqCCtzA3gMEwdQAfNH6+xP9icVKjkQoE3qFWNbfJs9SkAiIaB2yp84/Iu2oY2JjbWQUqoYJM9JXwWtoFjVCIY+a/APeFCaHPZbX4bQ=="
+    "type" = "ssh-ed25519",
+    "key" = "AAAAC3NzaC1lZDI1NTE5AAAAIMo5WSbzKExEfFp/wGAtdPuzI0Fp0TDryLP1MZ61XgHd",
   }
 }
 

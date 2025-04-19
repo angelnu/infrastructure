@@ -38,12 +38,14 @@ resource "unifi_device" "switch_e_workroom" {
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
-        number          = 9
+        name                = "Long corridor"
+        number              = 9
+        op_mode             = "aggregate"
+        aggregate_num_ports = 2
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
+        name            = "Long corridor"
         number          = 10
         #port_profile_id = data.unifi_port_profile.all.id
     }

@@ -61,72 +61,42 @@ resource "unifi_device" "switch_e_livingroom" {
 
 
 resource "unifi_device" "switch_living_room" {
-    mac      = "d0:21:f9:de:ac:39"
-    name     = "Switch Livingroom"
+    mac      = "9c:05:d6:5e:cd:c6"
+    name     = "Switch Livingroom Backup"
     site     = "default"
     port_override {
-        name            = "Homematic Raspi GW"
+        name            = "TBD"
         number          = 1
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "NUC 4"
+        name            = "TBD"
         number          = 2
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Lora AP"
+        name            = "TBD"
         number          = 4
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Switch Alicia"
+        name            = "TBD"
+        number          = 5
+        #port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Alicia"
+        number          = 6
+        #port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "TV Livingroom"
         number          = 7
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "Switch Livingroom TV"
+        name            = "Switch E Livingroom"
         number          = 8
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NUC 3-up"
-        number          = 9
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NUC 3-down"
-        number          = 10
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NUC 2-up"
-        number          = 11
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NUC 2-down"
-        number          = 12
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NUC 1-up"
-        number          = 13
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NUC 1-down"
-        number          = 14
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NAS-up"
-        number          = 15
-        #port_profile_id = data.unifi_port_profile.all.id
-    }
-    port_override {
-        name            = "NAS-down"
-        number          = 16
         #port_profile_id = data.unifi_port_profile.all.id
     }
 }

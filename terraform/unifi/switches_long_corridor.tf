@@ -3,37 +3,46 @@ resource "unifi_device" "switch_e_long_corridor" {
     name     = "Switch E Long Corridor"
     site     = "default"
     port_override {
-        name            = "TBD"
+        name            = "Guestroom"
         number          = 1
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
+        name            = "Bedroom"
         number          = 2
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
-        number          = 3
+        name                = "Workroom"
+        number              = 3
+        op_mode             = "aggregate"
+        aggregate_num_ports = 2
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
+        name            = "Workroom"
         number          = 4
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
+        name                = "Livingroom"
+        number              = 5
+        op_mode             = "aggregate"
+        aggregate_num_ports = 2
+        #port_profile_id = data.unifi_port_profile.all.id
+    }
+    port_override {
+        name            = "Livingroom"
         number          = 6
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
+        name            = "pve5"
         number          = 7
         #port_profile_id = data.unifi_port_profile.all.id
     }
     port_override {
-        name            = "TBD"
+        name            = "switch-corridor"
         number          = 8
         #port_profile_id = data.unifi_port_profile.all.id
     }

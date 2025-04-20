@@ -3,8 +3,6 @@ resource "unifi_network" "lte" {
   dhcp_enabled        = false
   dhcp_lease          = 86400
   dhcp_relay_enabled  = false
-  dhcp_start          = "192.168.62.6"
-  dhcp_stop           = "192.168.62.254"
   dhcpd_boot_enabled  = false
   domain_name         = "lte"
   igmp_snooping       = false
@@ -12,7 +10,7 @@ resource "unifi_network" "lte" {
   ipv6_ra_enable      = true
   name                = "lte"
   network_group       = "LAN"
-  purpose             = "corporate"
+  purpose             = "vlan-only"
   site                = "default"
   subnet              = "192.168.62.0/24"
   vlan_id             = 2
@@ -25,8 +23,6 @@ resource "unifi_network" "fritzbox" {
   dhcp_enabled       = false
   dhcp_lease         = 86400
   dhcp_relay_enabled = false
-  dhcp_start         = "192.168.63.6"
-  dhcp_stop          = "192.168.63.254"
   dhcpd_boot_enabled = false
   #domain_name         = "fritzbox"
   igmp_snooping       = false
@@ -41,27 +37,43 @@ resource "unifi_network" "fritzbox" {
   wan_dns             = []
   wan_egress_qos      = 0
 }
-resource "unifi_network" "LAN" {
+
+data "unifi_network" "LAN" {
+  name = "Default"
+}
+
+resource "unifi_network" "management" {
   dhcp_dns            = []
   dhcp_enabled        = false
-  dhcp_lease          = 86400
-  dhcp_relay_enabled  = false
-  dhcp_start          = "192.168.1.6"
-  dhcp_stop           = "192.168.1.254"
   dhcpd_boot_enabled  = false
-  domain_name         = "localdomain"
   igmp_snooping       = false
-  ipv6_interface_type = "none"
   ipv6_ra_enable      = false
-  name                = "Default"
+  name                = "management"
   network_group       = "LAN"
-  purpose             = "corporate"
+  purpose             = "vlan-only"
   site                = "default"
-  subnet              = "192.168.0.0/19"
-  vlan_id             = 0
+  subnet              = "192.168.250.0/24"
+  vlan_id             = 250
   wan_dns             = []
   wan_egress_qos      = 0
 }
+
+resource "unifi_network" "okd" {
+  dhcp_dns            = []
+  dhcp_enabled        = false
+  dhcpd_boot_enabled  = false
+  igmp_snooping       = false
+  ipv6_ra_enable      = false
+  name                = "okd"
+  network_group       = "LAN"
+  purpose             = "vlan-only"
+  site                = "default"
+  subnet              = "192.168.251.0/24"
+  vlan_id             = 251
+  wan_dns             = []
+  wan_egress_qos      = 0
+}
+
 resource "unifi_network" "pueblo_modem" {
   dhcp_dns            = []
   dhcp_enabled        = false

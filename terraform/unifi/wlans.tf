@@ -12,7 +12,7 @@ resource "unifi_wlan" "casa" {
   minimum_data_rate_5g_kbps = 0
   multicast_enhance         = false
   name                      = "casa"
-  network_id                = unifi_network.LAN.id
+  network_id                = data.unifi_network.LAN.id
   no2ghz_oui                = true
   passphrase                = var.unifi_wlan_password
   pmf_mode                  = "optional"

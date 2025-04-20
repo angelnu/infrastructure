@@ -3,27 +3,38 @@ resource "vyos_config_block_tree" "load_balance_wan" {
   configs = merge(
 
     merge([
-      for delta, interface in [var.config.networks.lan.device, format("%s%s", var.config.networks.lan.device, var.config.networks.lan.vrrp.nic_suffix), var.config.wireguard.device, "lo"] :
+      for delta, interface in flatten(concat(
+        [
+          for network in var.config.networks : [
+            network.device,
+            format("%s%s", network.device, network.vrrp.nic_suffix)
+          ]
+        ],
+        [
+          var.config.wireguard.device,
+          "lo"
+        ]
+      )) :
       merge(
         {
           # Exclude Multicast traffic (such as VRRP)
-          "rule ${10 + delta} description"         = "Exclude multicast traffic"
-          "rule ${10 + delta} exclude"             = ""
-          "rule ${10 + delta} inbound-interface"   = interface
-          "rule ${10 + delta} destination address" = "224.0.0.0/4"
-          "rule ${10 + delta} protocol"            = "all"
+          "rule ${3 * delta + 1} description"         = "Exclude multicast traffic"
+          "rule ${3 * delta + 1} exclude"             = ""
+          "rule ${3 * delta + 1} inbound-interface"   = interface
+          "rule ${3 * delta + 1} destination address" = "224.0.0.0/4"
+          "rule ${3 * delta + 1} protocol"            = "all"
 
           # Exclude local traffic
-          "rule ${20 + delta} description"         = "Exclude multicast traffic"
-          "rule ${20 + delta} exclude"             = ""
-          "rule ${20 + delta} inbound-interface"   = interface
-          "rule ${20 + delta} destination address" = "192.168.0.0/16"
-          "rule ${20 + delta} protocol"            = "all"
+          "rule ${3 * delta + 2} description"         = "Exclude multicast traffic"
+          "rule ${3 * delta + 2} exclude"             = ""
+          "rule ${3 * delta + 2} inbound-interface"   = interface
+          "rule ${3 * delta + 2} destination address" = "192.168.0.0/16"
+          "rule ${3 * delta + 2} protocol"            = "all"
 
           # Load balance all the remaining traffic arriving via the lan
-          "rule ${100 + delta} inbound-interface" = interface,
-          "rule ${100 + delta} failover"          = "",
-          "rule ${100 + delta} protocol"          = "all"
+          "rule ${3 * delta + 3} inbound-interface" = interface,
+          "rule ${3 * delta + 3} failover"          = "",
+          "rule ${3 * delta + 3} protocol"          = "all"
         },
         { for interface, weight in
           merge(
@@ -34,7 +45,7 @@ resource "vyos_config_block_tree" "load_balance_wan" {
               } if network.zone == "wan"
             ]...
           ) :
-          "rule ${100 + delta} interface ${interface} weight" => weight
+          "rule ${3 * delta + 3} interface ${interface} weight" => weight
         }
       )
     ]...),

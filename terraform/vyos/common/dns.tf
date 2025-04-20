@@ -2,8 +2,13 @@ resource "vyos_config_block_tree" "dns" {
   path = "service dns forwarding"
 
   configs = {
-    "cache-size"     = "200",
-    "allow-from"     = jsonencode([var.config.networks.lan.cidr, var.config.wireguard.clients_cidr])
+    "cache-size" = "200",
+    "allow-from" = jsonencode(
+      concat(
+        [for network in var.config.networks : network.cidr],
+        [var.config.wireguard.clients_cidr]
+      )
+    )
     "listen-address" = jsonencode([var.config.networks.lan.vrrp.ip, var.config.networks.lan.router])
     "system"         = ""
   }

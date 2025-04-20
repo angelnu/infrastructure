@@ -167,8 +167,8 @@ common:
         management:
             zone: ENC[AES256_GCM,data:d9+IqoqLVq3Ppg==,iv:1jnSRO21oUqdXigVqcykovlp0DVkO+tH4mYucj50tDU=,tag:1rRjkMdrorK/ZLyDvCdWyw==,type:str]
             cidr: ENC[AES256_GCM,data:RwecUaL+hFCs0TtmHi0PJw==,iv:q6nIQ1tc2nX9DG935oRx5YnQW1/e67lBWmW4Xs20250=,tag:xYbP1JruZa28GMycmcq9kA==,type:str]
-            device: ENC[AES256_GCM,data:QD6KOliX,iv:+XbtjI5jq9cNm4MzLuBqJSz5gPnmNNwRB/udQFpv+5c=,tag:/l1MLtycz0BOLAFQzi6Ibw==,type:str]
-            vlan: ENC[AES256_GCM,data:oA==,iv:SKIVUf/moNLvuuD6F5vo/ZKy5pVowGrE1D5HHnLXVbY=,tag:MgEWL/pN1CKZYRxOC3ykvA==,type:int]
+            device: ENC[AES256_GCM,data:bLX3JMWHEg4=,iv:TIt/fAFZxNEi95YDtijakr8DzvOkIceoawz6R5mkFXA=,tag:VajXxZxyfqUklQfKkkmzFg==,type:str]
+            vlan: ENC[AES256_GCM,data:kgD8,iv:hsBVov5prX8lBIivwDRYFZh76j5l94iWec8cTlyHjuM=,tag:+fXpGnem4ztdycH4p1s5jw==,type:int]
             vrrp:
                 ip: ENC[AES256_GCM,data:g6Dho8G1nD3gUMdcVA==,iv:q5nmJLEcj/Io+YPhT37oUh9C0alqlLV8K11BUFRTv+g=,tag:iDLHObjEqOAp8qlTT2+9Aw==,type:str]
                 ip_cidr: ENC[AES256_GCM,data:QtoED+Nh9F6u8cJZe6nvkg==,iv:TsLWqnJLiyaLWBjEPDJLa8xg3B6FkTXsRAFAQnrP9xs=,tag:I92oJtOgMac2nygySPf8xw==,type:str]
@@ -267,8 +267,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2025-04-19T21:34:24Z"
-    mac: ENC[AES256_GCM,data:zkk2/RCoFQoM5MnyWp+VkBs1lb/OxncSS+FuJmOLYxnHiEkse/AOqrx7U6PuLxDfEelvMQlHnFjQ+WmJSBxP9SucGsbz1NfzdNJQxaNSoZlSYqxt17IoIN2AyvCxieo+dYEx4Tzbc0OE+k7lY1LGEzM5KmGKfCx26zO78d566gs=,iv:a4Sl1m9ni8AliNuc9l5WH4jI2gnKwfKz3eBr/+j3xDI=,tag:pRniVYkVGT9Tj6oHNTNTqQ==,type:str]
+    lastmodified: "2025-04-20T00:13:27Z"
+    mac: ENC[AES256_GCM,data:QT5+Q+cD/Otc3VVU3QqzTRHkQEKcGqFTNegb0+nNEABCpXXviNuHkx8GLzWKALDZd1NYm6dRIICDu7hhZHMd0Am74n25M4B+V6Xlw+uu1IRkTJ/iYCPRubhxxKSXOIjdPLrBwNqSlxmrJOs1JfD6lVi5LOdKNGn+iJ+WlFLSEPw=,iv:0P2+w5Ips9DEP+lgrvrs9x9cNf6t/bl8Nf2n2gzCYek=,tag:GF6zN//7LpWJgvbGqGT0Rw==,type:str]
     pgp:
         - created_at: "2022-03-27T15:21:25Z"
           enc: |

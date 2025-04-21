@@ -8,6 +8,8 @@ apps:
         client_secret: ENC[AES256_GCM,data:GY84Bu1TVuLkrOd9gAuOf5hiC5eU/xOXdrGt+B3OTRPi8k+HKEeGz3/rFygZbmLWJdM=,iv:3lKWC3WXImIh8VmlBmRJtEIoWMajmAOh6KsPGbRxYwA=,tag:aNYNEzP12QMgAVN+jJ9LZQ==,type:str]
     recipes:
         client_secret: ENC[AES256_GCM,data:xlbGSInJbAL5xSXfhr6y6wuKUSEhxuS/z1K2za4W0I3sUDay2Jq7UikGh3H0ociaZWs=,iv:1XOLvhSLmzwK7Plpx32MaRk/JNoASKgXMyAN+i/XG/0=,tag:FJjq9NbVWuOenDvn1uTzUw==,type:str]
+    openshift:
+        client_secret: ENC[AES256_GCM,data:EK0BIC/7H43fmqCU/h+BwmtWLwuvw3JCenz0g6cFNkQ=,iv:voJlHv6DRIAlqDb1Qzdq+QOwupRtvJDWK+sZ6+jCe8I=,tag:H5YJhchmIXlAQM0pYMNFKw==,type:str]
 captcha:
     #ENC[AES256_GCM,data:cMM=,iv:BXSOqWZThSQBbvd9Z4rWm3E5HWxfb82XUwYGfruJhEE=,tag:CvSRXfLu6adO+haJhfFDXQ==,type:comment]
     private_key: ENC[AES256_GCM,data:LsVm3rLJ/SOii35RKCEKQrrnCHgWIEo9zqvlInMnmHNPuvoQ9Lxm/g==,iv:MiBinkA36gBTDVfsyTVWbVpXS/kPOMnRGo8vjHve6H4=,tag:Na6N5MD2Fe2HRzSeNUUGYA==,type:str]
@@ -185,8 +187,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-09-01T20:19:32Z"
-    mac: ENC[AES256_GCM,data:WyeAvATAQ1So75KXzsNkNpoOJkSwGxvvpg/JVEr/ZHlzp6q8Fm3s8BSmu3WwnUPKVHrMDlDTBueVN+ENhv9v4D2rPspMgsmtuKKNmvTepEIrNqzx6q04kwILYVrJgN1Id1sP59Zjr+xQ746oP8iTfuE5y/s54PYctZmupt+e8Bg=,iv:2M2PO7h3y4fEn5EPi9VzuiM/QJYBIvylCQSAL+pC3OA=,tag:uGf8J6CR3SS5y6LayXam8A==,type:str]
+    lastmodified: "2025-04-21T00:04:32Z"
+    mac: ENC[AES256_GCM,data:DgVJwITJ3z/UpxfsVCIV4O980udOUS3/t6xsGaObTVVbaM/y9TzozNl8q/sr/OnR8tFVU5FmK+mcFKQjh/gHpDzhP1szLmySJ9CpCY/CdLaefI74zeMIsDGUqYV0/Ig+JsS+MOd79qg565/O33dPndmGPNVSC4mbCOQKmbX1Mjg=,iv:BVTtaHvXkxsJ2LD0kME/k6QFpYkv/jKsT0C2rEmrBf0=,tag:IORj0Wq9MkBIVGlDMXLlsQ==,type:str]
     pgp:
         - created_at: "2022-03-27T15:24:57Z"
           enc: |
@@ -209,4 +211,4 @@ sops:
             -----END PGP MESSAGE-----
           fp: E61087FD0DC8B3AA734061498564C79FC27F08E2
     unencrypted_suffix: _unencrypted
-    version: 3.9.0
+    version: 3.9.4

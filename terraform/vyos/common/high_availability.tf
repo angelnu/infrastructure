@@ -4,7 +4,7 @@ resource "vyos_config_block_tree" "high_availability_vrrp" {
 
   configs = merge(
     merge([
-      for network_name in sort([for network_name, network in var.config.networks : network_name if contains(keys(network), "vrrp")]) :
+      for network_name in [for network_name, network in var.config.networks : network_name if contains(keys(network), "vrrp")] :
       {
         // group for interface
         "group ${network_name} vrid"                                                      = var.config.networks[network_name].vrrp.vrid
@@ -19,7 +19,7 @@ resource "vyos_config_block_tree" "high_availability_vrrp" {
 
     {
       # Switch all interfaces floating IP together
-      "sync-group MAIN member" = jsonencode(sort([for network_name, network in var.config.networks : network_name if contains(keys(network), "vrrp")]))
+      "sync-group MAIN member" = jsonencode([for network_name, network in var.config.networks : network_name if contains(keys(network), "vrrp")])
     }
   )
   depends_on = [

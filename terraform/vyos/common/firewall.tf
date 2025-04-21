@@ -11,7 +11,7 @@ resource "vyos_config_block_tree" "firewall" {
           [for network in var.config.networks : network.zone]
         ) :
         {
-          "group interface-group IG_${zone} interface" = jsonencode(sort(concat(
+          "group interface-group IG_${zone} interface" = jsonencode(concat(
             # main NIC
             [for network in var.config.networks : network.device if network.zone == zone],
             # floating IP NIC
@@ -20,7 +20,7 @@ resource "vyos_config_block_tree" "firewall" {
             [for nic in [var.config.wireguard.device] : nic if zone == "lan"],
             # Podman NIC
             [for nic in [var.config.containers.network.nic] : nic if zone == "lan"],
-          )))
+          ))
         }
       ]...
     ),

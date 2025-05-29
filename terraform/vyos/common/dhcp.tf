@@ -22,6 +22,7 @@ resource "vyos_config_block_tree" "dhcp" {
     {
       "high-availability source-address" = var.config.networks.lan.router
       "high-availability name"           = "lan"
+      "high-availability mode"           = "active-active"
       "high-availability remote"         = var.config.networks.lan.dhcp.failover.remote
       "high-availability status"         = var.config.networks.lan.dhcp.failover.status
     },

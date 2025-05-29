@@ -1,9 +1,9 @@
 terraform {
   required_providers {
     vyos = {
-      source = "Foltik/vyos"
-      #source= "github.com/foltik/vyos"
-      version = "0.3.3"
+      source = "angelnu/vyos"
+      #source = "Foltik/vyos"
+      version = "0.4.0"
     }
   }
 }

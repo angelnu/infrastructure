@@ -78,9 +78,6 @@ resource "vyos_config_block_tree" "failover_routes" {
       ) if network.zone == "wan"
     ]...
   )
-  depends_on = [
-    vyos_config_block_tree.vpn_wireguard
-  ]
   timeouts {
     create  = "60m"
     delete  = "60m"

@@ -26,8 +26,22 @@ resource "authentik_outpost" "ingress_outpost" {
       nginx.ingress.kubernetes.io/enable-global-auth: "false"
     kubernetes_ingress_secret_name: authentik-outpost-tls
     kubernetes_service_type: ClusterIP
-    kubernetes_disabled_components: []
+    kubernetes_disabled_components: ["ingress"]
     kubernetes_image_pull_secrets: []
+    kubernetes_json_patches:
+      deployment:
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: shm-volume
+            emptyDir:
+              medium: Memory
+              sizeLimit: 1Gi # Example: 1 GiB
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - name: shm-volume
+            mountPath: /dev/shm
     EOT
   ))
 }

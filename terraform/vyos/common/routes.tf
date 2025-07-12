@@ -16,19 +16,11 @@ resource "vyos_config_block_tree" "static_routes" {
       [for ping in var.config.ping_test_ips :
         merge(
           [for network_name, network in var.config.networks :
-            merge(
-              [for device, destination in
-                {
-                  "${network.device}" = "${ping}/32"
-                  # Make VRRP more specific so it gets prioriy by when routing
-                  "${network.device}${network.vrrp.nic_suffix}" = "${replace(ping, "/\\d+$/", "0")}/24"
-                } :
-                {
-                  "${destination} next-hop ${network.nexthop} distance"  = "100"
-                  "${destination} next-hop ${network.nexthop} interface" = device
-                }
-              ]...
-            ) if network.zone == "wan"
+            {
+              "${ping}/32 next-hop ${network.nexthop} distance"  = 100
+              "${ping}/32 next-hop ${network.nexthop} interface" = network.device
+            }
+            if network.zone == "wan"
           ]...
       )]...
     ),
@@ -50,33 +42,48 @@ resource "vyos_config_block_tree" "failover_routes" {
 
   configs = merge(
     # Default routes
-    [for network_name, network in var.config.networks :
-      merge(
-        [for destination in [
-          {
-            address   = "0.0.0.0/0"
-            metric    = 10 + network.priority # Room for up to 10 wan NICs as we should stay within [1-19] for the metric - it should be plenty :-)
-            interface = network.device
-          },
-          {
-            address   = "0.0.0.0/1" # Make VRRP more specific so it gets prioriy by when routing
-            metric    = network.priority
-            interface = "${network.device}${network.vrrp.nic_suffix}"
-          },
-          {
-            address   = "128.0.0.0/1"
-            metric    = network.priority
-            interface = "${network.device}${network.vrrp.nic_suffix}"
-          }
-          ] : {
-          "${destination.address} next-hop ${network.nexthop} metric"       = destination.metric
-          "${destination.address} next-hop ${network.nexthop} interface"    = destination.interface
-          "${destination.address} next-hop ${network.nexthop} check target" = jsonencode(var.config.ping_test_ips)
+    merge(
+      [for network_name, network in var.config.networks :
+        merge(
+          [for destination in [
+            {
+              address   = "0.0.0.0/0"
+              metric    = 10 + network.priority # Room for up to 10 wan NICs as we should stay within [1-19] for the metric - it should be plenty :-)
+              interface = network.device
+            },
+            {
+              address   = "0.0.0.0/1" # Make VRRP more specific so it gets prioriy by when routing
+              metric    = network.priority
+              interface = "${network.device}${network.vrrp.nic_suffix}"
+            },
+            {
+              address   = "128.0.0.0/1"
+              metric    = network.priority
+              interface = "${network.device}${network.vrrp.nic_suffix}"
+            }
+            ] : {
+            "${destination.address} next-hop ${network.nexthop} metric"       = destination.metric
+            "${destination.address} next-hop ${network.nexthop} interface"    = destination.interface
+            "${destination.address} next-hop ${network.nexthop} check target" = jsonencode(var.config.ping_test_ips)
 
-          }
-        ]...
-      ) if network.zone == "wan"
-    ]...
+            }
+          ]...
+        ) if network.zone == "wan"
+      ]...
+    ),
+    merge(
+      [for ping in var.config.ping_test_ips :
+        merge(
+          [for network_name, network in var.config.networks :
+            {
+              "${ping}/32 next-hop ${network.nexthop} metric"  = network.priority
+              "${ping}/32 next-hop ${network.nexthop} interface" = "${network.device}${network.vrrp.nic_suffix}"
+              "${ping}/32 next-hop ${network.nexthop} check target" = network.nexthop
+            }
+            if network.zone == "wan"
+          ]...
+      )]...
+    )
   )
   timeouts {
     create  = "60m"

@@ -6,7 +6,7 @@ resource "authentik_provider_proxy" "default_ingress" {
   external_host          = "https://authentik.pub.${var.main_home_domain}"
   cookie_domain          = var.main_home_domain
   access_token_validity  = "hours=1"
-  refresh_token_validity = "days=30"
+  refresh_token_validity = "days=1"
 }
 
 resource "authentik_application" "default_ingress" {

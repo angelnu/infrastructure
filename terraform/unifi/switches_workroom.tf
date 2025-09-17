@@ -3,52 +3,59 @@ resource "unifi_device" "switch_e_workroom" {
   name = "Switch E Workroom"
   site = "default"
   port_override {
-    name   = "TBD"
+    name   = "Switch workroom"
     number = 1
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "TBD"
+    name   = "Right Base - right port"
     number = 2
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "TBD"
+    name   = "Left Base - right port"
     number = 3
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "TBD"
+    name   = "Switch Alicia"
     number = 4
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "TBD"
+    name   = "Desktop Right"
+    number = 5
+    #port_profile_id = data.unifi_port_profile.all.id
+  }
+  port_override {
+    name   = "Desktop Left"
     number = 6
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "TBD"
+    name   = "Hub Left"
     number = 7
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "TBD"
+    name   = "Hub Right"
     number = 8
     #port_profile_id = data.unifi_port_profile.all.id
   }
-  port_override {
-    name                = "Long corridor"
-    number              = 9
-    op_mode             = "aggregate"
-    aggregate_num_ports = 2
-    #port_profile_id = data.unifi_port_profile.all.id
-  }
-  port_override {
-    name   = "Long corridor"
-    number = 10
-    #port_profile_id = data.unifi_port_profile.all.id
-  }
+
+  # Terraform provider does not support new aggregation API
+  # port_override {
+  #   name                = "Long corridor"
+  #   number              = 9
+  #   op_mode             = "aggregate"
+  #   aggregate_num_ports = 2
+  #   #port_profile_id = data.unifi_port_profile.all.id
+  # }
+  # port_override {
+  #   name   = "Long corridor"
+  #   number = 10
+  #   #port_profile_id = data.unifi_port_profile.all.id
+  # }
 }
 
 
@@ -58,32 +65,37 @@ resource "unifi_device" "switch_workroom" {
   name = "Switch Workroom"
   site = "default"
   port_override {
-    name   = "Switch Guestroom PC"
+    name   = "Switch Guestroom"
     number = 1
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "Switch Guestroom Right"
+    name   = "Right Base - left port"
     number = 2
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "AP Guestroom"
+    name   = "Left Base - left port"
     number = 3
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "Chromecast Ultra"
+    name   = "Empty"
     number = 4
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "Homematic Gateway"
+    name   = "Empty"
+    number = 5
+    #port_profile_id = data.unifi_port_profile.all.id
+  }
+  port_override {
+    name   = "Empty"
     number = 6
     #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
-    name   = "Dragino AP"
+    name   = "Printer"
     number = 7
     #port_profile_id = data.unifi_port_profile.all.id
   }

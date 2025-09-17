@@ -4,7 +4,7 @@ resource "unifi_network" "lte" {
   dhcp_lease          = 86400
   dhcp_relay_enabled  = false
   dhcpd_boot_enabled  = false
-  domain_name         = "lte"
+  #domain_name         = "lte"
   igmp_snooping       = false
   ipv6_interface_type = "none"
   ipv6_ra_enable      = true

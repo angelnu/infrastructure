@@ -3,6 +3,10 @@ terraform {
     unifi = {
       source  = "paultyng/unifi"
       version = "0.41.0"
+      #source = "ubiquiti-community/unifi"
+      #version = "0.41.3"
+      # source = "filipowm/unifi"
+      # version = "1.0.0"
     }
   }
 }

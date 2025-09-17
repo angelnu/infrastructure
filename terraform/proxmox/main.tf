@@ -2,7 +2,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "Telmate/proxmox"
-      version = "3.0.1-rc9"
+      version = "3.0.2-rc04"
     }
     linux = {
       source  = "TelkomIndonesia/linux"

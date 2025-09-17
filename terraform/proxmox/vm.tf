@@ -7,7 +7,8 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
   ]
 
   name        = each.key
-  desc        = "tf description"
+  description = "tf description"
+  tags        = "tf"
   target_node = each.value.node
   #qemu_os = 126
   os_type = "cloud-init"
@@ -68,8 +69,11 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
     type = "socket"
   }
 
-  cores   = 4
-  sockets = each.value.sockets
+  cpu {
+    cores = 4
+    sockets   = each.value.sockets
+  }
+
   memory  = each.value.memory
   scsihw  = "virtio-scsi-single"
 

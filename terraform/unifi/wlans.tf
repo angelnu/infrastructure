@@ -15,12 +15,12 @@ resource "unifi_wlan" "casa" {
   network_id                = data.unifi_network.LAN.id
   no2ghz_oui                = true
   passphrase                = var.unifi_wlan_password
-  pmf_mode                  = "optional"
+  pmf_mode                  = "required"
   security                  = "wpapsk"
   site                      = "default"
   uapsd                     = true
   user_group_id             = unifi_user_group.default.id
   wlan_band                 = "both"
   wpa3_support              = true
-  wpa3_transition           = true
+  wpa3_transition           = false
 }

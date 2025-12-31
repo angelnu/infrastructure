@@ -5,51 +5,31 @@ resource "unifi_device" "switch_e_long_corridor" {
   port_override {
     name   = "Guestroom"
     number = 1
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Bedroom"
     number = 2
-    #port_profile_id = data.unifi_port_profile.all.id
   }
-  
-  # Terraform provider does not support new aggregation API
-  # port_override {
-  #   name                = "Workroom"
-  #   number              = 3
-  #   op_mode             = "aggregate"
-  #   aggregate_num_ports = 2
-  #   #port_profile_id = data.unifi_port_profile.all.id
-  # }
-  # port_override {
-  #   name   = "Workroom"
-  #   number = 4
-  #   #port_profile_id = data.unifi_port_profile.all.id
-  # }
 
-  # Terraform provider does not support new aggregation API
-  # port_override {
-  #   name                = "Livingroom"
-  #   number              = 5
-  #   op_mode             = "aggregate"
-  #   aggregate_num_ports = 2
-  #   #port_profile_id = data.unifi_port_profile.all.id
-  # }
-  # port_override {
-  #   name   = "Livingroom"
-  #   number = 6
-  #   #port_profile_id = data.unifi_port_profile.all.id
-  # }
+  port_override {
+    name    = "Switch E Workroom"
+    number  = 3
+    op_mode = "aggregate"
+  }
+
+  port_override {
+    name    = "Switch E Livingroom"
+    number  = 5
+    op_mode = "aggregate"
+  }
 
   port_override {
     name   = "pve5"
     number = 7
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "switch-corridor"
     number = 8
-    #port_profile_id = data.unifi_port_profile.all.id
   }
 }
 

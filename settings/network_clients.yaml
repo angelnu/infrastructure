@@ -15,7 +15,7 @@ hosts:
       is_dhcp: ENC[AES256_GCM,data:7Kaw8fc=,iv:ShiFT2/Xrc/I0m5M5QaqZpEOOmI/8jggja8K19exBGI=,tag:3XVytvqVjhUYBbqYMk93aQ==,type:bool]
       note: null
     - name: ENC[AES256_GCM,data:Svw5keLy96IgK93Ok3RMMpDQ2A==,iv:E1/l+icOZydxlDXXkIN2DKI3Ff6/wInF7I/GxAOiexE=,tag:i3mdWljfqkv1ADDwjjPJjQ==,type:str]
-      mac: ENC[AES256_GCM,data:oqWqsLqc4lr429jJzNnxyZ0=,iv:wbjKPtl8DFfUm9vB7gnjd2RWbNefN43oFEMa4RjXDzI=,tag:5qwIMBeqKUtPhgSTu3KdQg==,type:str]
+      mac: ENC[AES256_GCM,data:+0oiahFWPHy73Ob09qLm2vU=,iv:neX4GUblUJxTrgmUJusSsWTpBixkkf2YFk+2kKiiG78=,tag:eG441GOStCcNhY5dDfN98w==,type:str]
       ip: ENC[AES256_GCM,data:EL54sP9W+Sx3Hjo=,iv:oS+S+lVSHvLv4jy/wW/CP9MJEZ/ioDVQJJwxqFWMtNM=,tag:wweGjm6L82gi8WmzxG2kNA==,type:str]
       is_dhcp: ENC[AES256_GCM,data:7Kaw8fc=,iv:ShiFT2/Xrc/I0m5M5QaqZpEOOmI/8jggja8K19exBGI=,tag:3XVytvqVjhUYBbqYMk93aQ==,type:bool]
       note: null
@@ -312,11 +312,6 @@ hosts:
     - name: ENC[AES256_GCM,data:xUx1WNeD5UbmNg==,iv:vsMqc1S2Au4ud2LsBam6MCaAyKuDnUvNojL5ftBkkUs=,tag:cMVPtZ27PMk/YD68LF2OyQ==,type:str]
       mac: ENC[AES256_GCM,data:q80u9HatNh8k+bwLFrIhuJ0=,iv:dmJVZocGaMIOJBLMCVFhlFwgyd8gcANLuheui03vl9w=,tag:95VAL9ky+feiLVGuQ6M+XA==,type:str]
       ip: ENC[AES256_GCM,data:UhxKIc3ZmhosG+uB,iv:dQW/X6V/LniaVmRi0co+ZYHIsvn/saYuJK0dfL7d4+c=,tag:DEddiyvn79wreEdDjcaNtQ==,type:str]
-      is_dhcp: ENC[AES256_GCM,data:7Kaw8fc=,iv:ShiFT2/Xrc/I0m5M5QaqZpEOOmI/8jggja8K19exBGI=,tag:3XVytvqVjhUYBbqYMk93aQ==,type:bool]
-      note: null
-    - name: ENC[AES256_GCM,data:p1xHZPKYIStgYQ==,iv:0GlZOgHxwErv9B6w/Gk2YupcckdUgBHKZF02xiTR508=,tag:C0vZMqMRXx/Um6Z+kifZOA==,type:str]
-      mac: ENC[AES256_GCM,data:+0oiahFWPHy73Ob09qLm2vU=,iv:neX4GUblUJxTrgmUJusSsWTpBixkkf2YFk+2kKiiG78=,tag:eG441GOStCcNhY5dDfN98w==,type:str]
-      ip: ENC[AES256_GCM,data:LLhNhkYVDIHw4YJB,iv:gYo7Q+zmeekvA3SIjMunNxuLtryGDim4Kfr2re+KY4Y=,tag:meaaUcpPc8G+UO3hh6rcnQ==,type:str]
       is_dhcp: ENC[AES256_GCM,data:7Kaw8fc=,iv:ShiFT2/Xrc/I0m5M5QaqZpEOOmI/8jggja8K19exBGI=,tag:3XVytvqVjhUYBbqYMk93aQ==,type:bool]
       note: null
     - name: ENC[AES256_GCM,data:PO1F+rj7wQyIZ+JF4II=,iv:PDcJ8Pwu+4U8NqQ749m4U+GYsBB1+7kmMw09UGLj3lY=,tag:nlh57ZGEyEDh3ySC0kBuSA==,type:str]
@@ -1034,8 +1029,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2025-11-09T18:27:56Z"
-    mac: ENC[AES256_GCM,data:6yEPmkbdSEf1oRngkiQDweCfpXzJxIOTK4Vv9UAhJuh9cAzxDB/Po8kcJvWsJWwYQhup2GMHV1RwE5zAUgwkamR1XOLIs4ikzdv2vpdV4ABKzuUaWk0TsFSeJ8e2CdyPAey7D9pG6i/UBAKw9EyyWUMIn4mwOIM+bEs2713Fzf8=,iv:57t/op/HUHM5IG9sMWvmCSP2jSwbDvL0VwnwAv2NQiA=,tag:/B+eyRTCfKUvmkPW+HFT0A==,type:str]
+    lastmodified: "2025-11-22T19:04:04Z"
+    mac: ENC[AES256_GCM,data:pQ6opnlLwJhuGj3jY2bKgToxYao7fiyoWeCLzLJbmxJWb2e0/eilnOn1HbLnn51IzUdDOrR2Mzq+5mhBAapZ4KC/zEzYJYINLnXsCYFW+EVm5jSYSey760Ysno7o4s1gmIMXZGzwjiVpSTQlr1M2/nAHVJGyBY24siN9vdlWXgo=,iv:n5Is6E44Ybb2NSRjaTw6BxKQ6IyXdghxfTL+R+8VV3A=,tag:dgFa9484cQ7OqNRi4sehuw==,type:str]
     pgp:
         - created_at: "2022-03-27T15:40:32Z"
           enc: |

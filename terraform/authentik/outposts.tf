@@ -10,7 +10,7 @@ resource "authentik_outpost" "ingress_outpost" {
   ]
   service_connection = authentik_service_connection_kubernetes.local.id
   config = jsonencode(yamldecode(<<-EOT
-    authentik_host: https://authentik.pub.${var.main_home_domain}
+    authentik_host: https://authentik.pub.${var.cluster_domain}
     authentik_host_insecure: false
     authentik_host_browser: ""
     log_level: debug
@@ -54,7 +54,7 @@ resource "authentik_outpost" "ldap_outpost" {
   ]
   service_connection = authentik_service_connection_kubernetes.local.id
   config = jsonencode(yamldecode(<<-EOT
-    authentik_host: https://authentik.pub.${var.main_home_domain}
+    authentik_host: https://authentik.pub.${var.cluster_domain}
     authentik_host_insecure: false
     authentik_host_browser: ""
     log_level: debug

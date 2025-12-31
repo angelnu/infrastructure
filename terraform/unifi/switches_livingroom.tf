@@ -5,58 +5,41 @@ resource "unifi_device" "switch_e_livingroom" {
   port_override {
     name   = "TBD"
     number = 1
-    #aggregate_num_ports = 0
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "TBD"
     number = 2
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "TBD"
     number = 3
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "TBD"
     number = 4
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "homematic GW"
     number = 5
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Dragino AP"
     number = 6
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Switch Livingroom Backup"
     number = 7
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "TBD"
     number = 8
-    #port_profile_id = data.unifi_port_profile.all.id
   }
-  # Terraform provider does not support new aggregation API
-  # port_override {
-  #   name                = "TBD"
-  #   number              = 9
-  #   aggregate_num_ports = 2
-  #   op_mode             = "aggregate"
-  #   #port_profile_id = data.unifi_port_profile.all.id
-  # }
-  # port_override {
-  #     name            = "TBD"
-  #     number          = 10
-  #     aggregate_num_ports = 0
-  #     #port_profile_id = data.unifi_port_profile.all.id
-  # }
+
+  port_override {
+    name    = "Switch E Long Corridor"
+    number  = 9
+    op_mode = "aggregate"
+  }
 }
 
 

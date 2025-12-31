@@ -5,7 +5,7 @@ locals {
 resource "unifi_user" "user" {
   for_each = local.users
 
-  mac  = each.key
+  mac  = lower(each.key)
   name = each.value.name
 
   #Disabled -> requires an Unifi gateway

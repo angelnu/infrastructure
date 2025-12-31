@@ -7,12 +7,12 @@ resource "authentik_provider_oauth2" "gitea" {
   invalidation_flow      = authentik_flow.invalidation.uuid
   property_mappings      = data.authentik_property_mapping_provider_scope.oauth2.ids
   signing_key            = data.authentik_certificate_key_pair.generated.id
-  access_token_validity  = "hours=1"
+  access_token_validity  = "hours=24"
   refresh_token_validity = "days=30"
   allowed_redirect_uris = [
     {
       matching_mode = "strict",
-      url           = "https://git.${var.main_home_domain}/user/oauth2/authentik/callback"
+      url           = "https://git.${var.cluster_short_domain}/user/oauth2/authentik/callback"
     }
   ]
 }
@@ -21,5 +21,5 @@ resource "authentik_application" "gitea" {
   name              = "gitea app"
   slug              = "gitea-app"
   protocol_provider = authentik_provider_oauth2.gitea.id
-  meta_launch_url   = "https://git.${var.main_home_domain}"
+  meta_launch_url   = "https://git.${var.cluster_short_domain}"
 }

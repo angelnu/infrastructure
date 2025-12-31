@@ -22,8 +22,13 @@ variable "authentik_groups" {
   type        = any
 }
 
-variable "main_home_domain" {
-  description = "Home main domain"
+variable "cluster_domain" {
+  description = "Cluster domain"
+  type        = string
+}
+
+variable "cluster_short_domain" {
+  description = "Cluster short domain"
   type        = string
 }
 

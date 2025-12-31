@@ -1,5 +1,5 @@
 resource "authentik_brand" "default" {
-  domain              = var.main_home_domain
+  domain              = var.cluster_domain
   default             = false
   branding_title      = "Casa"
   branding_logo       = "/static/dist/assets/icons/icon_left_brand.svg"

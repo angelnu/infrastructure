@@ -5,42 +5,39 @@ resource "unifi_device" "switch_e_workroom" {
   port_override {
     name   = "Switch workroom"
     number = 1
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Right Base - right port"
     number = 2
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Left Base - right port"
     number = 3
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Switch Alicia"
     number = 4
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Desktop Right"
     number = 5
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Desktop Left"
     number = 6
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Hub Left"
     number = 7
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Hub Right"
     number = 8
-    #port_profile_id = data.unifi_port_profile.all.id
+  }
+  port_override {
+    name    = "Switch E Long Corridor"
+    number  = 9
+    op_mode = "aggregate"
   }
 
   # Terraform provider does not support new aggregation API
@@ -113,19 +110,12 @@ resource "unifi_device" "switch_workroom_pc_right" {
   name = "Switch Workroom PC Right"
   site = "default"
   port_override {
-    name   = "Switch Workroom"
+    name   = "Switch E Workroom"
     number = 1
-    #port_profile_id = data.unifi_port_profile.all.id
-  }
-  port_override {
-    name   = "Raspberry"
-    number = 2
-    #port_profile_id = data.unifi_port_profile.all.id
   }
   port_override {
     name   = "Port replicator"
     number = 5
-    #port_profile_id = data.unifi_port_profile.all.id
   }
 }
 
@@ -136,13 +126,7 @@ resource "unifi_device" "switch_workroom_pc_left" {
   name = "Switch Workroom PC Left"
   site = "default"
   port_override {
-    name   = "Switch Workroom"
+    name   = "Switch E Workroom"
     number = 1
-    #port_profile_id = data.unifi_port_profile.all.id
-  }
-  port_override {
-    name   = "Port Replicator"
-    number = 2
-    #port_profile_id = data.unifi_port_profile.all.id
   }
 }

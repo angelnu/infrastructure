@@ -40,13 +40,24 @@ data "sops_file" "authentik" {
   source_file = "${path.module}/settings/authentik.yaml"
 }
 module "authentik" {
-  source              = "./terraform/authentik"
-  authentik_api_url   = data.sops_file.authentik.data["api.url"]
-  authentik_api_token = data.sops_file.authentik.data["api.token"]
-  main_home_domain    = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
-  authentik_users     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
-  authentik_groups    = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
-  authentik_config    = yamldecode(nonsensitive(data.sops_file.authentik.raw))
+  source               = "./terraform/authentik"
+  authentik_api_url    = data.sops_file.authentik.data["api.url"]
+  authentik_api_token  = data.sops_file.authentik.data["api.token"]
+  cluster_domain       = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  cluster_short_domain = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  authentik_users      = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
+  authentik_groups     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
+  authentik_config     = yamldecode(nonsensitive(data.sops_file.authentik.raw))
+}
+module "authentik-test" {
+  source               = "./terraform/authentik"
+  authentik_api_url    = data.sops_file.authentik.data["api-test.url"]
+  authentik_api_token  = data.sops_file.authentik.data["api-test.token"]
+  cluster_domain       = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  cluster_short_domain = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  authentik_users      = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
+  authentik_groups     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
+  authentik_config     = yamldecode(nonsensitive(data.sops_file.authentik.raw))
 }
 
 data "sops_file" "domains" {

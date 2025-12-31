@@ -9,7 +9,7 @@ resource "authentik_provider_oauth2" "recipes" {
   allowed_redirect_uris = [
     {
       matching_mode = "strict",
-      url           = "https://recipes.pub.${var.main_home_domain}/accounts/authentik/login/callback/"
+      url           = "https://recipes.pub.${var.cluster_domain}/accounts/authentik/login/callback/"
     }
   ]
 }
@@ -18,5 +18,5 @@ resource "authentik_application" "recipes" {
   name              = "recipes"
   slug              = "recipes"
   protocol_provider = authentik_provider_oauth2.recipes.id
-  meta_launch_url   = "https://recipes.pub.${var.main_home_domain}"
+  meta_launch_url   = "https://recipes.pub.${var.cluster_domain}"
 }

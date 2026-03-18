@@ -10,7 +10,7 @@ terraform {
     }
     htpasswd = {
       source  = "loafoe/htpasswd"
-      version = "1.6.0"
+      version = "2.1.0"
     }
   }
 }

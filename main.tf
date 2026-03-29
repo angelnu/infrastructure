@@ -41,9 +41,8 @@ data "sops_file" "authentik" {
 }
 module "authentik" {
   source               = "./terraform/authentik"
-  authentik_api_url    = data.sops_file.authentik.data["api.url"]
-  authentik_api_token  = data.sops_file.authentik.data["api.token"]
-  cluster_domain       = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  cluster_settings     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).clusters.prod
+  cluster_domain       = format("prod.%s", nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"]))
   cluster_short_domain = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
   authentik_users      = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
   authentik_groups     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
@@ -51,10 +50,9 @@ module "authentik" {
 }
 module "authentik-test" {
   source               = "./terraform/authentik"
-  authentik_api_url    = data.sops_file.authentik.data["api-test.url"]
-  authentik_api_token  = data.sops_file.authentik.data["api-test.token"]
-  cluster_domain       = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
-  cluster_short_domain = nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"])
+  cluster_settings     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).clusters.test
+  cluster_domain       = format("test.%s", nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"]))
+  cluster_short_domain = format("test.%s", nonsensitive(data.sops_file.settings_secrets.data["main_home_domain"]))
   authentik_users      = yamldecode(nonsensitive(data.sops_file.authentik.raw)).users
   authentik_groups     = yamldecode(nonsensitive(data.sops_file.authentik.raw)).groups
   authentik_config     = yamldecode(nonsensitive(data.sops_file.authentik.raw))

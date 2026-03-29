@@ -13,6 +13,7 @@ resource "authentik_outpost" "ingress_outpost" {
     authentik_host: https://authentik.pub.${var.cluster_domain}
     authentik_host_insecure: false
     authentik_host_browser: ""
+    session_timeout: ${var.authentik_config.sessions.refresh_token_duration}
     log_level: debug
     object_naming_template: ak-outpost-%(name)s
     docker_network: null

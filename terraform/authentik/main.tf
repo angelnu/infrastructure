@@ -9,10 +9,10 @@ terraform {
 
 provider "authentik" {
   # Configuration options
-  url   = var.authentik_api_url
-  token = var.authentik_api_token
+  url   = var.cluster_settings.api.url
+  token = var.cluster_settings.api.token
   # Optionally set insecure to ignore TLS Certificates
-  insecure = var.authentik_api_insecure
+  insecure = var.cluster_settings.api.insecure
 }
 
 

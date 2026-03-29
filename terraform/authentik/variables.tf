@@ -1,17 +1,6 @@
-variable "authentik_api_url" {
-  description = "Authentik api url"
-  type        = string
-}
-
-variable "authentik_api_token" {
-  description = "Authentik api token"
-  type        = string
-}
-
-variable "authentik_api_insecure" {
-  description = "Authentik insecure"
-  type        = bool
-  default     = false
+variable "cluster_settings" {
+  description = "cluster_settings"
+  type        = any
 }
 variable "authentik_users" {
   description = "Authentik users"

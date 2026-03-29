@@ -6,6 +6,7 @@ resource "authentik_group" "groups" {
   for_each     = local.groups
   name         = each.key
   is_superuser = lookup(each.value, "is_superuser", false)
+  roles        = [for role in lookup(each.value, "roles", []) : authentik_rbac_role.roles[role].id]
 }
 
 resource "authentik_user" "users" {

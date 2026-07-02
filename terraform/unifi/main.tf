@@ -4,7 +4,7 @@ terraform {
       # source  = "paultyng/unifi"
       # version = "0.41.0"
       source  = "filipowm/unifi"
-      version = "1.0.0"
+      version = "1.1.0"
       # source  = "ubiquiti-community/unifi"
       # version = "0.41.4-beta2"
     }

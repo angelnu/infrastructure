@@ -8,8 +8,9 @@ resource "authentik_provider_oauth2" "recipes" {
   refresh_token_validity = "days=30"
   allowed_redirect_uris = [
     {
-      matching_mode = "strict",
-      url           = "https://recipes.pub.${var.cluster_domain}/accounts/authentik/login/callback/"
+      matching_mode     = "strict"
+      redirect_uri_type = "authorization"
+      url               = "https://recipes.pub.${var.cluster_domain}/accounts/authentik/login/callback/"
     }
   ]
 }

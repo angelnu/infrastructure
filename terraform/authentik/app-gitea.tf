@@ -11,8 +11,9 @@ resource "authentik_provider_oauth2" "gitea" {
   refresh_token_validity = "days=30"
   allowed_redirect_uris = [
     {
-      matching_mode = "strict",
-      url           = "https://git.${var.cluster_short_domain}/user/oauth2/authentik/callback"
+      matching_mode     = "strict"
+      redirect_uri_type = "authorization"
+      url               = "https://git.${var.cluster_short_domain}/user/oauth2/authentik/callback"
     }
   ]
 }

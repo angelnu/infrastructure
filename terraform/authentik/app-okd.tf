@@ -12,8 +12,9 @@ resource "authentik_provider_oauth2" "okd" {
   refresh_token_validity = "days=30"
   allowed_redirect_uris = [
     {
-      matching_mode = "strict",
-      url           = "https://oauth-openshift.apps.${var.cluster_domain}/oauth2callback/Casa96"
+      matching_mode     = "strict"
+      redirect_uri_type = "authorization"
+      url               = "https://oauth-openshift.apps.${var.cluster_domain}/oauth2callback/Casa96"
     }
   ]
 }

@@ -39,18 +39,17 @@ resource "authentik_application" "home_assistant" {
   meta_description  = "Home automation (OIDC SSO)"
 }
 
-# Access restricted to family groups (replaces default_ingress binding)
-
-resource "authentik_policy_binding" "home_assistant_app_access_casa96" {
+# Access restricted to dedicated HA groups (ha-users = all HA users, ha-admins = HA admins)
+resource "authentik_policy_binding" "home_assistant_app_access_ha_admins" {
   target  = authentik_application.home_assistant.uuid
-  group   = authentik_group.groups["casa96"].id
+  group   = authentik_group.groups["ha-admins"].id
   order   = 0
   timeout = 1440
 }
 
-resource "authentik_policy_binding" "home_assistant_app_access_madrid" {
+resource "authentik_policy_binding" "home_assistant_app_access_ha_users" {
   target  = authentik_application.home_assistant.uuid
-  group   = authentik_group.groups["madrid"].id
+  group   = authentik_group.groups["ha-users"].id
   order   = 1
   timeout = 1440
 }

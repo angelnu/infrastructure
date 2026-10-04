@@ -185,3 +185,35 @@ RUNTIME MATRIX (what to run from the "other machine")
   https://authentik.pub.prod.angelnu.com (LAN or casa96-all WireGuard).
 - Verification kubectl: `ssh casa` (dev host) has kubectl +
   /tmp/kc-prod.yaml (admin, chmod 600; delete after: rm /tmp/kc-prod.yaml).
+
+================================================================================
+STATUS UPDATE 2026-10-04 — migration executed
+================================================================================
+DONE:
+- Phases 1-4 completed and verified (OIDC login works, users link automatically)
+- display_name changed to "Casa" (button: "Login with Casa")
+- Access restricted to authentik groups casa96 + madrid (terraform 5276833)
+- Admin mapping verified live: casa_editors -> group_ids ['system-admin']
+- LOCAL LOGIN DISABLED EARLY (user request): configuration.yaml now has
+  `homeassistant: auth_providers: []`  (upstream-supported, hass-oidc-auth#67)
+- Purged from /config/.storage: auth_provider.homeassistant (password hashes)
+  + the .corrupt.2026-01 store — backups in /config/.bak-purge-local-auth/
+- Removed ldap-auth.py (command_line provider gone with auth_providers: [])
+- Removed archived custom_components/auth_header
+- HA restarted, verified: homeassistant+command_line providers unregistered,
+  OIDC provider healthy, welcome page 200.
+
+RECOVERY PROCEDURE (OpenShift-only, as intended):
+  kubectl -n home-assistant exec -it deploy/home-assistant -c main -- sh
+  # edit /config/configuration.yaml: temporarily set under homeassistant:
+  #   auth_providers:
+  #     - type: homeassistant
+  kubectl -n home-assistant rollout restart deployment home-assistant
+  # then optionally: hass --script auth --config /config --username X --password Y
+
+REMAINING (Phase 5 tail):
+- [ ] After ALL casa96/madrid family users have logged in once via SSO:
+      set `features.automatic_user_linking: false` in auth_oidc config + restart
+- [ ] Optional hardening: `features.require_existing_user: true`
+- [ ] Delete /config/.bak-purge-local-auth/ and *.bak-* copies when confident
+- [ ] Keep LDAP outpost: maddy/tt-rss still authenticate via LDAP

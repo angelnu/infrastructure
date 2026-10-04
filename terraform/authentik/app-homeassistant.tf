@@ -40,13 +40,6 @@ resource "authentik_application" "home_assistant" {
 }
 
 # Access restricted to family groups (replaces default_ingress binding)
-data "authentik_group" "casa96" {
-  name = "casa96"
-}
-
-data "authentik_group" "madrid" {
-  name = "madrid"
-}
 
 resource "authentik_policy_binding" "home_assistant_app_access_casa96" {
   target  = authentik_application.home_assistant.uuid

@@ -211,9 +211,12 @@ RECOVERY PROCEDURE (OpenShift-only, as intended):
   kubectl -n home-assistant rollout restart deployment home-assistant
   # then optionally: hass --script auth --config /config --username X --password Y
 
-REMAINING (Phase 5 tail):
-- [ ] After ALL casa96/madrid family users have logged in once via SSO:
-      set `features.automatic_user_linking: false` in auth_oidc config + restart
-- [ ] Optional hardening: `features.require_existing_user: true`
-- [ ] Delete /config/.bak-purge-local-auth/ and *.bak-* copies when confident
-- [ ] Keep LDAP outpost: maddy/tt-rss still authenticate via LDAP
+PHASE 5 COMPLETED 2026-10-04:
+- [x] All 9 users logged in via SSO and linked (verified in .storage/auth);
+      group mapping confirmed live (ha-admins -> system-admin)
+- [x] features.automatic_user_linking: false (no more auto-linking; new
+      authentik users in ha-users get a fresh HA profile on first login)
+- [ ] Optional future hardening: `features.require_existing_user: true`
+- [x] /config/.bak-purge-local-auth/ and configuration.yaml.bak-* deleted
+- [x] Groups migrated to dedicated ha-admins/ha-users (authentik terraform)
+- [x] Keep LDAP outpost: maddy/tt-rss still authenticate via LDAP

@@ -39,9 +39,25 @@ resource "authentik_application" "home_assistant" {
   meta_description  = "Home automation (OIDC SSO)"
 }
 
-resource "authentik_policy_binding" "home_assistant_app_access" {
+# Access restricted to family groups (replaces default_ingress binding)
+data "authentik_group" "casa96" {
+  name = "casa96"
+}
+
+data "authentik_group" "madrid" {
+  name = "madrid"
+}
+
+resource "authentik_policy_binding" "home_assistant_app_access_casa96" {
   target  = authentik_application.home_assistant.uuid
-  group   = authentik_group.groups["default_ingress"].id
+  group   = data.authentik_group.casa96.id
   order   = 0
+  timeout = 1440
+}
+
+resource "authentik_policy_binding" "home_assistant_app_access_madrid" {
+  target  = authentik_application.home_assistant.uuid
+  group   = data.authentik_group.madrid.id
+  order   = 1
   timeout = 1440
 }

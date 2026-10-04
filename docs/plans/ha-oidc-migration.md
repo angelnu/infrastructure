@@ -49,7 +49,7 @@ PHASE 1 — authentik OIDC provider (Terraform, needs sops+age key + home networ
       scope_name = "groups"
       expression = <<-EOT
     return {
-      "groups": [group.name for group in request.user.ak_groups.all()],
+      "groups": [group.name for group in request.user.groups.all()],
     }
     EOT
     }
@@ -62,6 +62,7 @@ PHASE 1 — authentik OIDC provider (Terraform, needs sops+age key + home networ
       authentication_flow    = authentik_flow.login.uuid
       authorization_flow     = authentik_flow.authorization_implicit_consent.uuid
       invalidation_flow      = authentik_flow.invalidation.uuid
+    grant_types            = ["authorization_code", "refresh_token"]
       property_mappings      = concat(
         data.authentik_property_mapping_provider_scope.oauth2.ids,
         [authentik_property_mapping_provider_scope.groups.id]

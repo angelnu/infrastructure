@@ -43,14 +43,14 @@ resource "authentik_application" "home_assistant" {
 
 resource "authentik_policy_binding" "home_assistant_app_access_casa96" {
   target  = authentik_application.home_assistant.uuid
-  group   = data.authentik_group.casa96.id
+  group   = authentik_group.groups["casa96"].id
   order   = 0
   timeout = 1440
 }
 
 resource "authentik_policy_binding" "home_assistant_app_access_madrid" {
   target  = authentik_application.home_assistant.uuid
-  group   = data.authentik_group.madrid.id
+  group   = authentik_group.groups["madrid"].id
   order   = 1
   timeout = 1440
 }

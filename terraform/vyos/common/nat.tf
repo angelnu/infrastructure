@@ -1,10 +1,15 @@
-// LAN -> WAN
+// Source NAT (LAN -> WAN).
+//
+// Two rule families share this table:
+//   100s: hairpin NAT, restricted to the WAN's own subnet.
+//   400s: internet masquerade, interface-keyed so it also covers the VRRP egress
+//         interfaces (the load-balancer that used to do this is disabled -- see
+//         wan_loadbalance.tf).
 resource "vyos_config_block_tree" "nat_source" {
 
   path = "nat source rule"
 
   configs = merge(
-    # SNAT traffic to WAN (load balancer takes care of NATing traffic leaving the house)
     [for outbound_index, outbound in
       flatten(
         [for network_name, network in var.config.networks :
@@ -46,12 +51,20 @@ resource "vyos_config_block_tree" "nat_source" {
             ]
           ) :
           {
-            # LAN -> WAN
+            # LAN -> WAN, restricted to the WAN's own subnet (hairpin NAT)
             "${100 + 10 * outbound_index + inbound_index} description"             = "LAN (${inbound.network_name}) -> WAN (${outbound.network_name})"
-            "${100 + 10 * outbound_index + inbound_index} outbound-interface name" = outbound.interface,
-            "${100 + 10 * outbound_index + inbound_index} destination address"     = outbound.network.cidr,
-            "${100 + 10 * outbound_index + inbound_index} source address"          = inbound.cidr,
-            "${100 + 10 * outbound_index + inbound_index} translation address" : "masquerade"
+            "${100 + 10 * outbound_index + inbound_index} outbound-interface name" = outbound.interface
+            "${100 + 10 * outbound_index + inbound_index} destination address"     = outbound.network.cidr
+            "${100 + 10 * outbound_index + inbound_index} source address"          = inbound.cidr
+            "${100 + 10 * outbound_index + inbound_index} translation address"     = "masquerade"
+
+            # Internet masquerade: interface-keyed SNAT that also covers the VRRP
+            # egress interfaces, whose load-balancer-generated SNAT is missing
+            # (see wan_loadbalance.tf).
+            "${400 + 10 * outbound_index + inbound_index} description"             = "Internet masquerade (${inbound.network_name}) -> WAN (${outbound.network_name})"
+            "${400 + 10 * outbound_index + inbound_index} outbound-interface name" = outbound.interface
+            "${400 + 10 * outbound_index + inbound_index} source address"          = inbound.cidr
+            "${400 + 10 * outbound_index + inbound_index} translation address"     = "masquerade"
           }
         ]...
       )
